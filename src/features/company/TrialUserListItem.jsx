@@ -6,6 +6,7 @@ import {
   getDocs,
   getFirestore,
   query,
+  setDoc,
   updateDoc,
   where,
 } from "firebase/firestore";
@@ -25,7 +26,7 @@ export default function TrialUserListItem({ users }) {
   const auth = getAuth(app);
   //ログインユーザー(会社側のユーザー)
   const user = auth.currentUser;
-  const [requestUser, setRequestUser] = useState([]);
+  // const [requestUser, setRequestUser] = useState([]);
 
   // //トライアル申請者のマッチリスト取得
   // useEffect(() => {
@@ -50,10 +51,10 @@ export default function TrialUserListItem({ users }) {
   // }, []);
 
   //foreachでID取得
-  // const Id = users.forEach(function (e) {
-  //   console.log(e.userUid);
-  //   return e.userUid;
-  // });
+  const Id = users.forEach(function (e) {
+    console.log(e.userUid);
+    return e.userUid;
+  });
 
   //自分の企業を取得
   useEffect(() => {
@@ -77,25 +78,27 @@ export default function TrialUserListItem({ users }) {
   }, [db, user.uid]);
 
   //トライラル申請者承認
-  async function trialMatchCompanyToUser() {
-    setLoading(true);
-    try {
+  // async function trialMatchCompanyToUser() {
+  //   setLoading(true);
+  //   try {
+  //     await updateDoc(doc(db, "users"), {
+  //       MatchCompanyId: arrayUnion(myCompany.id),
+  //       MatchCompanyHostId: arrayUnion(myCompany.hostUid),
+  //     });
+  //     return await updateDoc(doc(db, "events", myCompany.id), {
+  //       MatchUserId: arrayUnion(user),
+  //     });
+  //   } catch (error) {
+  //     console.log("fserror", error);
+  //     throw error;
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
 
-      
-      await updateDoc(doc(db, "users"), {
-        MatchCompanyId: arrayUnion(myCompany.id),
-        MatchCompanyHostId: arrayUnion(myCompany.hostUid),
-      });
-      return await updateDoc(doc(db, "events", myCompany.id), {
-        MatchUserId: arrayUnion(),
-      });
-    } catch (error) {
-      console.log("fserror", error);
-      throw error;
-    } finally {
-      setLoading(false);
-    }
-  }
+
+
+
 
   return (
     <Card.Group itemsPerRow={3} style={{ marginTop: 30 }}>
@@ -108,7 +111,7 @@ export default function TrialUserListItem({ users }) {
               floated='right'
               negative
               content='トライアル承認'
-              onClick={trialMatchCompanyToUser}
+              // onClick={sample}
               loading={loading}
             />
             <Button

@@ -325,6 +325,36 @@ export function getUserEventsQuery(activeTab, userUid) {
   }
 }
 
+//トライアル申請承認ボタン
+export async function match(profile) {
+  const user = auth.currentUser;
+  // const batch = writeBatch(db);
+  //バッチ処理(一度に多くのユーザーのフォローアクションに対応)
+  try {
+    setDoc(doc(db, "match", user.uid, "company", profile.id), {
+      displayName: profile.displayName,
+      photoURL: profile.photoURL || "/assets/user.png",
+      uid: profile.id,
+    });
+    //firestoreのアクション
+    setDoc(doc(db, "match", profile.id, "user", user.uid), {
+      displayName: user.displayName,
+      photoURL: user.photoURL || "/assets/user.png",
+      uid: user.id,
+    });
+
+    // updateDoc(doc(db, "users", user.uid), {
+    //   followingCount: increment(1),
+    // });
+    // updateDoc(doc(db, "users", profile.id), {
+    //   followerCount: increment(1),
+    // });
+    // return await batch.commit();
+  } catch (e) {
+    throw e;
+  }
+}
+
 //フォローボタンを押したときのアクション
 export async function followUser(profile) {
   const user = auth.currentUser;

@@ -1,50 +1,49 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Divider,
-  Grid,
-  Header,
-  Icon,
-  Item,
-  Reveal,
-  Segment,
-  Statistic,
-} from "semantic-ui-react";
+import { Button, Grid, Header, Icon, Item, Segment } from "semantic-ui-react";
 import { toast } from "react-toastify";
 import {
   followUser,
-  getFollowingDoc,
+  match,
   unFollowUser,
 } from "../../../app/firestore/firestoreService";
-import { useSelector } from "react-redux";
+
 import { useDispatch } from "react-redux";
 import { setFollowUser, setUnFollowUser } from "../profileActions";
-import { CLEAR_FOLLOWINGS } from "../profileConstants";
+import { addDoc, collection, doc, getFirestore, setDoc } from "firebase/firestore";
+import { app } from "../../../app/config/firebase";
+import { getAuth } from "firebase/auth";
 
 export default function ProfileHeader({ profile, isCurrentUser }) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const { followingUser } = useSelector((state) => state.profile);
+  //firebase
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+  const user = auth.currentUser;
+
+  // const { followingUser } = useSelector((state) => state.profile);
+
+  console.log(profile.id);
 
   //動的にフォロワーを獲得（重複禁止!）
-  useEffect(() => {
-    if (isCurrentUser) return;
-    setLoading(true);
-    async function fetchFollowingDoc() {
-      try {
-        const followingDoc = await getFollowingDoc(profile.id);
-        if (followingDoc && followingDoc.exists) {
-          dispatch(setFollowUser());
-        }
-      } catch (error) {
-        toast.error(error.message);
-      }
-    }
-    fetchFollowingDoc().then(() => setLoading(false));
-    return () => {
-      dispatch({type:CLEAR_FOLLOWINGS}) //他のユーザーに遷移したときにclearする
-    }
-  }, [dispatch, isCurrentUser, profile.id]);
+  // useEffect(() => {
+  //   if (isCurrentUser) return;
+  //   setLoading(true);
+  //   async function fetchFollowingDoc() {
+  //     try {
+  //       const followingDoc = await getFollowingDoc(profile.id);
+  //       if (followingDoc && followingDoc.exists) {
+  //         dispatch(setFollowUser());
+  //       }
+  //     } catch (error) {
+  //       toast.error(error.message);
+  //     }
+  //   }
+  //   fetchFollowingDoc().then(() => setLoading(false));
+  //   return () => {
+  //     dispatch({type:CLEAR_FOLLOWINGS}) //他のユーザーに遷移したときにclearする
+  //   }
+  // }, [dispatch, isCurrentUser, profile.id]);
 
   //フォローボタン押した時のアクション
   async function handleFollowUser() {
@@ -64,6 +63,31 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
     try {
       await unFollowUser(profile);
       dispatch(setUnFollowUser());
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  //サンプル
+  async function matchUserToCompany() {
+    setLoading(true);
+    try {
+      await setDoc(doc(db, "match", user.uid), {
+        companyName: user.displayName,
+        companyPhotoURL: user.photoURL || "/assets/user.png",
+        companyId: user.uid,
+        userName: profile.displayName,
+        userPhotoURL: profile.photoURL || "/assets/user.png",
+        userId:profile.id
+      });
+      // //firestoreのアクション
+      // setDoc(doc(db, "match", user.uid, "user", profile.id), {
+      //   displayName: profile.displayName,
+      //   photoURL: profile.photoURL || "/assets/user.png",
+      //   uid: profile.id,
+      // });
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -109,13 +133,14 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
           </div>
         </Grid.Column>
         <Grid.Column width={4}>
-          <Statistic.Group>
+          {/* <Statistic.Group>
             <Statistic label='Followers' value={profile.followerCount || 0} />
             <Statistic label='Following' value={profile.followingCount || 0} />
-          </Statistic.Group>
+          </Statistic.Group> */}
           {!isCurrentUser && (
             <>
-              <Divider />
+              <Button onClick={matchUserToCompany} loading={loading} />
+              {/* <Divider />
               <Reveal animated='move'>
                 <Reveal.Content visible style={{ width: "100%" }}>
                   <Button
@@ -138,7 +163,7 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
                     loading={loading}
                   />
                 </Reveal.Content>
-              </Reveal>
+              </Reveal> */}
             </>
           )}
         </Grid.Column>
