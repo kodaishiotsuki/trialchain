@@ -9,7 +9,13 @@ import {
 
 import { useDispatch } from "react-redux";
 import { setFollowUser, setUnFollowUser } from "../profileActions";
-import { addDoc, collection, doc, getFirestore, setDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getFirestore,
+  setDoc,
+} from "firebase/firestore";
 import { app } from "../../../app/config/firebase";
 import { getAuth } from "firebase/auth";
 
@@ -74,13 +80,13 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
   async function matchUserToCompany() {
     setLoading(true);
     try {
-      await setDoc(doc(db, "match", user.uid), {
+      await setDoc(doc(db, "match", user.uid, "company", profile.id), {
         companyName: user.displayName,
         companyPhotoURL: user.photoURL || "/assets/user.png",
         companyId: user.uid,
         userName: profile.displayName,
         userPhotoURL: profile.photoURL || "/assets/user.png",
-        userId:profile.id
+        userId: profile.id,
       });
       // //firestoreのアクション
       // setDoc(doc(db, "match", user.uid, "user", profile.id), {
