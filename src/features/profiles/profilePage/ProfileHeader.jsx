@@ -1,17 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Grid, Header, Icon, Item, Segment } from "semantic-ui-react";
 import { toast } from "react-toastify";
 import {
-  followUser,
-  match,
-  unFollowUser,
-} from "../../../app/firestore/firestoreService";
-
-import { useDispatch } from "react-redux";
-import { setFollowUser, setUnFollowUser } from "../profileActions";
-import {
-  addDoc,
-  collection,
   doc,
   getFirestore,
   setDoc,
@@ -20,7 +10,7 @@ import { app } from "../../../app/config/firebase";
 import { getAuth } from "firebase/auth";
 
 export default function ProfileHeader({ profile, isCurrentUser }) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   //firebase
   const db = getFirestore(app);
@@ -52,29 +42,29 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
   // }, [dispatch, isCurrentUser, profile.id]);
 
   //フォローボタン押した時のアクション
-  async function handleFollowUser() {
-    setLoading(true);
-    try {
-      await followUser(profile);
-      dispatch(setFollowUser());
-    } catch (error) {
-      toast.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  }
+  // async function handleFollowUser() {
+  //   setLoading(true);
+  //   try {
+  //     await followUser(profile);
+  //     dispatch(setFollowUser());
+  //   } catch (error) {
+  //     toast.error(error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
   //アンフォローボタン押した時のアクション
-  async function handleUnFollowUser() {
-    setLoading(true);
-    try {
-      await unFollowUser(profile);
-      dispatch(setUnFollowUser());
-    } catch (error) {
-      toast.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  }
+  // async function handleUnFollowUser() {
+  //   setLoading(true);
+  //   try {
+  //     await unFollowUser(profile);
+  //     dispatch(setUnFollowUser());
+  //   } catch (error) {
+  //     toast.error(error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
 
   //サンプル
   async function matchUserToCompany() {

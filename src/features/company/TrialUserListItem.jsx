@@ -1,31 +1,19 @@
-import { getAuth } from "firebase/auth";
-import {
-  arrayUnion,
-  collection,
-  doc,
-  getDocs,
-  getFirestore,
-  query,
-  setDoc,
-  updateDoc,
-  where,
-} from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+
+import React from "react";
 
 import { Link } from "react-router-dom";
 import { Button, Card, Header, Image } from "semantic-ui-react";
-import { app } from "../../app/config/firebase";
 
 export default function TrialUserListItem({ users }) {
   //loading
-  const [loading, setLoading] = useState(false);
-  //自分の会社取得
-  const [myCompany, setMyCompany] = useState([]);
-  //firebase
-  const db = getFirestore(app);
-  const auth = getAuth(app);
-  //ログインユーザー(会社側のユーザー)
-  const user = auth.currentUser;
+  // const [loading, setLoading] = useState(false);
+  // //自分の会社取得
+  // const [myCompany, setMyCompany] = useState([]);
+  // //firebase
+  // const db = getFirestore(app);
+  // const auth = getAuth(app);
+  // //ログインユーザー(会社側のユーザー)
+  // const user = auth.currentUser;
   // const [requestUser, setRequestUser] = useState([]);
 
   // //トライアル申請者のマッチリスト取得
@@ -51,31 +39,31 @@ export default function TrialUserListItem({ users }) {
   // }, []);
 
   //foreachでID取得
-  const Id = users.forEach(function (e) {
-    console.log(e.userUid);
-    return e.userUid;
-  });
+  // const Id = users.forEach(function (e) {
+  //   console.log(e.userUid);
+  //   return e.userUid;
+  // });
 
   //自分の企業を取得
-  useEffect(() => {
-    try {
-      const q = query(
-        collection(db, "events"),
-        where("hostUid", "==", user.uid)
-      );
-      getDocs(q).then((querySnapshot) => {
-        setMyCompany(
-          querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
-        );
-        //コンソールで表示
-        console.log(
-          querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0].id
-        );
-      }, []);
-    } catch (error) {
-      console.log(error.message);
-    }
-  }, [db, user.uid]);
+  // useEffect(() => {
+  //   try {
+  //     const q = query(
+  //       collection(db, "events"),
+  //       where("hostUid", "==", user.uid)
+  //     );
+  //     getDocs(q).then((querySnapshot) => {
+  //       setMyCompany(
+  //         querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
+  //       );
+  //       //コンソールで表示
+  //       console.log(
+  //         querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0].id
+  //       );
+  //     }, []);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // }, [db, user.uid]);
 
   //トライラル申請者承認
   // async function trialMatchCompanyToUser() {
@@ -107,13 +95,12 @@ export default function TrialUserListItem({ users }) {
           <Card.Content>
             <Image size='large' src={user.photoURL} />
             <Header size='huge'>{user.displayName}</Header>
-            <Button
+            {/* <Button
               floated='right'
               negative
               content='トライアル承認'
-              // onClick={sample}
               loading={loading}
-            />
+            /> */}
             <Button
               floated='right'
               positive
