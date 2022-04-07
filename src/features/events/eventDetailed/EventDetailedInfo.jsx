@@ -68,13 +68,13 @@ export default function EventDetailedInfo({ event, isHost }) {
         // const isFavorite = favorite?.favoriteUserId?.some((a) => a === user?.uid);
         // console.log(isFavorite)
         //コンソールで表示
-        console.log(
-          querySnapshot.docs.map((doc) =>
-            doc
-              .data({ ...doc.data(), id: doc.id })
-              .favoriteUserId.some((a) => a === user.uid)
-          )
-        );
+        // console.log(
+        //   querySnapshot.docs.map((doc) =>
+        //     doc
+        //       .data({ ...doc.data(), id: doc.id })
+        //       .favoriteUserId.some((a) => a === user.uid)
+        //   )
+        // );
       });
     } catch (error) {
       console.log(error.message);

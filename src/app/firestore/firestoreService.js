@@ -328,28 +328,28 @@ export function getUserEventsQuery(activeTab, userUid) {
 //フォローボタンを押したときのアクション
 export async function followUser(profile) {
   const user = auth.currentUser;
-  const batch = writeBatch(db);
+  // const batch = writeBatch(db);
   //バッチ処理(一度に多くのユーザーのフォローアクションに対応)
   try {
-    batch.set(doc(db, "following", user.uid, "userFollowing", profile.id), {
+    setDoc(doc(db, "following", user.uid, "userFollowing", profile.id), {
       displayName: profile.displayName,
       photoURL: profile.photoURL || "/assets/user.png",
       uid: profile.id,
     });
     //firestoreのアクション
-    batch.set(doc(db, "following", profile.id, "userFollowers", user.uid), {
+    setDoc(doc(db, "following", profile.id, "userFollowers", user.uid), {
       displayName: user.displayName,
       photoURL: user.photoURL || "/assets/user.png",
       uid: user.id,
     });
 
-    batch.update(doc(db, "users", user.uid), {
+    updateDoc(doc(db, "users", user.uid), {
       followingCount: increment(1),
     });
-    batch.update(doc(db, "users", profile.id), {
+    updateDoc(doc(db, "users", profile.id), {
       followerCount: increment(1),
     });
-    return await batch.commit();
+    // return await batch.commit();
   } catch (e) {
     throw e;
   }

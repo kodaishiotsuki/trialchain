@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Tab } from "semantic-ui-react";
 import { app } from "../../app/config/firebase";
+import MatchUserListItem from "./MatchUserListItem";
 import TrialUserListItem from "./TrialUserListItem";
 
 export default function TrialUserList() {
@@ -25,12 +26,18 @@ export default function TrialUserList() {
     {
       menuItem: "直近の申請者リスト",
       render: () => (
-        <TrialUserListItem users={users} activeTab={activeTab} key={users.id} />
+        <TrialUserListItem
+          users={users}
+          activeTab={activeTab}
+          key={users.id}
+        />
       ),
     },
     {
       menuItem: "マッチした申請者リスト",
-      render: () => <TrialUserListItem users={users} activeTab={activeTab} key={users.id}/>,
+      render: () => (
+        <MatchUserListItem users={users} activeTab={activeTab} key={users.id} />
+      ),
     },
   ];
 
@@ -45,15 +52,28 @@ export default function TrialUserList() {
         setUsers(querySnapshot.docs.map((doc) => doc.data()));
 
         //コンソールで表示
-        console.log(querySnapshot.docs.map((doc) => doc.data()));
+        // console.log(querySnapshot.docs.map((doc) => doc.data()));
       });
     } catch (error) {
       console.log(error.message);
     }
-  }, [db, user.uid]);
+  },[db,user.uid]);
+
+  // console.log(users);
+
+  // Object.keys(users,"userUid").forEach(function(e) {
+  //   console.log(e)
+  // })
+  // const Id = users.forEach(function (e) {
+  //   console.log(e.userUid);
+  //   return e.userUid;
+  // });
+
+  
 
   //エラーが発生した場合はリダイレクト
   if (error) return <Redirect to='/error' />;
+
 
   return (
     <Tab

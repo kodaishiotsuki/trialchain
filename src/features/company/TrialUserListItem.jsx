@@ -10,6 +10,7 @@ import {
   where,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
 import { Button, Card, Header, Image } from "semantic-ui-react";
 import { app } from "../../app/config/firebase";
@@ -22,15 +23,44 @@ export default function TrialUserListItem({ users }) {
   //firebase
   const db = getFirestore(app);
   const auth = getAuth(app);
-  //ログインユーザー
-  const currentUser = auth.currentUser;
+  //ログインユーザー(会社側のユーザー)
+  const user = auth.currentUser;
+  const [requestUser, setRequestUser] = useState([]);
+
+  // //トライアル申請者のマッチリスト取得
+  // useEffect(() => {
+  //   try {
+  //     const q = getUserProfile(match.params.id);
+  //     getDocs(q).then((querySnapshot) => {
+  //       setRequestUser(
+  //         querySnapshot.docs.map((doc) =>
+  //           doc.data({ ...doc.data(), id: doc.id })
+  //         )
+  //       );
+  //       //コンソールで表示
+  //       console.log(
+  //         querySnapshot.docs.map((doc) =>
+  //           doc.data({ ...doc.data(), id: doc.id })
+  //         )
+  //       );
+  //     });
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // }, []);
+
+  //foreachでID取得
+  // const Id = users.forEach(function (e) {
+  //   console.log(e.userUid);
+  //   return e.userUid;
+  // });
 
   //自分の企業を取得
   useEffect(() => {
     try {
       const q = query(
         collection(db, "events"),
-        where("hostUid", "==", currentUser.uid)
+        where("hostUid", "==", user.uid)
       );
       getDocs(q).then((querySnapshot) => {
         setMyCompany(
@@ -44,20 +74,20 @@ export default function TrialUserListItem({ users }) {
     } catch (error) {
       console.log(error.message);
     }
-  }, [db, currentUser]);
-
-  console.log(myCompany.id);
+  }, [db, user.uid]);
 
   //トライラル申請者承認
   async function trialMatchCompanyToUser() {
     setLoading(true);
     try {
-      await updateDoc(doc(db, "users", currentUser.uid), {
+
+      
+      await updateDoc(doc(db, "users"), {
         MatchCompanyId: arrayUnion(myCompany.id),
         MatchCompanyHostId: arrayUnion(myCompany.hostUid),
       });
       return await updateDoc(doc(db, "events", myCompany.id), {
-        MatchUserId: arrayUnion(currentUser.uid),
+        MatchUserId: arrayUnion(),
       });
     } catch (error) {
       console.log("fserror", error);
