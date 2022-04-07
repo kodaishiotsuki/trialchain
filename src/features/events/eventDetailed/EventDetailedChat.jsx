@@ -7,7 +7,7 @@ import { firebaseObjectToArray } from "../../../app/firestore/firebaseService";
 import { getEventChatRef } from "../../../app/firestore/firebaseService";
 import { listenToEventChat } from "../eventActions";
 import EventDetailedChatForm from "./EventDetailedChatForm";
-import { formatDistance } from "date-fns";
+// import { formatDistance } from "date-fns";
 import { CLEAR_COMMENTS } from "../eventConstants";
 import { createDataTree } from "../../../app/common/util/util";
 import { onValue,off } from "firebase/database";
@@ -69,9 +69,9 @@ export default function EventDetailedChat({ eventId }) {
                   <Comment.Author as={Link} to={`/profile/${comment.uid}`}>
                     {comment.displayName}
                   </Comment.Author>
-                  <Comment.Metadata>
+                  {/* <Comment.Metadata>
                     <div>{formatDistance(comment.date, new Date())}</div>
-                  </Comment.Metadata>
+                  </Comment.Metadata> */}
                   <Comment.Text>
                     {comment.text.split("\n").map((text, i) => (
                       <span key={i}>
@@ -114,9 +114,9 @@ export default function EventDetailedChat({ eventId }) {
                           >
                             {child.displayName}
                           </Comment.Author>
-                          <Comment.Metadata>
+                          {/* <Comment.Metadata>
                             <div>{formatDistance(child.date, new Date())}</div>
-                          </Comment.Metadata>
+                          </Comment.Metadata> */}
                           <Comment.Text>
                             {child.text.split("\n").map((text, i) => (
                               <span key={i}>

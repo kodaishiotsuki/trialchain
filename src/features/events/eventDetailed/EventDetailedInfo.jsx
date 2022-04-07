@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Grid, Icon, Label, Segment } from "semantic-ui-react";
-import { format } from "date-fns";
+// import { format } from "date-fns";
 import EventDetailedMap from "./EventDetailedMap";
 import { useSelector } from "react-redux";
 import {
@@ -61,27 +61,25 @@ export default function EventDetailedInfo({ event, isHost }) {
 
       getDocs(q).then((querySnapshot) => {
         setFavorite(
-          querySnapshot.docs
-            .map((doc) => doc.data({ ...doc.data(), id: doc.id }))
-            .favoriteUserId
+          querySnapshot.docs.map((doc) =>
+            doc.data({ ...doc.data(), id: doc.id })
+          ).favoriteUserId
         );
         // const isFavorite = favorite?.favoriteUserId?.some((a) => a === user?.uid);
         // console.log(isFavorite)
         //コンソールで表示
         console.log(
-          querySnapshot.docs.map(
-            (doc) => doc.data({ ...doc.data(), id: doc.id }).favoriteUserId.some((a)=>a === user.uid)
+          querySnapshot.docs.map((doc) =>
+            doc
+              .data({ ...doc.data(), id: doc.id })
+              .favoriteUserId.some((a) => a === user.uid)
           )
         );
       });
     } catch (error) {
       console.log(error.message);
     }
-  },[]);
-
-  
-  
-  
+  });
 
   //企業のお気に入り登録
   async function handleUserFavoriteCompany() {
@@ -141,9 +139,9 @@ export default function EventDetailedInfo({ event, isHost }) {
           <Grid.Column width={1}>
             <Icon name='building' size='large' color='teal' />
           </Grid.Column>
-          <Grid.Column width={15}>
+          {/* <Grid.Column width={15}>
             <span>{format(event.date, "YYYY/MM/DD ")}</span>
-          </Grid.Column>
+          </Grid.Column> */}
         </Grid>
       </Segment>
 

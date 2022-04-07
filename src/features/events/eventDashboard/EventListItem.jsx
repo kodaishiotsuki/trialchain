@@ -10,7 +10,7 @@ import {
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import EventListAttend from "./EventListAttend";
-import { format } from "date-fns";
+// import { format } from "date-fns";
 // import { deleteEventInFirestore } from "../../../app/firestore/firestoreService";
 
 export default function EventListItem({ event }) {
@@ -67,9 +67,9 @@ export default function EventListItem({ event }) {
       </Segment>
       <Segment>
         <span>
-          <Icon name='building' />
+          {/* <Icon name='building' />
           {format(event.date, "YYYY/MM/DD ")}
-          <br />
+          <br /> */}
           <Icon name='marker' />
           {event.venue.address}
         </span>
