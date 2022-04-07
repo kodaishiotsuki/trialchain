@@ -27,7 +27,7 @@ export default function RegisterForm() {
             await registerInFirebase(values);
             setSubmitting(false);
             dispatch(closeModal());
-            history.push("/usertype");
+            history.push("/userType");
           } catch (error) {
             setErrors({ auth: error.message });
             setSubmitting(false);

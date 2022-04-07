@@ -68,7 +68,7 @@ export default function EventListItem({ event }) {
       <Segment>
         <span>
           <Icon name='building' />
-          {format(event.date, "yyyy/MM/dd ")}
+          {format(event.date, "YYYY/MM/DD ")}
           <br />
           <Icon name='marker' />
           {event.venue.address}

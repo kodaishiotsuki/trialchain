@@ -32,7 +32,7 @@ function App() {
       <ModalManager />
       <ToastContainer position='bottom-right' hideProgressBar />
       <Route exact path='/' component={HomePage} />
-      <Route path='/usertype' component={UserTypePage} />
+      <Route path='/userType' component={UserTypePage} />
       <Route
         //Homeページでナビゲーションバーを非表示にする
         path={"/(.+)"}

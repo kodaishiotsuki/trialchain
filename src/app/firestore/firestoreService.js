@@ -389,8 +389,11 @@ export function getFollowingDoc(profileId) {
 //お気に入り企業追加
 export function addUserFavoriteCompany(event) {
   const user = auth.currentUser;
-  return updateDoc(doc(db, "events", event.id), {
+  updateDoc(doc(db, "events", event.id), {
     favoriteUserId: arrayUnion(user.uid),
+  });
+  return updateDoc(doc(db, "users", user.uid), {
+    favoriteCompanyId: arrayUnion(event.id),
   });
 }
 

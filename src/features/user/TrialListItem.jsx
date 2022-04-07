@@ -1,16 +1,7 @@
-// import { getAuth } from "firebase/auth";
-// import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
-import {
-  arrayRemove,
-  arrayUnion,
-  doc,
-  getFirestore,
-  updateDoc,
-} from "firebase/firestore";
+import { arrayUnion, doc, getFirestore, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import { Link } from "react-router-dom";
 import {
   Button,
   Icon,
@@ -21,34 +12,14 @@ import {
   Segment,
 } from "semantic-ui-react";
 import { app } from "../../app/config/firebase";
-// import { app } from "../../app/config/firebase";
 
 export default function TrialListItem({ company }) {
   //FB
   const db = getFirestore(app);
   const auth = getAuth(app);
   const user = auth.currentUser;
-  //loading（お気に入り解除）
-  const [deleteLoading, setDeleteLoading] = useState(false);
-  //loading（お気に入り解除）
+  //loading
   const [loading, setLoading] = useState(false);
-
-  //お気に入り企業解除
-  // console.log(company.id);
-  async function deleteFavoriteCompany() {
-    setDeleteLoading(true);
-    try {
-      await updateDoc(doc(db, "events", company.id), {
-        favoriteUserId: arrayRemove(user.uid),
-      });
-    } catch (error) {
-      console.log("fserror", error);
-      throw error;
-    } finally {
-      // setDisable(true);
-      setDeleteLoading(false);
-    }
-  }
 
   //トライアル申請
   // async function handleUserFavoriteCompany() {
@@ -69,26 +40,27 @@ export default function TrialListItem({ company }) {
   //     setLoading(false);
   //   }
   // }
+
   //トライアル申請
-  async function handleUserFavoriteCompany() {
+  async function handleUserTrialRequestCompany() {
     setLoading(true);
     try {
       await updateDoc(doc(db, "users", user.uid), {
-        requestCompanyId: arrayUnion(company.id),
-        requestCompanyHostId: arrayUnion(company.hostUid),
+        trialRequestCompanyId: arrayUnion(company.id),
+        trialRequestCompanyHostId: arrayUnion(company.hostUid),
+      });
+      return await updateDoc(doc(db, "events", company.id), {
+        trialRequestUserId: arrayUnion(user.uid),
       });
     } catch (error) {
       console.log("fserror", error);
       throw error;
     } finally {
-      // setDisable(true);
       setLoading(false);
     }
   }
   return (
     <Segment.Group>
-      {/* events,favoriteUserIdとuser.uidが等しい */}
-      {/* {favoriteUsers === user.uid && ( */}
       <>
         <Segment>
           <Item.Group>
@@ -155,38 +127,28 @@ export default function TrialListItem({ company }) {
             ))}
           </List>
           <Button
-            color='green'
+            // color='orange'
+            negative
             floated='right'
             content='トライアル申請'
             style={{
-              paddingTop: 20,
-              paddingBottom: 20,
               fontSize: 20,
-              width: 200,
+              marginLeft: 15,
             }}
             loading={loading}
-            onClick={handleUserFavoriteCompany}
+            onClick={handleUserTrialRequestCompany}
           />
           <Button
+            as={Link}
+            to={`/events/${company.id}`} //イベント内容詳細ページへ遷移（idで判断）
             // color='green'
+            positive
             floated='right'
-            content='お気に入り解除'
+            content='詳細を見る'
             style={{
-              paddingTop: 20,
-              paddingBottom: 20,
               fontSize: 20,
-              width: 200,
             }}
-            loading={deleteLoading}
-            onClick={deleteFavoriteCompany}
           />
-          {/* <Button
-          as={Link}
-          to={`/events/${event.id}`} //イベント内容詳細ページへ遷移（idで判断）
-          color='teal'
-          floated='right'
-          content='View'
-        /> */}
         </Segment>
       </>
     </Segment.Group>
