@@ -17,12 +17,13 @@ export default function MatchUserListItem() {
   const auth = getAuth(app);
   const user = auth.currentUser;
 
-  console.log(user.uid);
+  // console.log(user.uid);
+
   //マッチユーザーリスト取得
   useEffect(() => {
     try {
       const q = query(
-        collection(db, "matchUser"),
+        collection(db, "matchCompany",user.uid,"users"),
         where("hostUid", "==", user.uid)
       );
       getDocs(q).then((querySnapshot) => {
@@ -48,8 +49,8 @@ export default function MatchUserListItem() {
               negative
               content='カジュアル面談へ'
               style={{fontSize:20}}
-              // onClick={trialMatchCompanyToUser}
-              // loading={loading}
+              // as
+              // to
             />
             {/* <Button
               floated='right'

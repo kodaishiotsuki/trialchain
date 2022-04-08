@@ -2,7 +2,7 @@ import React from "react";
 import ModalWrapper from "../../app/common/modals/ModalWrapper";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { Button, Divider, Label } from "semantic-ui-react";
+import { Button, Label } from "semantic-ui-react";
 import MyTextInput from "../../app/common/form/MyTextInput";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../app/common/modals/modalReducer";
@@ -12,7 +12,7 @@ import { signInWithEmail } from "../../app/firestore/firebaseService";
 export default function LoginForm() {
   const dispatch = useDispatch();
   return (
-    <ModalWrapper size='mini' header='Sign in to Match Hub'>
+    <ModalWrapper size='mini' header='Sign in to Trial Chain'>
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={Yup.object({
@@ -55,7 +55,7 @@ export default function LoginForm() {
               color='teal'
               content='Login'
             />
-            <Divider horizontal>Or</Divider>
+            {/* <Divider horizontal>Or</Divider> */}
             {/* <SocialLogin /> */}
           </Form>
         )}

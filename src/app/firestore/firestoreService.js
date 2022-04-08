@@ -114,7 +114,7 @@ export function updateEventInFirestore(event) {
   return updateDoc(eventDoc, event);
 }
 
-//イベントコレクション削除
+//イベントドキュメント削除
 export function deleteEventInFirestore(eventId) {
   return deleteDoc(doc(db, "events", eventId));
 }

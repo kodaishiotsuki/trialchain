@@ -27,7 +27,7 @@ export default function TrialResult({ match, history, location }) {
   useEffect(() => {
     try {
       const q = query(
-        collection(db, "matchCompany"),
+        collection(db, "matchUser",user.uid,"companies"),
         where("userId", "==", user.uid)
       );
       getDocs(q).then((querySnapshot) => {

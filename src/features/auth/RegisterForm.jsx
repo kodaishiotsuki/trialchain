@@ -2,19 +2,18 @@ import React from "react";
 import ModalWrapper from "../../app/common/modals/ModalWrapper";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { Button, Divider, Label } from "semantic-ui-react";
+import { Button, Label } from "semantic-ui-react";
 import MyTextInput from "../../app/common/form/MyTextInput";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../app/common/modals/modalReducer";
 import { registerInFirebase } from "../../app/firestore/firebaseService";
-import SocialLogin from "./SocialLogin";
 import { useHistory } from "react-router-dom";
 
 export default function RegisterForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   return (
-    <ModalWrapper size='mini' header='Register to Match Hub'>
+    <ModalWrapper size='mini' header='Register to Trial Chain'>
       <Formik
         initialValues={{ displayName: "", email: "", password: "" }}
         validationSchema={Yup.object({
@@ -60,8 +59,8 @@ export default function RegisterForm() {
               color='teal'
               content='Register'
             />
-            <Divider horizontal>Or</Divider>
-            <SocialLogin />
+            {/* <Divider horizontal>Or</Divider>
+            <SocialLogin /> */}
           </Form>
         )}
       </Formik>

@@ -26,11 +26,7 @@ export default function TrialUserList() {
     {
       menuItem: "直近の申請者リスト",
       render: () => (
-        <TrialUserListItem
-          users={users}
-          activeTab={activeTab}
-          key={users.id}
-        />
+        <TrialUserListItem users={users} activeTab={activeTab} key={users.id} />
       ),
     },
     {
@@ -45,8 +41,8 @@ export default function TrialUserList() {
   useEffect(() => {
     try {
       const q = query(
-        collection(db, "users"),
-        where("trialRequestCompanyHostId", "array-contains", user.uid)
+        collection(db, "trialCompany", user.uid, "users"),
+        where("hostUid", "==", user.uid)
       );
       getDocs(q).then((querySnapshot) => {
         setUsers(
@@ -56,28 +52,15 @@ export default function TrialUserList() {
         );
 
         //コンソールで表示
-        // console.log(querySnapshot.docs.map((doc) => doc.data()));
+        console.log(querySnapshot.docs.map((doc) => doc.data()));
       });
     } catch (error) {
       console.log(error.message);
     }
-  },[db,user.uid]);
-
-  // console.log(users);
-
-  // Object.keys(users,"userUid").forEach(function(e) {
-  //   console.log(e)
-  // })
-  // const Id = users.forEach(function (e) {
-  //   console.log(e.userUid);
-  //   return e.userUid;
-  // });
-
-  
+  }, [db, user.uid]);
 
   //エラーが発生した場合はリダイレクト
   if (error) return <Redirect to='/error' />;
-
 
   return (
     <Tab

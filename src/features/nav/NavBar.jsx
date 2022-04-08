@@ -11,12 +11,12 @@ import { useSelector } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
 import { Button, Container, Icon, Menu } from "semantic-ui-react";
 import { app } from "../../app/config/firebase";
-import LoadingComponent from "../../app/layout/LoadingComponent";
 import SignedInMenu from "./SignedInMenu";
 import SignedOutMenu from "./SignedOutMenu";
 
 export default function NavBar({ setFormOpen }) {
   const { authenticated } = useSelector((state) => state.auth);
+  const { error } = useSelector((state) => state.async);
 
   //ユーザータイプ
   const [userType, setUserType] = useState([]);
@@ -45,10 +45,8 @@ export default function NavBar({ setFormOpen }) {
     }
   });
 
-  const { loading, error } = useSelector((state) => state.async);
-
   //loading表示
-  if (loading) return <LoadingComponent content='Loading trial...' />;
+  // if (loading) return <LoadingComponent content='Loading trial...' />;
 
   //エラーが発生した場合はリダイレクト
   if (error) return <Redirect to='/error' />;
@@ -57,7 +55,7 @@ export default function NavBar({ setFormOpen }) {
     <Menu inverted fixed='top'>
       <Container>
         <Menu.Item as={NavLink} exact to='/' header>
-          <Icon name='chain' size="large"/>
+          <Icon name='chain' size='large' />
           Trial Chain
         </Menu.Item>
         <Menu.Item as={NavLink} to='/events' name='企業一覧' />
@@ -74,7 +72,7 @@ export default function NavBar({ setFormOpen }) {
                   <Button positive inverted content='求職者リスト' />
                 </Menu.Item>
                 <Menu.Item as={NavLink} to='/trialUserList'>
-                  <Button negative inverted content='トライアル' />
+                  <Button negative inverted content='トライアル申請者リスト' />
                 </Menu.Item>
               </>
             ) : (
@@ -83,7 +81,7 @@ export default function NavBar({ setFormOpen }) {
                   <Button positive inverted content='お気に入り企業リスト' />
                 </Menu.Item>
                 <Menu.Item as={NavLink} to='/trialResult'>
-                  <Button negative inverted content='トライアル' />
+                  <Button negative inverted content='トライアル申請結果' />
                 </Menu.Item>
               </>
             )}

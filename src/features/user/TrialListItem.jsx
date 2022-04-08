@@ -1,5 +1,5 @@
 import { getAuth } from "firebase/auth";
-import { arrayUnion, doc, getFirestore, updateDoc } from "firebase/firestore";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -20,26 +20,40 @@ export default function TrialListItem({ company }) {
   const user = auth.currentUser;
   //loading
   const [loading, setLoading] = useState(false);
-
+  //トライアル申請ボタン
+  const [buttonClick, setButtonClick] = useState(false);
 
   //トライアル申請
-  async function handleUserTrialRequestCompany() {
+  async function UserTrialRequestCompany() {
     setLoading(true);
     try {
-      await updateDoc(doc(db, "users", user.uid), {
-        trialRequestCompanyId: arrayUnion(company.id),
-        trialRequestCompanyHostId: arrayUnion(company.hostUid),
-      });
-      return await updateDoc(doc(db, "events", company.id), {
-        trialRequestUserId: arrayUnion(user.uid),
-      });
+      await setDoc(
+        doc(db, "trialCompany", company.hostUid, "users", user.uid),
+        {
+          ...company,
+          userName: user.displayName,
+          userPhotoURL: user.photoURL || "/assets/user.png",
+          userId: user.uid,
+        }
+      );
+      await setDoc(
+        doc(db, "trialUser", user.uid, "companies", company.hostUid),
+        {
+          ...company,
+          userName: user.displayName,
+          userPhotoURL: user.photoURL || "/assets/user.png",
+          userId: user.uid,
+        }
+      );
     } catch (error) {
       console.log("fserror", error);
       throw error;
     } finally {
+      setButtonClick(true);
       setLoading(false);
     }
   }
+
   return (
     <Segment.Group>
       <>
@@ -111,13 +125,14 @@ export default function TrialListItem({ company }) {
             // color='orange'
             negative
             floated='right'
-            content='トライアル申請'
+            content={buttonClick ? "申請済み" : "トライアル申請"}
             style={{
               fontSize: 20,
               marginLeft: 15,
             }}
             loading={loading}
-            onClick={handleUserTrialRequestCompany}
+            onClick={UserTrialRequestCompany}
+            disabled={buttonClick}
           />
           <Button
             as={Link}

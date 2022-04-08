@@ -82,10 +82,9 @@ export default function TrialResultItem({ company }) {
           <Button
             as={Link}
             to={`/events/${company.id}`} //イベント内容詳細ページへ遷移（idで判断）
-            // color='green'
-            positive
+            negative
             floated='right'
-            content='詳細を見る'
+            content='カジュアル面談へ'
             style={{
               fontSize: 20,
             }}

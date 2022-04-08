@@ -3,6 +3,7 @@ import { Button, Grid, Header, Icon, Item, Segment } from "semantic-ui-react";
 import { toast } from "react-toastify";
 import {
   collection,
+  deleteDoc,
   doc,
   getDocs,
   getFirestore,
@@ -21,13 +22,16 @@ export default function TrialUserProfileHeader({ profile, isCurrentUser }) {
   const db = getFirestore(app);
   const auth = getAuth(app);
   const user = auth.currentUser;
+  //トライアル承認ボタン
+  const [buttonClick, setButtonClick] = useState(false);
+
   // const { followingUser } = useSelector((state) => state.profile);
 
   //自分の会社を取得
   const [myCompany, setMyCompany] = useState([]);
 
   //申請があったユーザーID
-  console.log(profile.id);
+  // console.log(profile.id);
 
   //自分の企業を取得
   useEffect(() => {
@@ -41,14 +45,14 @@ export default function TrialUserProfileHeader({ profile, isCurrentUser }) {
           querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
         );
         //コンソールで表示
-        console.log(
-          querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
-        );
+        // console.log(
+        //   querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
+        // );
       }, []);
     } catch (error) {
       console.log(error.message);
     }
-  }, []);
+  });
 
   //動的にフォロワーを獲得（重複禁止!）
   // useEffect(() => {
@@ -95,25 +99,30 @@ export default function TrialUserProfileHeader({ profile, isCurrentUser }) {
   //   }
   // }
 
-  //サンプル
+  //profile ユーザー
+  //user 会社
+
+  //マッチング
   async function matchUserToCompany() {
     setLoading(true);
     try {
-      await setDoc(doc(db, "matchCompany", profile.id), {
+      await setDoc(doc(db, "matchCompany", user.uid, "users", profile.id), {
         ...myCompany,
         userName: profile.displayName,
         userPhotoURL: profile.photoURL || "/assets/user.png",
         userId: profile.id,
       });
-      await setDoc(doc(db, "matchUser", myCompany.hostUid), {
+      await setDoc(doc(db, "matchUser", profile.id, "companies", user.uid), {
         ...myCompany,
         userName: profile.displayName,
         userPhotoURL: profile.photoURL || "/assets/user.png",
         userId: profile.id,
       });
+      await deleteDoc(doc(db, "trialCompany", user.uid, "users", profile.id));
     } catch (error) {
       toast.error(error.message);
     } finally {
+      setButtonClick(true);
       setLoading(false);
     }
   }
@@ -156,14 +165,21 @@ export default function TrialUserProfileHeader({ profile, isCurrentUser }) {
           </div>
         </Grid.Column>
         <Grid.Column width={4}>
-          <>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
             <Button
               negative
               floated='right'
               onClick={matchUserToCompany}
               loading={loading}
-              content='トライアル承認'
+              content={buttonClick ? "承認済み" : "トライアル承認"}
               style={{ fontSize: 20, marginBottom: 20, marginTop: 20 }}
+              disabled={buttonClick}
             />
             <Button
               as={Link}
@@ -197,7 +213,7 @@ export default function TrialUserProfileHeader({ profile, isCurrentUser }) {
                   />
                 </Reveal.Content>
               </Reveal> */}
-          </>
+          </div>
           {/* )} */}
         </Grid.Column>
       </Grid>

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Loader } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import EventList from "./EventList";
 import { useSelector } from "react-redux";
 import EventListItemPlaceholder from "./EventListItemPlaceholder";
 import EventFilter from "./EventFilter";
 import { fetchEvents } from "../eventActions";
 import { useDispatch } from "react-redux";
-import EventsFeed from "./EventsFeed";
 import { RETAIN_STATE } from "../eventConstants";
 
 const EventDashboard = () => {
@@ -15,7 +14,7 @@ const EventDashboard = () => {
   const { events, moreEvents, filter, startDate, lastVisible, retainState } =
     useSelector((state) => state.event);
   const { loading } = useSelector((state) => state.async);
-  const { authenticated } = useSelector((state) => state.auth);
+  // const { authenticated } = useSelector((state) => state.auth);
   const [loadingInitial, setLoadingInitial] = useState(false);
 
   //フィルター機能初期設定
@@ -86,11 +85,11 @@ const EventDashboard = () => {
         /> */}
       </Grid.Column>
       <Grid.Column width={6}>
-        {authenticated && <EventsFeed />}
+        {/* {authenticated && <EventsFeed />} */}
         <EventFilter loading={loading} />
       </Grid.Column>
       <Grid.Column width={10}>
-        <Loader active={loading} />
+        {/* <Loader active={loading} /> */}
       </Grid.Column>
     </Grid>
   );

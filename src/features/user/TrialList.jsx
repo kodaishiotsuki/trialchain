@@ -42,13 +42,6 @@ export default function TrialList({ match, history, location }) {
     } catch (error) {
       console.log(error.message);
     }
-
-    // const usersCollectionRef = collection(db, "events", user.uid, "companies");
-    // getDocs(usersCollectionRef).then((querySnapshot) => {
-    //   setCompanies(
-    //     querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-    //   );
-    // });
   }, [db, user.uid]);
 
   //エラーが発生した場合はリダイレクト
