@@ -49,7 +49,11 @@ export default function TrialUserList() {
         where("trialRequestCompanyHostId", "array-contains", user.uid)
       );
       getDocs(q).then((querySnapshot) => {
-        setUsers(querySnapshot.docs.map((doc) => doc.data()));
+        setUsers(
+          querySnapshot.docs.map((doc) =>
+            doc.data({ ...doc.data(), id: doc.id })
+          )
+        );
 
         //コンソールで表示
         // console.log(querySnapshot.docs.map((doc) => doc.data()));

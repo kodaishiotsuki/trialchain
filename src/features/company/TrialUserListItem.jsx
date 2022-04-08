@@ -1,4 +1,3 @@
-
 import React from "react";
 
 import { Link } from "react-router-dom";
@@ -84,10 +83,6 @@ export default function TrialUserListItem({ users }) {
   //   }
   // }
 
-
-
-
-
   return (
     <Card.Group itemsPerRow={3} style={{ marginTop: 30 }}>
       {users.map((user) => (
@@ -104,9 +99,10 @@ export default function TrialUserListItem({ users }) {
             <Button
               floated='right'
               positive
-              content='プロフィール'
+              content='トライアル承認'
               as={Link}
               to={`/trialUserProfile/${user.userUid}`}
+              style={{ fontSize: 20 }}
             />
           </Card.Content>
         </Card>

@@ -1,21 +1,29 @@
-import { getAuth } from 'firebase/auth';
-import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import { Button, Card, Header, Image } from 'semantic-ui-react';
-import { app } from '../../app/config/firebase';
+import { getAuth } from "firebase/auth";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { Button, Card, Header, Image } from "semantic-ui-react";
+import { app } from "../../app/config/firebase";
 
 export default function MatchUserListItem() {
   const [users, setUsers] = useState([]);
   const db = getFirestore(app);
   const auth = getAuth(app);
   const user = auth.currentUser;
+
+  console.log(user.uid);
   //マッチユーザーリスト取得
   useEffect(() => {
     try {
       const q = query(
-        collection(db, "users"),
-        where("MatchCompanyHostId", "array-contains", user.uid)
+        collection(db, "match", user.uid, "company"),
+        where("hostUid", "==", user.uid)
       );
       getDocs(q).then((querySnapshot) => {
         setUsers(querySnapshot.docs.map((doc) => doc.data()));
@@ -27,17 +35,18 @@ export default function MatchUserListItem() {
       console.log(error.message);
     }
   }, [db, user.uid]);
+
   return (
     <Card.Group itemsPerRow={3} style={{ marginTop: 30 }}>
       {users.map((user) => (
         <Card key={user.id}>
           <Card.Content>
-            <Image size='large' src={user.photoURL} />
-            <Header size='huge'>{user.displayName}</Header>
+            <Image size='large' src={user.userPhotoURL} />
+            <Header size='huge'>{user.userName}</Header>
             <Button
               floated='right'
               negative
-              content='トライアル承認'
+              content='カジュアル面談へ'
               // onClick={trialMatchCompanyToUser}
               // loading={loading}
             />
