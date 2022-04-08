@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Grid, Header, Icon, Item, Segment } from "semantic-ui-react";
 import { toast } from "react-toastify";
 import {
+  collection,
   doc,
+  getDocs,
   getFirestore,
+  query,
   setDoc,
+  where,
 } from "firebase/firestore";
 import { app } from "../../../app/config/firebase";
 import { getAuth } from "firebase/auth";
@@ -16,10 +20,35 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
   const db = getFirestore(app);
   const auth = getAuth(app);
   const user = auth.currentUser;
-
   // const { followingUser } = useSelector((state) => state.profile);
+  //
+  const [myCompany, setMyCompany] = useState([]);
 
+  
+
+//
   console.log(profile.id);
+
+  //自分の企業を取得
+  useEffect(() => {
+    try {
+      const q = query(
+        collection(db, "events"),
+        where("hostUid", "==", user.uid)
+      );
+      getDocs(q).then((querySnapshot) => {
+        setMyCompany(
+          querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
+        );
+        //コンソールで表示
+        console.log(
+          querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0].hostUid
+        );
+      }, []);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, [db, user.uid]);
 
   //動的にフォロワーを獲得（重複禁止!）
   // useEffect(() => {
@@ -70,10 +99,8 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
   async function matchUserToCompany() {
     setLoading(true);
     try {
-      await setDoc(doc(db, "match", user.uid, "company", profile.id), {
-        companyName: user.displayName,
-        companyPhotoURL: user.photoURL || "/assets/user.png",
-        companyId: user.uid,
+      await setDoc(doc(db, "match", myCompany.hostUid, "company", profile.id), {
+        ...myCompany,
         userName: profile.displayName,
         userPhotoURL: profile.photoURL || "/assets/user.png",
         userId: profile.id,
@@ -135,7 +162,11 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
           </Statistic.Group> */}
           {!isCurrentUser && (
             <>
-              <Button onClick={matchUserToCompany} loading={loading} />
+              <Button
+                onClick={matchUserToCompany}
+                loading={loading}
+                content='トライアル承認'
+              />
               {/* <Divider />
               <Reveal animated='move'>
                 <Reveal.Content visible style={{ width: "100%" }}>
