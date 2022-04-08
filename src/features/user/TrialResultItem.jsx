@@ -1,6 +1,4 @@
-import { getAuth } from "firebase/auth";
-import { arrayUnion, doc, getFirestore, updateDoc } from "firebase/firestore";
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import {
   Button,
@@ -11,35 +9,8 @@ import {
   List,
   Segment,
 } from "semantic-ui-react";
-import { app } from "../../app/config/firebase";
 
-export default function TrialListItem({ company }) {
-  //FB
-  const db = getFirestore(app);
-  const auth = getAuth(app);
-  const user = auth.currentUser;
-  //loading
-  const [loading, setLoading] = useState(false);
-
-
-  //トライアル申請
-  async function handleUserTrialRequestCompany() {
-    setLoading(true);
-    try {
-      await updateDoc(doc(db, "users", user.uid), {
-        trialRequestCompanyId: arrayUnion(company.id),
-        trialRequestCompanyHostId: arrayUnion(company.hostUid),
-      });
-      return await updateDoc(doc(db, "events", company.id), {
-        trialRequestUserId: arrayUnion(user.uid),
-      });
-    } catch (error) {
-      console.log("fserror", error);
-      throw error;
-    } finally {
-      setLoading(false);
-    }
-  }
+export default function TrialResultItem({ company }) {
   return (
     <Segment.Group>
       <>
@@ -107,18 +78,7 @@ export default function TrialListItem({ company }) {
               </List.Item>
             ))}
           </List>
-          <Button
-            // color='orange'
-            negative
-            floated='right'
-            content='トライアル申請'
-            style={{
-              fontSize: 20,
-              marginLeft: 15,
-            }}
-            loading={loading}
-            onClick={handleUserTrialRequestCompany}
-          />
+
           <Button
             as={Link}
             to={`/events/${company.id}`} //イベント内容詳細ページへ遷移（idで判断）

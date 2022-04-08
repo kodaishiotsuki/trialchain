@@ -22,7 +22,7 @@ export default function MatchUserListItem() {
   useEffect(() => {
     try {
       const q = query(
-        collection(db, "match", user.uid, "company"),
+        collection(db, "matchUser"),
         where("hostUid", "==", user.uid)
       );
       getDocs(q).then((querySnapshot) => {
@@ -47,16 +47,17 @@ export default function MatchUserListItem() {
               floated='right'
               negative
               content='カジュアル面談へ'
+              style={{fontSize:20}}
               // onClick={trialMatchCompanyToUser}
               // loading={loading}
             />
-            <Button
+            {/* <Button
               floated='right'
               positive
               content='プロフィール'
               as={Link}
-              to={`/profile/${user.userUid}`}
-            />
+              to={`/profile/${user.userId}`}
+            /> */}
           </Card.Content>
         </Card>
       ))}

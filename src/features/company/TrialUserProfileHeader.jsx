@@ -99,7 +99,13 @@ export default function TrialUserProfileHeader({ profile, isCurrentUser }) {
   async function matchUserToCompany() {
     setLoading(true);
     try {
-      await setDoc(doc(db, "match", myCompany.hostUid, "company", profile.id), {
+      await setDoc(doc(db, "matchCompany", profile.id), {
+        ...myCompany,
+        userName: profile.displayName,
+        userPhotoURL: profile.photoURL || "/assets/user.png",
+        userId: profile.id,
+      });
+      await setDoc(doc(db, "matchUser", myCompany.hostUid), {
         ...myCompany,
         userName: profile.displayName,
         userPhotoURL: profile.photoURL || "/assets/user.png",
