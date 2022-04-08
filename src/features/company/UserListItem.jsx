@@ -17,7 +17,7 @@ export default function UserListItem({ user }) {
           color='teal'
           content='プロフィール'
           as={Link}
-          to={`/profile/${user.userUid}`}
+          to={`/trialUserProfile/${user.userUid}`}
         />
       </Card.Content>
     </Card>

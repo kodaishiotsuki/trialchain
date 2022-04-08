@@ -6,7 +6,7 @@ import { getUserProfile } from "../../app/firestore/firestoreService";
 import useFirestoreDoc from "../../app/hooks/useFirestoreDoc";
 import LoadingComponent from "../../app/layout/LoadingComponent";
 import { listenToSelectedUserProfile } from "../profiles/profileActions";
-import ProfileContent from "../profiles/profilePage/ProfileContent";
+import TrialUserProfileContent from "./TrialUserProfileContent";
 import TrialUserProfileHeader from "./TrialUserProfileHeader";
 
 export default function TrialUserProfilePage({ match }) {
@@ -42,7 +42,7 @@ export default function TrialUserProfilePage({ match }) {
           profile={profile}
           isCurrentUser={currentUser.uid === profile.id}
         />
-        <ProfileContent
+        <TrialUserProfileContent
           profile={profile}
           isCurrentUser={currentUser.uid === profile.id}
         />
