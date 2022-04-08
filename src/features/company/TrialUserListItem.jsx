@@ -106,7 +106,7 @@ export default function TrialUserListItem({ users }) {
               positive
               content='プロフィール'
               as={Link}
-              to={`/profile/${user.userUid}`}
+              to={`/trialUserProfile/${user.userUid}`}
             />
           </Card.Content>
         </Card>

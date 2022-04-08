@@ -10,10 +10,11 @@ import {
   setDoc,
   where,
 } from "firebase/firestore";
-import { app } from "../../../app/config/firebase";
+import { app } from "../../app/config/firebase";
 import { getAuth } from "firebase/auth";
+import { Link } from "react-router-dom";
 
-export default function ProfileHeader({ profile, isCurrentUser }) {
+export default function TrialUserProfileHeader({ profile, isCurrentUser }) {
   // const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   //firebase
@@ -27,9 +28,6 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
 
   //申請があったユーザーID
   console.log(profile.id);
-
-  const userType = user?.userType === "企業"
-  const trialCompany = user?.uid === myCompany?.hostUid;
 
   //自分の企業を取得
   useEffect(() => {
@@ -50,7 +48,7 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
     } catch (error) {
       console.log(error.message);
     }
-  },[]);
+  }, []);
 
   //動的にフォロワーを獲得（重複禁止!）
   // useEffect(() => {
@@ -107,12 +105,6 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
         userPhotoURL: profile.photoURL || "/assets/user.png",
         userId: profile.id,
       });
-      // //firestoreのアクション
-      // setDoc(doc(db, "match", user.uid, "user", profile.id), {
-      //   displayName: profile.displayName,
-      //   photoURL: profile.photoURL || "/assets/user.png",
-      //   uid: profile.id,
-      // });
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -158,20 +150,22 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
           </div>
         </Grid.Column>
         <Grid.Column width={4}>
-          {/* <Statistic.Group>
-            <Statistic label='Followers' value={profile.followerCount || 0} />
-            <Statistic label='Following' value={profile.followingCount || 0} />
-          </Statistic.Group> */}
-          {/* {!isCurrentUser && ( */}
           <>
-            {userType &&
-              trialCompany &&(
-                <Button
-                  onClick={matchUserToCompany}
-                  loading={loading}
-                  content='トライアル承認'
-                />
-              )}
+            <Button
+              negative
+              floated='right'
+              onClick={matchUserToCompany}
+              loading={loading}
+              content='トライアル承認'
+              style={{ fontSize: 20, marginBottom: 20, marginTop: 20 }}
+            />
+            <Button
+              as={Link}
+              to='/trialUserList'
+              floated='right'
+              content='戻る'
+              style={{ fontSize: 20 }}
+            />
 
             {/* <Divider />
               <Reveal animated='move'>

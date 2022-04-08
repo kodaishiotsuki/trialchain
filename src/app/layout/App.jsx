@@ -21,6 +21,7 @@ import UserTypePage from "../../features/auth/UserTypePage";
 import TrialResult from "../../features/user/TrialResult";
 import UserList from "../../features/company/UserList";
 import TrialUserList from "../../features/company/TrialUserList";
+import TrialUserProfilePage from "../../features/company/TrialUserProfilePage";
 
 function App() {
   const { key } = useLocation();
@@ -57,6 +58,7 @@ function App() {
               />
               <PrivateRoute path='/account' component={AccountPage} />
               <PrivateRoute path='/profile/:id' component={ProfilePage} />
+              <PrivateRoute path='/trialUserProfile/:id' component={TrialUserProfilePage} />
               <Route path='/error' component={ErrorComponent} />
             </Container>
           </>
