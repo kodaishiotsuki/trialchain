@@ -37,7 +37,7 @@ export default function ProfileForm({ profile }) {
           <MyTextInput name='displayName' placeholder='Display Name' />
           <MyTextArea name='description' placeholder='Description' />
           <MyTextInput name='meetyURL' placeholder='MeetyURL' />
-          <Header content='Input your SNS' />
+          <Header content='各SNSのURLを入力してください' />
           <MyTextInput name='twitterURL' placeholder='twitterURL' />
           <MyTextInput name='facebookURL' placeholder='facebookURL' />
           <MyTextInput name='gitHubURL' placeholder='gitHubURL' />

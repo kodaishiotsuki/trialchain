@@ -15,7 +15,7 @@ export default function RegisterForm() {
   return (
     <ModalWrapper size='mini' header='Register to Trial Chain'>
       <Formik
-        initialValues={{ displayName: "", email: "", password: "" }}
+        initialValues={{ displayName: "", email: "", password: "",userType:"" }}
         validationSchema={Yup.object({
           displayName: Yup.string().required(),
           email: Yup.string().required().email(),

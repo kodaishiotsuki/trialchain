@@ -38,11 +38,7 @@ export default function AboutTab({ profile, isCurrentUser }) {
     <Tab.Pane>
       <Grid>
         <Grid.Column width={16}>
-          <Header
-            floated='left'
-            icon='user'
-            content={`About ${profile.displayName}`}
-          />
+          <Header floated='left' icon='user' content={profile.displayName} />
 
           {isCurrentUser && (
             <Button
@@ -67,7 +63,7 @@ export default function AboutTab({ profile, isCurrentUser }) {
                 <Card centered style={{ width: "85%" }}>
                   <Card.Content style={{ display: "flex" }}>
                     <Image
-                      src={profile.photoURL}
+                      src={profile.photoURL || "/assets/user.png"}
                       circular
                       style={{ width: 50 }}
                     />

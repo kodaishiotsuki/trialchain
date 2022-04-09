@@ -29,7 +29,7 @@ export default function SignedInMenu({ userType }) {
         />
         <Dropdown pointing='top left' text={currentUserProfile?.displayName}>
           <Dropdown.Menu>
-            {userType.userType === "企業" && (
+            {userType?.userType === "企業" && (
               <Dropdown.Item
                 as={Link}
                 to={`/profile/${currentUserProfile?.id}`}
@@ -37,7 +37,7 @@ export default function SignedInMenu({ userType }) {
                 icon='user'
               />
             )}
-            {userType.userType === "求職者" && (
+            {userType?.userType === "求職者" && (
               <Dropdown.Item
                 as={Link}
                 to={`/userProfile/${currentUserProfile?.id}`}

@@ -51,6 +51,7 @@ function App() {
               <Route path='/trialUserList' component={TrialUserList} />
               <Route path='/events/:id' component={EventDetailedPage} />
 
+
               {/* 同じコンポーネントを開くためのroute */}
               {/* PrivateRoute→アクセス制限 */}
               <PrivateRoute

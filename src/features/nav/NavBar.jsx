@@ -59,11 +59,11 @@ export default function NavBar({ setFormOpen }) {
           Trial Chain
         </Menu.Item>
         <Menu.Item as={NavLink} to='/events' name='企業一覧' />
-        <Menu.Item as={NavLink} to='/sandbox' name='Sandbox' />
+        {/* <Menu.Item as={NavLink} to='/sandbox' name='Sandbox' /> */}
 
         {authenticated && (
           <>
-            {userType.userType === "企業" ? (
+            {userType?.userType === "企業" ? (
               <>
                 <Menu.Item as={NavLink} to='/createEvent'>
                   <Button positive inverted content='企業投稿ページ' />
