@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { signOutFirebase } from "../../app/firestore/firebaseService";
 
-export default function SignedInMenu() {
+export default function SignedInMenu({ userType }) {
   const { currentUserProfile } = useSelector((state) => state.profile);
   const history = useHistory();
 
@@ -29,12 +29,23 @@ export default function SignedInMenu() {
         />
         <Dropdown pointing='top left' text={currentUserProfile?.displayName}>
           <Dropdown.Menu>
-            <Dropdown.Item
-              as={Link}
-              to={`/profile/${currentUserProfile?.id}`}
-              text='My Profile'
-              icon='user'
-            />
+            {userType.userType === "企業" && (
+              <Dropdown.Item
+                as={Link}
+                to={`/profile/${currentUserProfile?.id}`}
+                text='My Profile'
+                icon='user'
+              />
+            )}
+            {userType.userType === "求職者" && (
+              <Dropdown.Item
+                as={Link}
+                to={`/userProfile/${currentUserProfile?.id}`}
+                text='My Profile'
+                icon='user'
+              />
+            )}
+
             <Dropdown.Item
               as={Link}
               to='/account'

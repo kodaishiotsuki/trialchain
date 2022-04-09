@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button, Grid, Icon, Label, Segment } from "semantic-ui-react";
-// import { format } from "date-fns";
 import EventDetailedMap from "./EventDetailedMap";
 import { useSelector } from "react-redux";
-import {
-  addUserFavoriteCompany,
-  // deleteUserFavoriteCompany,
-} from "../../../app/firestore/firestoreService";
+import { addUserFavoriteCompany } from "../../../app/firestore/firestoreService";
 import {
   arrayRemove,
   collection,
@@ -134,16 +130,16 @@ export default function EventDetailedInfo({ event, isHost }) {
         </Grid>
       </Segment>
 
-      <Segment attached>
+      {/* <Segment attached>
         <Grid verticalAlign='middle'>
           <Grid.Column width={1}>
             <Icon name='building' size='large' color='teal' />
           </Grid.Column>
-          {/* <Grid.Column width={15}>
+          <Grid.Column width={15}>
             <span>{format(event.date, "YYYY/MM/DD ")}</span>
-          </Grid.Column> */}
+          </Grid.Column>
         </Grid>
-      </Segment>
+      </Segment> */}
 
       <Segment attached>
         <Grid verticalAlign='middle'>
@@ -159,6 +155,11 @@ export default function EventDetailedInfo({ event, isHost }) {
             <Label
               className='ui teal tag label'
               content={event.career[1]}
+              style={{ marginRight: 25 }}
+            />
+            <Label
+              className='ui teal tag label'
+              content={event.career[2]}
               style={{ marginRight: 25 }}
             />
           </Grid.Column>

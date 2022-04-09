@@ -21,13 +21,13 @@ export default function TrialResult({ match, history, location }) {
   //ログインユーザー
   const user = auth.currentUser;
 
-  console.log(user.uid)
+  // console.log(user.uid)
 
   //マッチした企業リストを取得
   useEffect(() => {
     try {
       const q = query(
-        collection(db, "matchUser",user.uid,"companies"),
+        collection(db, "matchUser", user.uid, "companies"),
         where("userId", "==", user.uid)
       );
       getDocs(q).then((querySnapshot) => {
@@ -35,9 +35,9 @@ export default function TrialResult({ match, history, location }) {
           querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
         );
         //コンソールで表示
-        console.log(
-          querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        );
+        // console.log(
+        //   querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+        // );
       });
     } catch (error) {
       console.log(error.message);
@@ -50,7 +50,7 @@ export default function TrialResult({ match, history, location }) {
   return (
     <>
       {companies.map((company) => (
-        <TrialResultItem company={company} key={company.id} />
+        <TrialResultItem company={company} key={company.id} user={user} />
       ))}
     </>
   );

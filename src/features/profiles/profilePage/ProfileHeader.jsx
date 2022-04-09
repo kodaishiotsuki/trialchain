@@ -50,7 +50,7 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
     } catch (error) {
       console.log(error.message);
     }
-  },[]);
+  });
 
   //動的にフォロワーを獲得（重複禁止!）
   // useEffect(() => {

@@ -10,7 +10,7 @@ import {
   Segment,
 } from "semantic-ui-react";
 
-export default function TrialResultItem({ company }) {
+export default function TrialResultItem({ company, user }) {
   return (
     <Segment.Group>
       <>
@@ -21,7 +21,7 @@ export default function TrialResultItem({ company }) {
                 size='tiny'
                 rounded
                 src={`/assets/categoryImages/${company.category}.jpg`}
-                style={{ maxHeight: 150, width: 300 }}
+                style={{ maxHeight: 150, width: 330 }}
               />
               <Item.Content>
                 <Item.Header
@@ -38,7 +38,7 @@ export default function TrialResultItem({ company }) {
                 <br />
                 <Icon name='tag' />
                 <Item.Header
-                  content='求めている人材'
+                  content='一緒に働きたい＆求めている人材'
                   style={{ fontSize: 20 }}
                   icon='tags'
                 />
@@ -50,6 +50,10 @@ export default function TrialResultItem({ company }) {
                 <Item.Content
                   className='ui teal tag label'
                   content={company.career[1]}
+                ></Item.Content>
+                <Item.Content
+                  className='ui teal tag label'
+                  content={company.career[2]}
                 ></Item.Content>
               </Item.Content>
             </Item>
@@ -81,7 +85,7 @@ export default function TrialResultItem({ company }) {
 
           <Button
             as={Link}
-            to={`/events/${company.id}`} //イベント内容詳細ページへ遷移（idで判断）
+            to={`/chat/${company.hostUid}&${user.uid}`} //イベント内容詳細ページへ遷移（idで判断）
             negative
             floated='right'
             content='カジュアル面談へ'

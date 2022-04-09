@@ -6,7 +6,7 @@ export default function EventListAttend({ attendee }) {
   return (
     <>
       <List.Item as={Link} to={`/profile/${attendee.id}`}>
-        <Image circular src={attendee.photoURL} style={{width:60}} />
+        <Image circular src={attendee.photoURL} style={{width:50}} />
       </List.Item>
     </>
   );

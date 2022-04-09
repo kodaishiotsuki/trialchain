@@ -1,11 +1,35 @@
 export const careerData = [
-  { key: "engineer", text: "エンジニア", value: "エンジニア" },
-  { key: "designer", text: "デザイナー", value: "デザイナー" },
-  { key: "sales", text: "営業", value: "営業" },
-  { key: "accounting", text: "経理", value: "経理" },
+  { key: "エンジニア", text: "エンジニア", value: "エンジニア" },
+  { key: "デザイナー", text: "デザイナー", value: "デザイナー" },
+  { key: "セールス", text: "セールス", value: "セールス" },
   {
-    key: "pm",
-    text: "PM",
-    value: "PM",
+    key: "カスタマーサクセス",
+    text: "カスタマーサクセス",
+    value: "カスタマーサクセス",
   },
+  {
+    key: "PM・Webディレクション",
+    text: "PM・Webディレクション",
+    value: "PM・Webディレクション",
+  },
+  {
+    key: "編集・ライティング",
+    text: "編集・ライティング",
+    value: "編集・ライティング",
+  },
+  {
+    key: "マーケティング・PR",
+    text: "マーケティング・PR",
+    value: "マーケティング・PR",
+  },
+  {
+    key: "コンサルティング",
+    text: "コンサルティング",
+    value: "コンサルティング",
+  },
+  // {
+  //   key: "経理",
+  //   text: "経理",
+  //   value: "経理",
+  // },
 ];

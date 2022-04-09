@@ -15,7 +15,7 @@ import { app } from "../../app/config/firebase";
 import { getAuth } from "firebase/auth";
 import { Link } from "react-router-dom";
 
-export default function TrialUserProfileHeader({ profile, isCurrentUser }) {
+export default function TrialUserProfileHeader({ profile }) {
   // const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   //firebase

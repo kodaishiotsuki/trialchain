@@ -64,7 +64,7 @@ export default function TrialListItem({ company }) {
                 size='tiny'
                 rounded
                 src={`/assets/categoryImages/${company.category}.jpg`}
-                style={{ maxHeight: 150, width: 300 }}
+                style={{ maxHeight: 150, width: 330 }}
               />
               <Item.Content>
                 <Item.Header
@@ -81,7 +81,7 @@ export default function TrialListItem({ company }) {
                 <br />
                 <Icon name='tag' />
                 <Item.Header
-                  content='求めている人材'
+                  content='一緒に働きたい＆求めている人材'
                   style={{ fontSize: 20 }}
                   icon='tags'
                 />
@@ -93,6 +93,10 @@ export default function TrialListItem({ company }) {
                 <Item.Content
                   className='ui teal tag label'
                   content={company.career[1]}
+                ></Item.Content>
+                <Item.Content
+                  className='ui teal tag label'
+                  content={company.career[2]}
                 ></Item.Content>
               </Item.Content>
             </Item>

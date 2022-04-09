@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { clearSelectedEvents, listenToSelectedEvents } from "../eventActions";
 
 import { Formik, Form } from "formik";
-// import * as Yup from "yup";
+import * as Yup from "yup";
 import MyTextInput from "../../../app/common/form/MyTextInput";
 import MyTextArea from "../../../app/common/form/MyTextArea";
 import MySelectInput from "../../../app/common/form/MySelectInput";
@@ -68,19 +68,19 @@ export default function EventForm({ match, history, location }) {
   };
 
   //入力画面バリデーション
-  // const validationSchema = Yup.object({
-  //   title: Yup.string().required("You must provide title"),
-  //   career: Yup.string().required("You must provide career"),
-  //   category: Yup.string().required("You must provide category"),
-  //   description: Yup.string().required("You must provide description"),
-  //   city: Yup.object().shape({
-  //     address: Yup.string().required("City is required"),
-  //   }),
-  //   venue: Yup.object().shape({
-  //     address: Yup.string().required("Venue is required"),
-  //   }),
-  //   date: Yup.string().required("You must provide date"),
-  // });
+  const validationSchema = Yup.object({
+    title: Yup.string().required("企業名を入力してください"),
+    // career: Yup.string().required("求めている人材を選択してください"),
+    category: Yup.string().required("写真のタイプを選んでください"),
+    description: Yup.string().required("企業の詳細を入力してください"),
+    // city: Yup.object().shape({
+    //   address: Yup.string().required("都道府県を入力してください"),
+    // }),
+    venue: Yup.object().shape({
+      address: Yup.string().required("住所または企業名を入力してください"),
+    }),
+    date: Yup.string().required("創業年月日を選択してください"),
+  });
 
   //キャンセルボタンクリック時のアクション
   async function handleCancelToggle(event) {
@@ -115,7 +115,7 @@ export default function EventForm({ match, history, location }) {
       {/* 入力はFORMIK使用 */}
       <Formik
         enableReinitialize
-        // validationSchema={validationSchema}
+        validationSchema={validationSchema}
         initialValues={initialValues}
         onSubmit={async (values, { setSubmitting }) => {
           try {
@@ -132,42 +132,70 @@ export default function EventForm({ match, history, location }) {
       >
         {({ isSubmitting, dirty, isValid, values }) => (
           <Form className='ui form'>
-            <Header sub color='teal' content='Company Details' />
-            <MyTextInput name='title' placeholder='Company name' />
+            <Header
+              sub
+              color='teal'
+              content='企業の情報を入力してください'
+              size='huge'
+            />
+            <MyTextInput name='title' placeholder='企業名' />
             <MySelectInput
               name='category'
-              placeholder='category'
+              placeholder='写真のタイプを選択してください'
               options={categoryData}
             />
             <MySelectInput
               name='trialMonth'
-              placeholder='trialMonth'
+              placeholder='トライアル雇用期間を選択してください'
               options={trialMonth}
             />
-            <MyTextInput name='pitchId' placeholder="Push the pitch's URL" />
+            <MyTextInput
+              name='pitchId'
+              placeholder='YouTubeのIDを入力してください'
+            />
             <MySelectInput
               name='career[0]'
-              placeholder='Career'
+              placeholder='求めている人材を選択してください'
               options={careerData}
             />
             <MySelectInput
               name='career[1]'
-              placeholder='Career'
+              placeholder='求めている人材を選択してください'
               options={careerData}
             />
-            <MyTextArea name='description' placeholder='Description' rows={5} />
+            <MySelectInput
+              name='career[2]'
+              placeholder='求めている人材を選択してください'
+              options={careerData}
+            />
+            <MyTextArea
+              name='description'
+              placeholder='企業の詳細を記入してください'
+              rows={5}
+            />
 
-            <Header sub color='teal' content='Company Location Details' />
-            <MyPlaceInput name='city' placeholder='City' />
+            <Header
+              sub
+              color='teal'
+              content='企業の住所を入力してください'
+              size='huge'
+            />
+            {/* <MyPlaceInput name='city' placeholder='都道府県' /> */}
             <MyPlaceInput
               name='venue'
-              disabled={!values.city.latLng}
-              placeholder='Venue'
+              // disabled={!values.city.latLng}
+              placeholder='住所または企業名'
               options={{
                 location: new google.maps.LatLng(values.city.latLng),
                 radius: 1000, //半径1000km以内
                 types: ["establishment"],
               }}
+            />
+            <Header
+              sub
+              color='teal'
+              content='創業年月日を入力してください'
+              size='huge'
             />
             <MyDateInput
               name='date'

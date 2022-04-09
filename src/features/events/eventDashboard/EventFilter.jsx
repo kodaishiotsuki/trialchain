@@ -81,14 +81,56 @@ export default function EventFilter({ loading }) {
               />
               <Menu.Item
                 content='エンジニア'
-                active={filter === "engineer"}
-                onClick={() => dispatch(setFilter("engineer"))}
+                active={filter === "エンジニア"}
+                onClick={() => dispatch(setFilter("エンジニア"))}
                 disabled={loading}
               />
               <Menu.Item
                 content='デザイナー'
-                active={filter === "designer"}
-                onClick={() => dispatch(setFilter("designer"))}
+                active={filter === "デザイナー"}
+                onClick={() => dispatch(setFilter("デザイナー"))}
+                disabled={loading}
+              />
+              <Menu.Item
+                content='セールス'
+                active={filter === "セールス"}
+                onClick={() => dispatch(setFilter("セールス"))}
+                disabled={loading}
+              />
+              <Menu.Item
+                content='カスタマーサクセス'
+                active={filter === "カスタマーサクセス"}
+                onClick={() => dispatch(setFilter("カスタマーサクセス"))}
+                disabled={loading}
+              />
+              <Menu.Item
+                content='PM・Webディレクション'
+                active={filter === "PM・Webディレクション"}
+                onClick={() => dispatch(setFilter("PM・Webディレクション"))}
+                disabled={loading}
+              />
+              <Menu.Item
+                content='編集・ライティング'
+                active={filter === "編集・ライティング"}
+                onClick={() => dispatch(setFilter("編集・ライティング"))}
+                disabled={loading}
+              />
+              <Menu.Item
+                content='マーケティング・PR'
+                active={filter === "マーケティング・PR"}
+                onClick={() => dispatch(setFilter("マーケティング・PR"))}
+                disabled={loading}
+              />
+              {/* <Menu.Item
+                content='経理'
+                active={filter === "経理"}
+                onClick={() => dispatch(setFilter("経理"))}
+                disabled={loading}
+              /> */}
+              <Menu.Item
+                content='コンサルティング'
+                active={filter === "コンサルティング"}
+                onClick={() => dispatch(setFilter("コンサルティング"))}
                 disabled={loading}
               />
             </Menu>

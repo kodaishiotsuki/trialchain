@@ -1,8 +1,6 @@
 export const categoryData = [
-  { key: "drinks", text: "Drinks", value: "drinks" },
-  { key: "culture", text: "Culture", value: "culture" },
-  { key: "film", text: "Film", value: "film" },
-  { key: "food", text: "Food", value: "food" },
-  { key: "music", text: "Music", value: "music" },
-  { key: "travel", text: "Travel", value: "travel" },
+  { key: "type01", text: "タイプ1", value: "type01" },
+  { key: "type02", text: "タイプ2", value: "type02" },
+  { key: "type03", text: "タイプ3", value: "type03" },
+  { key: "type04", text: "タイプ4", value: "type04" },
 ];

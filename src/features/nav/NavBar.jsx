@@ -27,7 +27,7 @@ export default function NavBar({ setFormOpen }) {
   const user = auth.currentUser;
   // console.log(user);
 
-  //コレクションuser,サブコレクションcompanies取得
+  //
   useEffect(() => {
     try {
       const q = query(
@@ -88,7 +88,11 @@ export default function NavBar({ setFormOpen }) {
           </>
         )}
 
-        {authenticated ? <SignedInMenu /> : <SignedOutMenu />}
+        {authenticated ? (
+          <SignedInMenu userType={userType} />
+        ) : (
+          <SignedOutMenu />
+        )}
       </Container>
     </Menu>
   );

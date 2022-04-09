@@ -62,10 +62,27 @@ export function fetchEventsFromFirestore(
     limit(pageSize)
   );
   switch (filter) {
-    case "engineer":
+    case "エンジニア":
       return query(q, where("career", "array-contains", "エンジニア"));
-    case "designer":
+    case "デザイナー":
       return query(q, where("career", "array-contains", "デザイナー"));
+    case "セールス":
+      return query(q, where("career", "array-contains", "セールス"));
+    case "カスタマーサクセス":
+      return query(q, where("career", "array-contains", "カスタマーサクセス"));
+    case "PM・Webディレクション":
+      return query(
+        q,
+        where("career", "array-contains", "PM・Webディレクション")
+      );
+    case "編集・ライティング":
+      return query(q, where("career", "array-contains", "編集・ライティング"));
+    case "マーケティング・PR":
+      return query(q, where("career", "array-contains", "マーケティング・PR"));
+    case "コンサルティング":
+      return query(q, where("career", "array-contains", "コンサルティング"));
+    // case "経理":
+    //   return query(q, where("career", "array-contains", "経理"));
     case "isHosting":
       return query(q, where("hostUid", "==", user.uid));
     default:
@@ -94,18 +111,6 @@ export function addEventToFirestore(event) {
     attendeeIds: arrayUnion(user.uid),
     createdAt: serverTimestamp(),
   });
-  // }).then(
-  //   addDoc(collection(db, "companies"), {
-  //     companyName: event.title,
-  //     hostUid: user.uid,
-  //     companyHost: user.displayName,
-  //     companyPhotoURL: event.category,
-  //     trialMonth: event.trialMonth,
-  //     companyCareer: event.career,
-  //     companyAddress: event.venue.address,
-  //     createdAt: serverTimestamp(),
-  //   })
-  // );
 }
 
 //イベントコレクション更新
@@ -325,36 +330,6 @@ export function getUserEventsQuery(activeTab, userUid) {
   }
 }
 
-//トライアル申請承認ボタン
-export async function match(profile) {
-  const user = auth.currentUser;
-  // const batch = writeBatch(db);
-  //バッチ処理(一度に多くのユーザーのフォローアクションに対応)
-  try {
-    setDoc(doc(db, "match", user.uid, "company", profile.id), {
-      displayName: profile.displayName,
-      photoURL: profile.photoURL || "/assets/user.png",
-      uid: profile.id,
-    });
-    //firestoreのアクション
-    setDoc(doc(db, "match", profile.id, "user", user.uid), {
-      displayName: user.displayName,
-      photoURL: user.photoURL || "/assets/user.png",
-      uid: user.id,
-    });
-
-    // updateDoc(doc(db, "users", user.uid), {
-    //   followingCount: increment(1),
-    // });
-    // updateDoc(doc(db, "users", profile.id), {
-    //   followerCount: increment(1),
-    // });
-    // return await batch.commit();
-  } catch (e) {
-    throw e;
-  }
-}
-
 //フォローボタンを押したときのアクション
 export async function followUser(profile) {
   const user = auth.currentUser;
@@ -428,94 +403,4 @@ export function addUserFavoriteCompany(event) {
 }
 
 //企業へトライアル申請
-export function SubmitUserToCompany(event) {
-  const user = auth.currentUser;
-  const batch = writeBatch(db);
-  try {
-    batch.set(doc(db, "users", user.uid, "companies", event.id), {
-      companyName: event.title,
-      companyCareer: event.career,
-      companyCategory: event.category,
-      companyHostUid: event.hostUid,
-      companyHost: event.hostedBy,
-      companyTrialMonth: event.trialMonth,
-      companyAddress: event.venue.address,
-      companyMemberIds: event.attendeeIds,
-      companyMembers: event.attendees,
-      createdAt: serverTimestamp(),
-      companyId: event.id,
-    });
-    batch.set(doc(db, "events", event.id, "users", user.uid), {
-      userName: user.displayName,
-      userUid: user.uid,
-      userPhotoURL: user.photoURL,
-    });
-    return batch.commit();
-  } catch (e) {
-    throw e;
-  }
-  // return addDoc(collection(db, "users", user.uid, "companies"), {
-  //   companyName: company.title,
-  //   companyCareer: company.career,
-  //   companyCategory: company.category,
-  //   companyHostUid: company.hostUid,
-  //   companyHost: company.hostedBy,
-  //   companyTrialMonth: company.trialMonth,
-  //   companyAddress: company.venue.address,
-  //   companyMemberIds: company.attendeeIds,
-  //   companyMembers: company.attendees,
-  //   createdAt: serverTimestamp(),
-  //   companyId: company.id,
-  // });
-}
 
-//お気に入り会社追加
-// export async function matching(event) {
-//   const user = auth.currentUser;
-//   const batch = writeBatch(db);
-//   try {
-//     batch.set(doc(db, "matching", user.uid, "requestUser", event.hostUid), {
-//       companyName: event.title,
-//       companyId: event.id,
-//       companyHostId: event.hostUid,
-//     });
-//     // //firestoreのアクション
-//     batch.set(doc(db, "matching", event.hostUid, "responseCompany", user.uid), {
-//       displayName: user.displayName,
-//       uid: user.uid,
-//     });
-//     return await batch.commit();
-//   } catch (e) {
-//     throw e;
-//   }
-// return addDoc(collection(db, "users", user.uid, "companies"), {
-//   companyName: company.title,
-//   companyCareer: company.career,
-//   companyCategory: company.category,
-//   companyHostUid: company.hostUid,
-//   companyHost: company.hostedBy,
-//   companyTrialMonth: company.trialMonth,
-//   companyAddress: company.venue.address,
-//   companyMemberIds: company.attendeeIds,
-//   companyMembers: company.attendees,
-//   createdAt: serverTimestamp(),
-//   companyId: company.id,
-// });
-// }
-
-//お気に入り会社削除
-export function deleteUserFavoriteCompany(companyId) {
-  const user = auth.currentUser;
-  return deleteDoc(setDoc(db, "users", user.uid, "companies", companyId));
-}
-
-//お気に入り会社へトライアル申請
-export function addCompanyFavoriteUser() {
-  const company = collection(db, "companies");
-  const user = auth.currentUser;
-  const userCollection = collection(company, "0krpUTQNXBjd2kX0GmPu", "users");
-  return setDoc(doc(userCollection), {
-    userName: user.displayName,
-    userUid: user.uid,
-  });
-}
