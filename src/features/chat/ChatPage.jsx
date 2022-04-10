@@ -16,7 +16,7 @@ export default function ChatPage({ match }) {
   // //eventのホスト
   // const isHost = event?.hostUid === currentUser?.uid;
 
-  //eventsコレクションのidに紐付ける(データの受け取り)
+  //groupコレクションのidに紐付ける(データの受け取り)
   useFirestoreDoc({
     query: () => listenToGroupFromFirestore(match.params.id),
     data: (group) => dispatch(listenToSelectedGroups(group)),

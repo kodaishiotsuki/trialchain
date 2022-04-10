@@ -24,10 +24,6 @@ export default function MacthUserListItemContent({ matchUser, currentUser }) {
         where("userId", "==", matchUser?.userId),
         where("hostUid", "==", currentUser?.uid)
       );
-      // const querySnapshot = getDocs(q);
-      // querySnapshot.forEach((doc) => {
-      //   console.log({ ...doc.data(), id: doc.id });
-      // });
       getDocs(q).then((querySnapshot) => {
         setGroupId(
           querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
@@ -56,7 +52,6 @@ export default function MacthUserListItemContent({ matchUser, currentUser }) {
             content='カジュアル面談へ'
             style={{ fontSize: 20 }}
             as={Link}
-            // //企業hostUid & ユーザーuid
             to={`/chat/${groupId}`}
           />
         </Card.Content>

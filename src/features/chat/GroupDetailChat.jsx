@@ -30,7 +30,9 @@ export default function GroupDetailedChat({ groupId }) {
   useEffect(() => {
     onValue(getGroupChatRef(groupId), (snapshot) => {
       if (!snapshot.exists()) return;
-      dispatch(listenToGroupChat(firebaseObjectToArray(snapshot.val())));
+      dispatch(
+        listenToGroupChat(firebaseObjectToArray(snapshot.val()).reverse())
+      );
       return () => {
         dispatch({ type: CLEAR_COMMENTS });
         off(getGroupChatRef());

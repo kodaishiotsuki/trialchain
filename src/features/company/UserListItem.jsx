@@ -9,7 +9,6 @@ export default function UserListItem({ user }) {
         <Image
           size='large'
           src={user.photoURL}
-          // style={{ maxHeight: 150, width: 300 }}
         />
         <Header size='huge'>{user.displayName}</Header>
         <Button
