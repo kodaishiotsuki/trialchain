@@ -58,30 +58,34 @@ export default function NavBar({ setFormOpen }) {
           <Icon name='chain' size='large' />
           Trial Chain
         </Menu.Item>
-        <Menu.Item as={NavLink} to='/events' name='企業一覧' />
+        <Menu.Item as={NavLink} to='/events' name='企業リスト' />
         {/* <Menu.Item as={NavLink} to='/sandbox' name='Sandbox' /> */}
 
         {authenticated && (
           <>
             {userType?.userType === "企業" ? (
               <>
-                <Menu.Item as={NavLink} to='/createEvent'>
-                  <Button positive inverted content='企業投稿ページ' />
-                </Menu.Item>
+                {/* <Menu.Item as={NavLink} to='/createEvent'>
+                  <Button color='blue' inverted content='企業投稿ページ' />
+                </Menu.Item> */}
                 <Menu.Item as={NavLink} to='/userList'>
-                  <Button positive inverted content='求職者リスト' />
+                  <Button inverted basic content='求職者リスト' />
                 </Menu.Item>
                 <Menu.Item as={NavLink} to='/trialUserList'>
-                  <Button negative inverted content='トライアル申請者リスト' />
+                  <Button positive inverted content='トライアル申請者リスト' />
                 </Menu.Item>
               </>
             ) : (
               <>
                 <Menu.Item as={NavLink} to='/trial'>
-                  <Button positive inverted content='お気に入り企業リスト' />
+                  <Button
+                      inverted
+                      basic
+                    content='お気に入り企業リスト'
+                  />
                 </Menu.Item>
                 <Menu.Item as={NavLink} to='/trialResult'>
-                  <Button negative inverted content='トライアル申請結果' />
+                  <Button positive inverted content='トライアル申請結果' />
                 </Menu.Item>
               </>
             )}

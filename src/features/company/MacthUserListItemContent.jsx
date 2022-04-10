@@ -41,19 +41,22 @@ export default function MacthUserListItemContent({ matchUser, currentUser }) {
   }, [db, matchUser?.userId, currentUser?.uid]);
 
   return (
-      <Card>
-        <Card.Content>
-          <Image size='large' src={matchUser.userPhotoURL} />
-          <Header size='huge'>{matchUser.userName}</Header>
-          <Button
-            floated='right'
-            negative
-            content='カジュアル面談へ'
-            style={{ fontSize: 20 }}
-            as={Link}
-            to={`/chat/${groupId}`}
-          />
-        </Card.Content>
-      </Card>
+    <Card>
+      <Card.Content>
+        <Image
+          size='large'
+          src={matchUser.userPhotoURL || "/assets/user.png"}
+        />
+        <Header size='huge'>{matchUser.userName}</Header>
+        <Button
+          floated='right'
+          color='teal'
+          content='カジュアル面談へ'
+          style={{ fontSize: 15 }}
+          as={Link}
+          to={`/chat/${groupId}`}
+        />
+      </Card.Content>
+    </Card>
   );
 }

@@ -32,6 +32,14 @@ export default function SignedInMenu({ userType }) {
             {userType?.userType === "企業" && (
               <Dropdown.Item
                 as={Link}
+                to="/createEvent"
+                text='Post Company'
+                icon='edit'
+              />
+            )}
+            {userType?.userType === "企業" && (
+              <Dropdown.Item
+                as={Link}
                 to={`/profile/${currentUserProfile?.id}`}
                 text='My Profile'
                 icon='user'

@@ -55,8 +55,7 @@ export default function TrialListItem({ company }) {
   }
 
   return (
-    <Segment.Group>
-      <>
+    <Segment.Group style={{ width: 900, margin: "auto", marginTop: 20 }}>
         <Segment>
           <Item.Group>
             <Item>
@@ -64,16 +63,16 @@ export default function TrialListItem({ company }) {
                 size='tiny'
                 rounded
                 src={`/assets/categoryImages/${company.category}.jpg`}
-                style={{ maxHeight: 150, width: 330 }}
+                style={{ maxHeight: 130, width: 330 }}
               />
               <Item.Content>
                 <Item.Header
                   content={company.title}
-                  style={{ fontSize: 45, marginTop: 20 }}
+                  style={{ fontSize: 35, marginTop: 20 }}
                 />
                 <br />
                 <Label
-                  style={{ top: "-55px", fontSize: 20 }}
+                  style={{ top: "-55px", fontSize: 15 }}
                   ribbon='right'
                   color='orange'
                   content={`トライアル期間：${company.trialMonth}ヶ月`}
@@ -126,13 +125,13 @@ export default function TrialListItem({ company }) {
             ))}
           </List>
           <Button
-            // color='orange'
-            negative
+            color='teal'
             floated='right'
             content={buttonClick ? "申請済み" : "トライアル申請"}
             style={{
-              fontSize: 20,
+              fontSize: 15,
               marginLeft: 15,
+              marginTop: 15,
             }}
             loading={loading}
             onClick={UserTrialRequestCompany}
@@ -140,17 +139,15 @@ export default function TrialListItem({ company }) {
           />
           <Button
             as={Link}
-            to={`/events/${company.id}`} //イベント内容詳細ページへ遷移（idで判断）
-            // color='green'
-            positive
+            to={`/events/${company.id}`}
             floated='right'
             content='詳細を見る'
             style={{
-              fontSize: 20,
+              fontSize: 15,
+              marginTop: 15,
             }}
           />
         </Segment>
-      </>
     </Segment.Group>
   );
 }

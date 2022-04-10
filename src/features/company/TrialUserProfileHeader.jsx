@@ -181,7 +181,7 @@ export default function TrialUserProfileHeader({ profile }) {
             }}
           >
             <Button
-              negative
+              color="teal"
               floated='right'
               onClick={matchUserToCompany}
               loading={loading}

@@ -8,7 +8,8 @@ export default function UserListItem({ user }) {
       <Card.Content>
         <Image
           size='large'
-          src={user.photoURL}
+          src={user.photoURL || "/assets/user.png"}
+          // style={{ maxHeight: 300, width: 300 }}
         />
         <Header size='huge'>{user.displayName}</Header>
         <Button

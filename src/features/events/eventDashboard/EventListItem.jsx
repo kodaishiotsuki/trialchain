@@ -41,17 +41,17 @@ export default function EventListItem({ event }) {
                 style={{ fontSize: 15 }}
               />
               <Item.Content
-                className='ui teal tag label'
+                className='ui  tag label'
                 content={event.career[0]}
                 style={{ margin: 5 }}
               />
               <Item.Content
-                className='ui teal tag label'
+                className='ui  tag label'
                 content={event.career[1]}
                 style={{ margin: 5 }}
               />
               <Item.Content
-                className='ui teal tag label'
+                className='ui  tag label'
                 content={event.career[2]}
                 style={{ margin: 5 }}
               />

@@ -6,15 +6,15 @@ export default function TrialUserListItem({ requestUser }) {
   return (
     <Card>
       <Card.Content>
-        <Image size='large' src={requestUser.userPhotoURL} />
+        <Image src={requestUser.userPhotoURL || "/assets/user.png"} />
         <Header size='huge'>{requestUser.userName}</Header>
         <Button
           floated='right'
-          positive
+          color='teal'
           content='詳細ページへ'
           as={Link}
           to={`/trialUserProfile/${requestUser.userId}`}
-          style={{ fontSize: 20 }}
+          style={{ fontSize: 15 }}
         />
       </Card.Content>
     </Card>
