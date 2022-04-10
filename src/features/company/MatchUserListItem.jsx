@@ -7,27 +7,24 @@ import {
   where,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Button, Card, Header, Image } from "semantic-ui-react";
 import { app } from "../../app/config/firebase";
+import MatchUserListItemContent from "./MacthUserListItemContent";
 
 export default function MatchUserListItem() {
-  const [users, setUsers] = useState([]);
+  const [matchUsers, setMatchUsers] = useState([]);
   const db = getFirestore(app);
   const auth = getAuth(app);
-  const user = auth.currentUser;
-
-  // console.log(user.uid);
+  const currentUser = auth.currentUser;
 
   //マッチユーザーリスト取得
   useEffect(() => {
     try {
       const q = query(
-        collection(db, "matchCompany",user.uid,"users"),
-        where("hostUid", "==", user.uid)
+        collection(db, "matchCompany", currentUser.uid, "users"),
+        where("hostUid", "==", currentUser.uid)
       );
       getDocs(q).then((querySnapshot) => {
-        setUsers(querySnapshot.docs.map((doc) => doc.data()));
+        setMatchUsers(querySnapshot.docs.map((doc) => doc.data()));
 
         //コンソールで表示
         console.log(querySnapshot.docs.map((doc) => doc.data()));
@@ -35,33 +32,17 @@ export default function MatchUserListItem() {
     } catch (error) {
       console.log(error.message);
     }
-  }, [db, user.uid]);
+  }, [db, currentUser.uid]);
 
   return (
-    <Card.Group itemsPerRow={3} style={{ marginTop: 30 }}>
-      {users.map((user) => (
-        <Card key={user.id}>
-          <Card.Content>
-            <Image size='large' src={user.userPhotoURL} />
-            <Header size='huge'>{user.userName}</Header>
-            <Button
-              floated='right'
-              negative
-              content='カジュアル面談へ'
-              style={{fontSize:20}}
-              // as
-              // to
-            />
-            {/* <Button
-              floated='right'
-              positive
-              content='プロフィール'
-              as={Link}
-              to={`/profile/${user.userId}`}
-            /> */}
-          </Card.Content>
-        </Card>
+    <>
+      {matchUsers.map((matchUser) => (
+        <MatchUserListItemContent
+          key={matchUser.id}
+          matchUser={matchUser}
+          currentUser={currentUser}
+        />
       ))}
-    </Card.Group>
+    </>
   );
 }

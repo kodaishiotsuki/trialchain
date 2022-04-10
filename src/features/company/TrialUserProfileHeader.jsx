@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Grid, Header, Icon, Item, Segment } from "semantic-ui-react";
 import { toast } from "react-toastify";
 import {
+  addDoc,
   collection,
   deleteDoc,
   doc,
@@ -119,6 +120,13 @@ export default function TrialUserProfileHeader({ profile }) {
         userId: profile.id,
       });
       await deleteDoc(doc(db, "trialCompany", user.uid, "users", profile.id));
+      //groupコレクション追加
+      await addDoc(collection(db, "group"), {
+        ...myCompany,
+        userName: profile.displayName,
+        userPhotoURL: profile.photoURL || "/assets/user.png",
+        userId: profile.id,
+      });
     } catch (error) {
       toast.error(error.message);
     } finally {

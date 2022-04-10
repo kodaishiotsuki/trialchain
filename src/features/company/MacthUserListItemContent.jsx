@@ -1,0 +1,66 @@
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { Button, Card, Header, Image } from "semantic-ui-react";
+import { app } from "../../app/config/firebase";
+
+export default function MacthUserListItemContent({ matchUser, currentUser }) {
+  const db = getFirestore(app);
+  const [groupId, setGroupId] = useState("");
+
+  console.log(matchUser?.userId);
+  console.log(currentUser?.uid);
+
+  useEffect(() => {
+    try {
+      const q = query(
+        collection(db, "group"),
+        where("userId", "==", matchUser?.userId),
+        where("hostUid", "==", currentUser?.uid)
+      );
+      // const querySnapshot = getDocs(q);
+      // querySnapshot.forEach((doc) => {
+      //   console.log({ ...doc.data(), id: doc.id });
+      // });
+      getDocs(q).then((querySnapshot) => {
+        setGroupId(
+          querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
+            ?.id
+        );
+        //コンソールで表示
+        console.log(
+          querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
+            ?.id
+        );
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, [db, matchUser?.userId, currentUser?.uid]);
+
+  return (
+    <Card.Group itemsPerRow={3} style={{ marginTop: 30 }}>
+      <Card>
+        <Card.Content>
+          <Image size='large' src={matchUser.userPhotoURL} />
+          <Header size='huge'>{matchUser.userName}</Header>
+          <Button
+            floated='right'
+            negative
+            content='カジュアル面談へ'
+            style={{ fontSize: 20 }}
+            as={Link}
+            // //企業hostUid & ユーザーuid
+            to={`/chat/${groupId}`}
+          />
+        </Card.Content>
+      </Card>
+    </Card.Group>
+  );
+}

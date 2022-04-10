@@ -55,7 +55,7 @@ export default function TrialUserListItem({ users }) {
             <Button
               floated='right'
               positive
-              content='トライアル承認'
+              content='詳細ページへ'
               as={Link}
               to={`/trialUserProfile/${user.userId}`}
               style={{fontSize:20}}

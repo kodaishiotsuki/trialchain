@@ -123,11 +123,48 @@ export function addEventChatComment(eventId, values) {
   };
   return push(fbRef(db, `chat/${eventId}`), newComment);
 }
+//チャット機能DBに保存
+export function addGroupChatComment(groupId, values) {
+  const user = auth.currentUser;
+  const newComment = {
+    displayName: user.displayName,
+    photoURL: user.photoURL,
+    uid: user.uid,
+    text: values.comment,
+    date: Date.now(),
+    parentId: values.parentId,
+  };
+  return push(fbRef(db, `chat/${groupId}`), newComment);
+}
 
-//DBからチャット内容を出力
+// DBからチャット内容を出力
 export function getEventChatRef(eventId) {
   return query(fbRef(db, `chat/${eventId}`), orderByKey());
 }
+// DBからチャット内容を出力
+export function getGroupChatRef(groupId) {
+  return query(fbRef(db, `chat/${groupId}`), orderByKey());
+}
+
+
+//チャット機能DBに保存
+// export function addEventChatComment(userId,values) {
+//   const user = auth.currentUser;
+//   const newComment = {
+//     displayName: user.displayName,
+//     photoURL: user.photoURL,
+//     uid: user.uid,
+//     text: values.comment,
+//     date: Date.now(),
+//     parentId: values.parentId,
+//   };
+//   return push(fbRef(db, `chat/${userId}`), newComment);
+// }
+
+// //DBからチャット内容を出力
+// export function getEventChatRef(userId) {
+//   return query(fbRef(db, `chat/${userId}`), orderByKey());
+// }
 
 //フィードを出力
 export function getUserFeedRef() {

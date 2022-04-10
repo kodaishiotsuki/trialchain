@@ -94,6 +94,10 @@ export function fetchEventsFromFirestore(
 export function listenToEventFromFirestore(eventId) {
   return doc(db, "events", eventId);
 }
+//グループを取得 =id（単一documentへの参照を取得）
+export function listenToGroupFromFirestore(groupId) {
+  return doc(db, "group", groupId);
+}
 
 //イベントコレクションとカンパニーコレクションにドキュメント追加
 export function addEventToFirestore(event) {

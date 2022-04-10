@@ -1,4 +1,11 @@
-import React from "react";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Button,
@@ -9,8 +16,38 @@ import {
   List,
   Segment,
 } from "semantic-ui-react";
+import { app } from "../../app/config/firebase";
 
 export default function TrialResultItem({ company, user }) {
+  // console.log(company?.hostUid);
+  // console.log(user.uid);
+  const db = getFirestore(app);
+  const [groupId, setGroupId] = useState("");
+
+  //個別グループID取得
+  useEffect(() => {
+    try {
+      const q = query(
+        collection(db, "group"),
+        where("userId", "==", user?.uid),
+        where("hostUid", "==", company?.hostUid),
+      );
+      getDocs(q).then((querySnapshot) => {
+        setGroupId(
+          querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
+            ?.id
+        );
+        //コンソールで表示
+        console.log(
+          querySnapshot.docs.map(
+            (doc) => ({ ...doc.data(), id: doc.id })
+          )[0]?.id
+        );
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, [db, company?.hostUid, user?.uid]);
   return (
     <Segment.Group>
       <>
@@ -85,7 +122,8 @@ export default function TrialResultItem({ company, user }) {
 
           <Button
             as={Link}
-            to={`/chat/${company.hostUid}&${user.uid}`} //イベント内容詳細ページへ遷移（idで判断）
+            //企業hostUid & ユーザーuid
+            to={`/chat/${groupId}`}
             negative
             floated='right'
             content='カジュアル面談へ'

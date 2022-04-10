@@ -50,8 +50,7 @@ function App() {
               <Route path='/userList' component={UserList} />
               <Route path='/trialUserList' component={TrialUserList} />
               <Route path='/events/:id' component={EventDetailedPage} />
-
-
+              <Route path='/chat/:id' component={ChatPage} />
               {/* 同じコンポーネントを開くためのroute */}
               {/* PrivateRoute→アクセス制限 */}
               <PrivateRoute
@@ -69,7 +68,7 @@ function App() {
                 path='/trialUserProfile/:id'
                 component={TrialUserProfilePage}
               />
-              <PrivateRoute path='/chat/:id:id' component={ChatPage} />
+              {/* <PrivateRoute path='/chat/:id' component={ChatPage} /> */}
               <Route path='/error' component={ErrorComponent} />
             </Container>
           </>

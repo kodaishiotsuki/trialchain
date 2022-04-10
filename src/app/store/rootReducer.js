@@ -6,6 +6,7 @@ import testReducer from "../../features/sandbox/testReducer";
 import asyncReducer from "../async/asyncReducer";
 import modalReducer from "../common/modals/modalReducer";
 import { connectRouter } from "connected-react-router";
+import groupReducer from "../../features/chat/chatReducer";
 
 const rootReducer = (history) =>
   combineReducers({
@@ -16,6 +17,7 @@ const rootReducer = (history) =>
     auth: authReducer,
     async: asyncReducer,
     profile: profileReducer,
+    group:groupReducer
   });
 
 export default rootReducer;

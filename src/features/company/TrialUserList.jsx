@@ -17,6 +17,7 @@ import TrialUserListItem from "./TrialUserListItem";
 export default function TrialUserList() {
   const { error } = useSelector((state) => state.async);
   const [users, setUsers] = useState([]);
+
   const db = getFirestore(app);
   const auth = getAuth(app);
   const user = auth.currentUser;
@@ -32,7 +33,11 @@ export default function TrialUserList() {
     {
       menuItem: "マッチした申請者リスト",
       render: () => (
-        <MatchUserListItem users={users} activeTab={activeTab} key={users.id} />
+        <MatchUserListItem
+          users={users}
+          activeTab={activeTab}
+          key={users.id}
+        />
       ),
     },
   ];
@@ -50,7 +55,6 @@ export default function TrialUserList() {
             doc.data({ ...doc.data(), id: doc.id })
           )
         );
-
         //コンソールで表示
         console.log(querySnapshot.docs.map((doc) => doc.data()));
       });
@@ -58,6 +62,7 @@ export default function TrialUserList() {
       console.log(error.message);
     }
   }, [db, user.uid]);
+
 
   //エラーが発生した場合はリダイレクト
   if (error) return <Redirect to='/error' />;
