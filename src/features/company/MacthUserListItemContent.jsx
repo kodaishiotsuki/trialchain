@@ -41,7 +41,6 @@ export default function MacthUserListItemContent({ matchUser, currentUser }) {
   }, [db, matchUser?.userId, currentUser?.uid]);
 
   return (
-    <Card.Group itemsPerRow={3} style={{ marginTop: 30 }}>
       <Card>
         <Card.Content>
           <Image size='large' src={matchUser.userPhotoURL} />
@@ -56,6 +55,5 @@ export default function MacthUserListItemContent({ matchUser, currentUser }) {
           />
         </Card.Content>
       </Card>
-    </Card.Group>
   );
 }
