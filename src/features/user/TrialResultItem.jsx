@@ -111,7 +111,7 @@ export default function TrialResultItem({ company, user }) {
             >
               <Image
                 circular
-                src={member.photoURL}
+                src={member.photoURL || "/assets/user.png"}
                 style={{ width: 60, marginRight: 15 }}
               />
             </List.Item>

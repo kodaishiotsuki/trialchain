@@ -30,9 +30,7 @@ export default function GroupDetailedChat({ groupId }) {
   useEffect(() => {
     onValue(getGroupChatRef(groupId), (snapshot) => {
       if (!snapshot.exists()) return;
-      dispatch(
-        listenToGroupChat(firebaseObjectToArray(snapshot.val()).reverse())
-      );
+      dispatch(listenToGroupChat(firebaseObjectToArray(snapshot.val())));
       return () => {
         dispatch({ type: CLEAR_COMMENTS });
         off(getGroupChatRef());
@@ -61,7 +59,7 @@ export default function GroupDetailedChat({ groupId }) {
           />
           <Comment.Group>
             {createDataTree(comments).map((comment) => (
-              <Comment key={comment.id} >
+              <Comment key={comment.id}>
                 <Comment.Avatar src={comment.photoURL || "/assets/user.png"} />
                 <Comment.Content>
                   <Comment.Author as={Link} to={`/profile/${comment.uid}`}>
