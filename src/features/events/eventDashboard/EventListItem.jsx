@@ -10,10 +10,10 @@ import {
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import EventListAttend from "./EventListAttend";
-// import { format } from "date-fns";
-// import { deleteEventInFirestore } from "../../../app/firestore/firestoreService";
+import { useSelector } from "react-redux";
 
 export default function EventListItem({ event }) {
+  const { authenticated } = useSelector((state) => state.auth);
   return (
     <Segment.Group>
       <Segment>
@@ -102,6 +102,7 @@ export default function EventListItem({ event }) {
           color='teal'
           floated='right'
           content='View'
+          disabled={!authenticated}
         />
       </Segment>
     </Segment.Group>
