@@ -39,7 +39,7 @@ export default function TrialUserProfileHeader({ profile }) {
     try {
       const q = query(
         collection(db, "events"),
-        where("hostUid", "==", user.uid)
+        where("hostUid", "==", user?.uid)
       );
       getDocs(q).then((querySnapshot) => {
         setMyCompany(
@@ -53,7 +53,7 @@ export default function TrialUserProfileHeader({ profile }) {
     } catch (error) {
       console.log(error.message);
     }
-  });
+  }, [db, user?.uid]);
 
   //動的にフォロワーを獲得（重複禁止!）
   // useEffect(() => {

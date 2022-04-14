@@ -1,8 +1,11 @@
 import {
+  arrayUnion,
   collection,
+  doc,
   getDocs,
   getFirestore,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
@@ -12,10 +15,11 @@ import { app } from "../../app/config/firebase";
 
 export default function MacthUserListItemContent({ matchUser, currentUser }) {
   const db = getFirestore(app);
-  const [groupId, setGroupId] = useState("");
+  const [trial, setTrial] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  console.log(matchUser?.userId);
-  console.log(currentUser?.uid);
+  // console.log(matchUser?.userId);
+  // console.log(currentUser?.uid);
 
   useEffect(() => {
     try {
@@ -25,20 +29,34 @@ export default function MacthUserListItemContent({ matchUser, currentUser }) {
         where("hostUid", "==", currentUser?.uid)
       );
       getDocs(q).then((querySnapshot) => {
-        setGroupId(
+        setTrial(
           querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
-            ?.id
         );
         //コンソールで表示
         console.log(
           querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
-            ?.id
         );
       });
     } catch (error) {
       console.log(error.message);
     }
   }, [db, matchUser?.userId, currentUser?.uid]);
+
+  //usersコレクションに会社情報追加
+  async function handleCompanyTrialToUser() {
+    setLoading(true);
+    try {
+      await updateDoc(doc(db, "users", matchUser?.userId), {
+        trialCompany: arrayUnion(trial?.title),
+        trialMonth: arrayUnion(trial?.trialMonth),
+      });
+    } catch (error) {
+      console.log("fserror", error);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <Card>
@@ -52,9 +70,17 @@ export default function MacthUserListItemContent({ matchUser, currentUser }) {
           floated='right'
           color='teal'
           content='チャット画面へ'
-          style={{ fontSize: 15 }}
+          style={{ fontSize: 15, marginLeft: 25 }}
           as={Link}
-          to={`/chat/${groupId}`}
+          to={`/chat/${trial?.id}`}
+        />
+        <Button
+          floated='right'
+          color='orange'
+          content='トライアル決定'
+          style={{ fontSize: 15 }}
+          loading={loading}
+          onClick={handleCompanyTrialToUser}
         />
       </Card.Content>
     </Card>

@@ -3,7 +3,6 @@ import { off, onValue } from "firebase/database";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { Comment, Header, Segment } from "semantic-ui-react";
 import { createDataTree } from "../../app/common/util/util";
 import {
@@ -39,19 +38,6 @@ export default function GroupDetailedChat({ groupId }) {
       };
     });
   }, [groupId, dispatch]);
-  console.log(comments);
-  const id = comments.map((i) => {
-    return i.uid;
-  });
-  console.log(id);
-
-  const currentUserId = id.map((i) => {
-    return console.log(i);
-  });
-
-  console.log(currentUser.uid);
-  const userId = currentUser?.uid === currentUserId;
-  console.log(userId);
 
   return (
     <>
@@ -71,23 +57,20 @@ export default function GroupDetailedChat({ groupId }) {
             groupId={groupId}
             parentId={0}
             // closeForm={setShowReplyForm}
-            
           />
           <Comment.Group style={{ margin: "auto" }}>
             {createDataTree(comments).map((comment) => (
-              <div>
+              <div key={`my${comment.id}`}>
                 {comment.uid === currentUser.uid ? (
                   <Comment
+                    style={{ marginLeft: "auto", width: 200 }}
                     key={`my${comment.id}`}
-                    style={{ marginLeft: "auto", width: 250 }}
                   >
                     <Comment.Avatar
                       src={comment.photoURL || "/assets/user.png"}
                     />
                     <Comment.Content>
-                      <Comment.Author as={Link} to={`/profile/${comment.uid}`}>
-                        {comment.displayName}
-                      </Comment.Author>
+                      <Comment.Author>{comment.displayName}</Comment.Author>
                       <Comment.Metadata>
                         <div>{formatDistance(comment.date, new Date())}</div>
                       </Comment.Metadata>
@@ -121,15 +104,13 @@ export default function GroupDetailedChat({ groupId }) {
                 ) : (
                   <Comment
                     key={`other${comment.id}`}
-                    style={{ marginRight: "auto", width: 250 }}
+                    style={{ marginRight: "auto", width: 200 }}
                   >
                     <Comment.Avatar
                       src={comment.photoURL || "/assets/user.png"}
                     />
                     <Comment.Content>
-                      <Comment.Author as={Link} to={`/profile/${comment.uid}`}>
-                        {comment.displayName}
-                      </Comment.Author>
+                      <Comment.Author>{comment.displayName}</Comment.Author>
                       <Comment.Metadata>
                         <div>{formatDistance(comment.date, new Date())}</div>
                       </Comment.Metadata>

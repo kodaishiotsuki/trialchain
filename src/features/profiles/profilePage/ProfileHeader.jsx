@@ -36,17 +36,20 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
     try {
       const q = query(
         collection(db, "events"),
-        where("hostUid", "==", user.uid)
+        where("hostUid", "==", user?.uid)
       );
-      getDocs(q).then((querySnapshot) => {
-        setMyCompany(
-          querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
-        );
-        //コンソールで表示
-        // console.log(
-        //   querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
-        // );
-      }, []);
+      getDocs(q).then(
+        (querySnapshot) => {
+          setMyCompany(
+            querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
+          );
+          //コンソールで表示
+          // console.log(
+          //   querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
+          // );
+        },
+        [db, user?.uid]
+      );
     } catch (error) {
       console.log(error.message);
     }
