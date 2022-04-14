@@ -1,43 +1,19 @@
 import React, { useState } from "react";
 import { Button, Grid, Header, Tab } from "semantic-ui-react";
+import TrialResult from "../profiles/profilePage/TrialResult";
 import UserProfileForm from "../profiles/profilePage/UserProfileForm";
 
 export default function UserAboutTab({ profile, isCurrentUser }) {
   const [editMode, setEditMode] = useState(false);
-  //ユーザータイプ
-  // const [userType, setUserType] = useState([]);
-  // const db = getFirestore(app);
-  // const auth = getAuth(app);
-
-  // //ログインユーザー
-  // const user = auth.currentUser;
-  // console.log(user);
-
-  //コレクションuser,サブコレクションcompanies取得
-  // useEffect(() => {
-  //   try {
-  //     const q = query(
-  //       collection(db, "users"),
-  //       where("email", "==", user.email)
-  //     );
-  //     getDocs(q).then((querySnapshot) => {
-  //       setUserType(querySnapshot.docs.map((doc) => doc.data())[0].userType);
-
-  //       //コンソールで表示
-  //       console.log(querySnapshot.docs.map((doc) => doc.data())[0].userType);
-  //     }, []);
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // });
   return (
     <Tab.Pane>
       <Grid>
-        <Grid.Column width={16}>
+        <Grid.Column width={16} style={{ height: 40 }}>
           <Header
             floated='left'
-            icon='user'
-            content={`${profile.displayName}`}
+            icon='id card outline'
+            content='トライアル採用履歴'
+            style={{ padding: 5 }}
           />
 
           {isCurrentUser && (
@@ -54,12 +30,13 @@ export default function UserAboutTab({ profile, isCurrentUser }) {
             <UserProfileForm profile={profile} />
           ) : (
             <>
-              <div>
-                {/* <strong>
-                  Member since:{format(profile.createdAt, "yyyy/MM/dd")}
-                </strong> */}
-                <div>{profile.description || null}</div>
-              </div>
+              <TrialResult profile={profile} />
+              <Header
+                content='キャッチコピー＆この先やってみたいこと'
+                icon='address book outline'
+                style={{ padding: 5 }}
+              />
+              <div style={{marginLeft:10}}>{profile.description || null}</div>
             </>
           )}
         </Grid.Column>
