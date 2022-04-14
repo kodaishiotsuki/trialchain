@@ -28,7 +28,7 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
   //申請があったユーザーID
   // console.log(profile.id);
 
-  const userType = user?.userType === "企業"
+  const userType = user?.userType === "企業";
   const trialCompany = user?.uid === myCompany?.hostUid;
 
   //自分の企業を取得
@@ -133,9 +133,13 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
               />
               <Item.Content verticalAlign='middle'>
                 <Header
-                  as='h1'
-                  style={{ display: "block", marginBottom: 10 }}
+                  style={{ display: "block", margin: 20, fontSize: 30 }}
                   content={profile.displayName}
+                />
+                <Item.Content
+                  className='ui  tag label'
+                  content={profile.occupation}
+                  style={{ fontSize: 15, marginLeft: 30 }}
                 />
               </Item.Content>
             </Item>
@@ -164,14 +168,13 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
           </Statistic.Group> */}
           {/* {!isCurrentUser && ( */}
           <>
-            {userType &&
-              trialCompany &&(
-                <Button
-                  onClick={matchUserToCompany}
-                  loading={loading}
-                  content='トライアル承認'
-                />
-              )}
+            {userType && trialCompany && (
+              <Button
+                onClick={matchUserToCompany}
+                loading={loading}
+                content='トライアル承認'
+              />
+            )}
 
             {/* <Divider />
               <Reveal animated='move'>

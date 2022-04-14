@@ -60,7 +60,7 @@ export default function EventForm({ match, history, location }) {
       latLng: null,
     },
     date: "",
-    favoriteUserId: [],
+    favoriteUserId: []
   };
 
   //入力画面バリデーション

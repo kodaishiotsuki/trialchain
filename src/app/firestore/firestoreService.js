@@ -111,6 +111,7 @@ export function addEventToFirestore(event) {
       id: user.uid,
       displayName: user.displayName,
       photoURL: user.photoURL || null,
+      occupation: user.occupation || "",
     }),
     attendeeIds: arrayUnion(user.uid),
     createdAt: serverTimestamp(),
@@ -143,6 +144,7 @@ export function setUserProfileData(user) {
     email: user.email,
     photoURL: user.photoURL || null,
     userUid: user.uid,
+    occupation: user.occupation || "",
     createdAt: serverTimestamp(),
   });
 }
@@ -284,12 +286,12 @@ export function deletePhotoFromCollection(photoId) {
 //メンバー追加
 export function addUserAttendance(event) {
   const user = auth.currentUser;
-  return updateDoc(doc(db, "events", event.id), {
+  updateDoc(doc(db, "events", event.id), {
     attendees: arrayUnion({
       id: user.uid,
       displayName: user.displayName,
       photoURL: user.photoURL || null,
-      occupation:user.occupation
+      occupation: user.occupation || "",
     }),
     attendeeIds: arrayUnion(user.uid),
   });
@@ -406,5 +408,3 @@ export function addUserFavoriteCompany(event) {
     favoriteCompanyId: arrayUnion(event.id),
   });
 }
-
-//企業へトライアル申請

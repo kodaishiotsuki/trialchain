@@ -43,7 +43,7 @@ export default function EventDetailedSidebar({
     try {
       const q = query(
         collection(db, "users"),
-        where("email", "==", user.email)
+        where("email", "==", user?.email)
       );
       getDocs(q).then((querySnapshot) => {
         setUserType(querySnapshot.docs.map((doc) => doc.data())[0]);
@@ -54,7 +54,7 @@ export default function EventDetailedSidebar({
     } catch (error) {
       console.log(error.message);
     }
-  });
+  },[db,user?.email]);
 
   //イベントに参加（会社のメンバー）
   async function handleUserJoinEvent() {
