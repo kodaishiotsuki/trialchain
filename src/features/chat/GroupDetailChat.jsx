@@ -18,6 +18,8 @@ export default function GroupDetailedChat({ groupId }) {
   const dispatch = useDispatch();
   const { comments } = useSelector((state) => state.event); //引数はrootReducerで確認
   const { authenticated } = useSelector((state) => state.auth);
+  const { currentUser } = useSelector((state) => state.auth);
+
   // const [showReplyForm, setShowReplyForm] = useState({
   //   open: false,
   //   commentId: null,
@@ -37,6 +39,19 @@ export default function GroupDetailedChat({ groupId }) {
       };
     });
   }, [groupId, dispatch]);
+  console.log(comments);
+  const id = comments.map((i) => {
+    return i.uid;
+  });
+  console.log(id);
+
+  const currentUserId = id.map((i) => {
+    return console.log(i);
+  });
+
+  console.log(currentUser.uid);
+  const userId = currentUser?.uid === currentUserId;
+  console.log(userId);
 
   return (
     <>
@@ -56,35 +71,43 @@ export default function GroupDetailedChat({ groupId }) {
             groupId={groupId}
             parentId={0}
             // closeForm={setShowReplyForm}
+            
           />
-          <Comment.Group>
+          <Comment.Group style={{ margin: "auto" }}>
             {createDataTree(comments).map((comment) => (
-              <Comment key={comment.id}>
-                <Comment.Avatar src={comment.photoURL || "/assets/user.png"} />
-                <Comment.Content>
-                  <Comment.Author as={Link} to={`/profile/${comment.uid}`}>
-                    {comment.displayName}
-                  </Comment.Author>
-                  <Comment.Metadata>
-                    <div>{formatDistance(comment.date, new Date())}</div>
-                  </Comment.Metadata>
-                  <Comment.Text>
-                    {comment.text.split("\n").map((text, i) => (
-                      <span key={i}>
-                        {text}
-                        <br />
-                      </span>
-                    ))}
-                  </Comment.Text>
-                  <Comment.Actions>
-                    {/* <Comment.Action
+              <div>
+                {comment.uid === currentUser.uid ? (
+                  <Comment
+                    key={`my${comment.id}`}
+                    style={{ marginLeft: "auto", width: 250 }}
+                  >
+                    <Comment.Avatar
+                      src={comment.photoURL || "/assets/user.png"}
+                    />
+                    <Comment.Content>
+                      <Comment.Author as={Link} to={`/profile/${comment.uid}`}>
+                        {comment.displayName}
+                      </Comment.Author>
+                      <Comment.Metadata>
+                        <div>{formatDistance(comment.date, new Date())}</div>
+                      </Comment.Metadata>
+                      <Comment.Text>
+                        {comment.text.split("\n").map((text, i) => (
+                          <span key={i}>
+                            {text}
+                            <br />
+                          </span>
+                        ))}
+                      </Comment.Text>
+                      <Comment.Actions>
+                        {/* <Comment.Action
                       onClick={() =>
                         setShowReplyForm({ open: true, commentId: comment.id })
                       }
                     >
                       Reply
                     </Comment.Action> */}
-                    {/* {showReplyForm.open &&
+                        {/* {showReplyForm.open &&
                       showReplyForm.commentId === comment.id && (
                         <GroupDetailedChatForm
                           groupId={groupId}
@@ -92,9 +115,53 @@ export default function GroupDetailedChat({ groupId }) {
                           closeForm={handleCloseReplyForm}
                         />
                       )} */}
-                  </Comment.Actions>
-                </Comment.Content>
-              </Comment>
+                      </Comment.Actions>
+                    </Comment.Content>
+                  </Comment>
+                ) : (
+                  <Comment
+                    key={`other${comment.id}`}
+                    style={{ marginRight: "auto", width: 250 }}
+                  >
+                    <Comment.Avatar
+                      src={comment.photoURL || "/assets/user.png"}
+                    />
+                    <Comment.Content>
+                      <Comment.Author as={Link} to={`/profile/${comment.uid}`}>
+                        {comment.displayName}
+                      </Comment.Author>
+                      <Comment.Metadata>
+                        <div>{formatDistance(comment.date, new Date())}</div>
+                      </Comment.Metadata>
+                      <Comment.Text>
+                        {comment.text.split("\n").map((text, i) => (
+                          <span key={i}>
+                            {text}
+                            <br />
+                          </span>
+                        ))}
+                      </Comment.Text>
+                      <Comment.Actions>
+                        {/* <Comment.Action
+                      onClick={() =>
+                        setShowReplyForm({ open: true, commentId: comment.id })
+                      }
+                    >
+                      Reply
+                    </Comment.Action> */}
+                        {/* {showReplyForm.open &&
+                      showReplyForm.commentId === comment.id && (
+                        <GroupDetailedChatForm
+                          groupId={groupId}
+                          parentId={comment.id}
+                          closeForm={handleCloseReplyForm}
+                        />
+                      )} */}
+                      </Comment.Actions>
+                    </Comment.Content>
+                  </Comment>
+                )}
+              </div>
             ))}
           </Comment.Group>
         </Segment>

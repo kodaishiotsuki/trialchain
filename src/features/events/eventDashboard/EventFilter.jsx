@@ -33,7 +33,7 @@ export default function EventFilter({ loading }) {
     try {
       const q = query(
         collection(db, "users"),
-        where("email", "==", user.email)
+        where("email", "==", user?.email)
       );
       getDocs(q).then((querySnapshot) => {
         setUserType(querySnapshot.docs.map((doc) => doc.data())[0]);
@@ -44,12 +44,12 @@ export default function EventFilter({ loading }) {
     } catch (error) {
       console.log(error.message);
     }
-  });
+  }, [db, user?.email]);
   return (
     <>
       {authenticated && (
         <>
-          {userType.userType === "企業" ? (
+          {userType?.userType === "企業" ? (
             <Menu vertical size='large' style={{ width: "100%" }}>
               <Header icon='filter' attached color='teal' content='Filters' />
               <Menu.Item

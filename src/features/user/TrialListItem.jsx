@@ -58,7 +58,7 @@ export default function TrialListItem({ company }) {
     <Segment.Group style={{ width: 900, margin: "auto", marginTop: 20 }}>
       <Segment>
         <Item.Group>
-          <Item>
+          <Item style={{ height: 120 }}>
             <Image
               size='tiny'
               rounded
@@ -81,22 +81,28 @@ export default function TrialListItem({ company }) {
               <Icon name='tag' />
               <Item.Header
                 content='一緒に働きたい＆求めている人材'
-                style={{ fontSize: 20 }}
+                style={{ fontSize: 20, marginRight:20  }}
                 icon='tags'
               />
-              <br />
+              {/* <br /> */}
               <Item.Content
                 className='ui teal tag label'
                 content={company.career[0]}
+                style={{
+                  fontSize: 15,
+                  marginTop: 5,
+                  paddingRight: 35,
+                  paddingLeft: 35,
+                }}
               ></Item.Content>
-              <Item.Content
+              {/* <Item.Content
                 className='ui teal tag label'
                 content={company.career[1]}
               ></Item.Content>
               <Item.Content
                 className='ui teal tag label'
                 content={company.career[2]}
-              ></Item.Content>
+              ></Item.Content> */}
             </Item.Content>
           </Item>
         </Item.Group>

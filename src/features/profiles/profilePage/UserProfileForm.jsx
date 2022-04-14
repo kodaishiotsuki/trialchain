@@ -6,17 +6,13 @@ import { Button, Header } from "semantic-ui-react";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { updateUserProfile } from "../../../app/firestore/firestoreService";
-import MySelectInput from "../../../app/common/form/MySelectInput";
-import {careerData} from "../../../app/api/careerOptions";
 
-export default function ProfileForm({ profile }) {
+export default function UserProfileForm({ profile }) {
   return (
     <Formik
       initialValues={{
         displayName: profile.displayName,
-        occupation: profile.occupation,
         description: profile.description || "",
-        meetyURL: profile.meetyURL || "",
         twitterURL: profile.twitterURL || "",
         facebookURL: profile.facebookURL || "",
         gitHubURL: profile.gitHubURL || "",
@@ -38,13 +34,7 @@ export default function ProfileForm({ profile }) {
       {({ isSubmitting, isValid, dirty }) => (
         <Form className='ui form'>
           <MyTextInput name='displayName' placeholder='Display Name' />
-          <MySelectInput
-            name='occupation'
-            placeholder='現在の職種を選択してください'
-            options={careerData}
-          />
           <MyTextArea name='description' placeholder='Description' />
-          <MyTextInput name='meetyURL' placeholder='MeetyURL' />
           <Header content='各SNSのURLを入力してください' />
           <MyTextInput name='twitterURL' placeholder='twitterURL' />
           <MyTextInput name='facebookURL' placeholder='facebookURL' />

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Grid, Header, Tab } from "semantic-ui-react";
-import ProfileForm from "../profiles/profilePage/ProfileForm";
+import UserProfileForm from "../profiles/profilePage/UserProfileForm";
 
 export default function UserAboutTab({ profile, isCurrentUser }) {
   const [editMode, setEditMode] = useState(false);
@@ -51,7 +51,7 @@ export default function UserAboutTab({ profile, isCurrentUser }) {
         </Grid.Column>
         <Grid.Column width={16}>
           {editMode ? (
-            <ProfileForm profile={profile} />
+            <UserProfileForm profile={profile} />
           ) : (
             <>
               <div>

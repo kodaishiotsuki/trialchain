@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import TrialListItem from "./TrialListItem";
 import { getAuth } from "firebase/auth";
+import { Segment } from "semantic-ui-react";
 
 export default function TrialList({ match, history, location }) {
   const { error } = useSelector((state) => state.async);
@@ -49,6 +50,16 @@ export default function TrialList({ match, history, location }) {
 
   return (
     <>
+      <Segment
+        textAlign='center'
+        style={{ border: "none",width:900,margin:"auto" }}
+        attached='top'
+        secondary
+        inverted
+        color='teal'
+      >
+        <h2>お気に入り企業リスト</h2>
+      </Segment>
       {companies.map((company) => (
         <TrialListItem company={company} key={company.id} />
       ))}

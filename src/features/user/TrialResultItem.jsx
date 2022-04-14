@@ -74,22 +74,28 @@ export default function TrialResultItem({ company, user }) {
               <Icon name='tag' />
               <Item.Header
                 content='一緒に働きたい＆求めている人材'
-                style={{ fontSize: 20 }}
+                style={{ fontSize: 20, marginRight: 20 }}
                 icon='tags'
               />
-              <br />
+              {/* <br /> */}
               <Item.Content
-                className='ui  tag label'
+                className='ui teal tag label'
                 content={company.career[0]}
+                style={{
+                  fontSize: 15,
+                  marginTop: 5,
+                  paddingRight: 35,
+                  paddingLeft: 35,
+                }}
               ></Item.Content>
-              <Item.Content
+              {/* <Item.Content
                 className='ui  tag label'
                 content={company.career[1]}
               ></Item.Content>
               <Item.Content
                 className='ui  tag label'
                 content={company.career[2]}
-              ></Item.Content>
+              ></Item.Content> */}
             </Item.Content>
           </Item>
         </Item.Group>
@@ -123,7 +129,7 @@ export default function TrialResultItem({ company, user }) {
           to={`/chat/${groupId}`}
           color='teal'
           floated='right'
-          content='カジュアル面談へ'
+          content='チャット画面へ'
           style={{
             fontSize: 15,
             marginTop: 15,

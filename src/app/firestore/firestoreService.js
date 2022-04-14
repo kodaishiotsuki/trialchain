@@ -289,6 +289,7 @@ export function addUserAttendance(event) {
       id: user.uid,
       displayName: user.displayName,
       photoURL: user.photoURL || null,
+      occupation:user.occupation
     }),
     attendeeIds: arrayUnion(user.uid),
   });
@@ -407,4 +408,3 @@ export function addUserFavoriteCompany(event) {
 }
 
 //企業へトライアル申請
-

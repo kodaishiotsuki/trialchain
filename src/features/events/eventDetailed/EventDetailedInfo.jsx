@@ -21,9 +21,6 @@ export default function EventDetailedInfo({ event, isHost }) {
   const [mapOpen, setMapOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
-
-  //favoriteUsers
-  const [favorite, setFavorite] = useState([]);
   const [userType, setUserType] = useState([]);
   //firebase
   const db = getFirestore(app);
@@ -41,36 +38,6 @@ export default function EventDetailedInfo({ event, isHost }) {
         setUserType(querySnapshot.docs.map((doc) => doc.data())[0]);
         //コンソールで表示
         // console.log(querySnapshot.docs.map((doc) => doc.data())[0].userUid);
-      });
-    } catch (error) {
-      console.log(error.message);
-    }
-  });
-
-  //favorite取得
-  useEffect(() => {
-    try {
-      const q = query(
-        collection(db, "events"),
-        where("favoriteUserId", "array-contains", user.uid)
-      );
-
-      getDocs(q).then((querySnapshot) => {
-        setFavorite(
-          querySnapshot.docs.map((doc) =>
-            doc.data({ ...doc.data(), id: doc.id })
-          ).favoriteUserId
-        );
-        // const isFavorite = favorite?.favoriteUserId?.some((a) => a === user?.uid);
-        // console.log(isFavorite)
-        //コンソールで表示
-        // console.log(
-        //   querySnapshot.docs.map((doc) =>
-        //     doc
-        //       .data({ ...doc.data(), id: doc.id })
-        //       .favoriteUserId.some((a) => a === user.uid)
-        //   )
-        // );
       });
     } catch (error) {
       console.log(error.message);
@@ -150,9 +117,9 @@ export default function EventDetailedInfo({ event, isHost }) {
             <Label
               className='ui teal tag label'
               content={event.career[0]}
-              style={{ marginRight: 25 }}
+              style={{ marginRight: 25, fontSize: 15 }}
             />
-            <Label
+            {/* <Label
               className='ui teal tag label'
               content={event.career[1]}
               style={{ marginRight: 25 }}
@@ -161,11 +128,12 @@ export default function EventDetailedInfo({ event, isHost }) {
               className='ui teal tag label'
               content={event.career[2]}
               style={{ marginRight: 25 }}
-            />
+            /> */}
           </Grid.Column>
         </Grid>
       </Segment>
 
+      {/* 地図 */}
       <Segment attached>
         <Grid verticalAlign='middle'>
           <Grid.Column width={1}>

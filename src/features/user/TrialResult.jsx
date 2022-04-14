@@ -9,6 +9,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { Segment } from "semantic-ui-react";
 import { app } from "../../app/config/firebase";
 import TrialResultItem from "./TrialResultItem";
 
@@ -49,6 +50,16 @@ export default function TrialResult({ match, history, location }) {
 
   return (
     <>
+      <Segment
+        textAlign='center'
+        style={{ border: "none", width: 900, margin: "auto" }}
+        attached='top'
+        secondary
+        inverted
+        color='teal'
+      >
+        <h2>マッチした企業リスト</h2>
+      </Segment>
       {companies.map((company) => (
         <TrialResultItem company={company} key={company.id} user={user} />
       ))}

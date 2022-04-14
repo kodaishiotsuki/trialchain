@@ -22,7 +22,7 @@ export default function ChatPage({ match }) {
     data: (group) => dispatch(listenToSelectedGroups(group)),
     deps: [match.params.id, dispatch],
   });
-  console.log(group?.id);
+  // console.log(group?.id);
 
   return (
     <>

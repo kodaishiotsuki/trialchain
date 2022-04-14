@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { Button, Card, Header, Image } from "semantic-ui-react";
 import { app } from "../../app/config/firebase";
 
-export default function MacthUserListItemContent({ matchUser, currentUser }) {
+export default function MatchUserListItem({ matchUser, currentUser }) {
   const db = getFirestore(app);
   const [groupId, setGroupId] = useState("");
 
@@ -22,7 +22,7 @@ export default function MacthUserListItemContent({ matchUser, currentUser }) {
       const q = query(
         collection(db, "group"),
         where("userId", "==", matchUser?.userId),
-        where("hostUid", "==", currentUser?.uid)
+        where("attendeeIds", "array-contains", currentUser?.uid)
       );
       getDocs(q).then((querySnapshot) => {
         setGroupId(

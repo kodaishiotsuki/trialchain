@@ -24,6 +24,8 @@ import TrialUserList from "../../features/company/TrialUserList";
 import TrialUserProfilePage from "../../features/company/TrialUserProfilePage";
 import UserProfilePage from "../../features/profiles/profilePage/UserProfilePage";
 import ChatPage from "../../features/chat/ChatPage";
+import MatchUserList from "../../features/companyMember/MatchUserList";
+import CompanyNavBar from "../../features/nav/CompanyNavBar";
 
 function App() {
   const { key } = useLocation();
@@ -42,15 +44,21 @@ function App() {
         render={() => (
           <>
             <NavBar />
+            <CompanyNavBar />
             <Container className='main'>
               <Route exact path='/events' component={EventDashboard} />
               <Route exact path='/sandbox' component={Sandbox} />
-              <Route path='/trial' component={TrialList} />
-              <Route path='/trialResult' component={TrialResult} />
-              <Route path='/userList' component={UserList} />
-              <Route path='/trialUserList' component={TrialUserList} />
               <Route path='/events/:id' component={EventDetailedPage} />
-              <Route path='/chat/:id' component={ChatPage} />
+              {/* 求職者側 */}
+              <PrivateRoute path='/trial' component={TrialList} />
+              <PrivateRoute path='/trialResult' component={TrialResult} />
+              {/* 会社側 */}
+              <PrivateRoute path='/userList' component={UserList} />
+              <PrivateRoute path='/trialUserList' component={TrialUserList} />
+              {/* 会社のメンバー */}
+              <PrivateRoute path='/matchUserList' component={MatchUserList} />
+              {/* チャット */}
+              <PrivateRoute path='/chat/:id' component={ChatPage} />
               {/* 同じコンポーネントを開くためのroute */}
               {/* PrivateRoute→アクセス制限 */}
               <PrivateRoute
@@ -68,7 +76,6 @@ function App() {
                 path='/trialUserProfile/:id'
                 component={TrialUserProfilePage}
               />
-              {/* <PrivateRoute path='/chat/:id' component={ChatPage} /> */}
               <Route path='/error' component={ErrorComponent} />
             </Container>
           </>

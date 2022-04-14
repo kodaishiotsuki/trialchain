@@ -14,7 +14,7 @@ import { app } from "../../app/config/firebase";
 import SignedInMenu from "./SignedInMenu";
 import SignedOutMenu from "./SignedOutMenu";
 
-export default function NavBar({ setFormOpen }) {
+export default function CompanyNavBar({ setFormOpen }) {
   const { authenticated } = useSelector((state) => state.auth);
   const { error } = useSelector((state) => state.async);
 
@@ -53,8 +53,8 @@ export default function NavBar({ setFormOpen }) {
 
   return (
     <>
-      {userType?.userType === "求職者" && (
-        <Menu inverted fixed='top'>
+      {userType?.userType !== "求職者" && (
+        <Menu inverted fixed='top' className='company'>
           <Container>
             <Menu.Item as={NavLink} exact to='/' header>
               <Icon name='chain' size='large' />
@@ -65,12 +65,34 @@ export default function NavBar({ setFormOpen }) {
 
             {authenticated && (
               <>
-                <Menu.Item as={NavLink} to='/trial'>
-                  <Button inverted basic content='お気に入り企業リスト' />
-                </Menu.Item>
-                <Menu.Item as={NavLink} to='/trialResult'>
-                  <Button positive inverted content='トライアル申請結果' />
-                </Menu.Item>
+                {userType?.userType === "企業" && (
+                  <>
+                    <Menu.Item as={NavLink} to='/userList'>
+                      <Button inverted basic content='求職者リスト' />
+                    </Menu.Item>
+                    <Menu.Item as={NavLink} to='/trialUserList'>
+                      <Button
+                        positive
+                        inverted
+                        content='トライアル申請者リスト'
+                      />
+                    </Menu.Item>
+                  </>
+                )}
+                {userType?.userType === "企業のメンバー" && (
+                  <>
+                    <Menu.Item as={NavLink} to='/userList'>
+                      <Button inverted basic content='求職者リスト' />
+                    </Menu.Item>
+                    <Menu.Item as={NavLink} to='/matchUserList'>
+                      <Button
+                        positive
+                        inverted
+                        content='マッチした求職者リスト'
+                      />
+                    </Menu.Item>
+                  </>
+                )}
               </>
             )}
             {authenticated ? (

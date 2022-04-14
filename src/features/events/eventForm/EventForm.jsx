@@ -7,14 +7,13 @@ import { useDispatch } from "react-redux";
 import { clearSelectedEvents, listenToSelectedEvents } from "../eventActions";
 
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
 import MyTextInput from "../../../app/common/form/MyTextInput";
 import MyTextArea from "../../../app/common/form/MyTextArea";
 import MySelectInput from "../../../app/common/form/MySelectInput";
+import MyPlaceInput from "../../../app/common/form/MyPlaceInput";
 import { categoryData } from "../../../app/api/categoryOptions";
 import { trialMonth } from "../../../app/api/trialMonth";
 import MyDateInput from "../../../app/common/form/MyDateInput";
-import MyPlaceInput from "../../../app/common/form/MyPlaceInput";
 import {
   addEventToFirestore,
   cancelEventToggle,
@@ -27,9 +26,6 @@ import { Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import { careerData } from "../../../app/api/careerOptions";
 import { useEffect } from "react";
-
-// import firebase from "../../../app/config/firebase";
-// import MyFileInput from "../../../app/common/form/MyFileInput";
 
 export default function EventForm({ match, history, location }) {
   const dispatch = useDispatch();
@@ -68,19 +64,19 @@ export default function EventForm({ match, history, location }) {
   };
 
   //入力画面バリデーション
-  const validationSchema = Yup.object({
-    title: Yup.string().required("企業名を入力してください"),
-    // career: Yup.string().required("求めている人材を選択してください"),
-    category: Yup.string().required("写真のタイプを選んでください"),
-    description: Yup.string().required("企業の詳細を入力してください"),
-    // city: Yup.object().shape({
-    //   address: Yup.string().required("都道府県を入力してください"),
-    // }),
-    venue: Yup.object().shape({
-      address: Yup.string().required("住所または企業名を入力してください"),
-    }),
-    date: Yup.string().required("創業年月日を選択してください"),
-  });
+  // const validationSchema = Yup.object({
+  //   title: Yup.string().required("企業名を入力してください"),
+  //   // career: Yup.string().required("求めている人材を選択してください"),
+  //   category: Yup.string().required("写真のタイプを選んでください"),
+  //   description: Yup.string().required("企業の詳細を入力してください"),
+  //   // city: Yup.object().shape({
+  //   //   address: Yup.string().required("都道府県を入力してください"),
+  //   // }),
+  //   venue: Yup.object().shape({
+  //     address: Yup.string().required("住所または企業名を入力してください"),
+  //   }),
+  //   date: Yup.string().required("創業年月日を選択してください"),
+  // });
 
   //キャンセルボタンクリック時のアクション
   async function handleCancelToggle(event) {
@@ -115,7 +111,7 @@ export default function EventForm({ match, history, location }) {
       {/* 入力はFORMIK使用 */}
       <Formik
         enableReinitialize
-        validationSchema={validationSchema}
+        // validationSchema={validationSchema}
         initialValues={initialValues}
         onSubmit={async (values, { setSubmitting }) => {
           try {
@@ -158,7 +154,7 @@ export default function EventForm({ match, history, location }) {
               placeholder='求めている人材を選択してください'
               options={careerData}
             />
-            <MySelectInput
+            {/* <MySelectInput
               name='career[1]'
               placeholder='求めている人材を選択してください'
               options={careerData}
@@ -167,7 +163,7 @@ export default function EventForm({ match, history, location }) {
               name='career[2]'
               placeholder='求めている人材を選択してください'
               options={careerData}
-            />
+            /> */}
             <MyTextArea
               name='description'
               placeholder='企業の詳細を記入してください'
@@ -219,7 +215,7 @@ export default function EventForm({ match, history, location }) {
 
             <Button
               loading={isSubmitting}
-              disabled={!isValid || !dirty || isSubmitting}
+              // disabled={!isValid || !dirty || isSubmitting}
               type='submit'
               floated='right'
               positive

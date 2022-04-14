@@ -24,18 +24,17 @@ export default function EventListItem({ event }) {
               rounded
               // src={event.hostPhotoURL}
               src={`/assets/categoryImages/${event.category}.jpg`}
-              style={{ maxHeight: 170, width: 330 }}
+              style={{ maxHeight: 130, width: 330 }}
             />
             <Item.Content>
-              <Item.Header content={event.title} size='large' />
+              <Item.Header content={event.title} style={{fontSize:20}} />
               <br />
               <Label
-                style={{ top: "-45px" }}
+                style={{ top: "-47px" }}
                 ribbon='right'
                 color='orange'
                 content={`トライアル期間：${event.trialMonth}ヶ月`}
               />
-
               <Item.Header
                 content={`一緒に働きたい＆求めている人材`}
                 style={{ fontSize: 15 }}
@@ -43,9 +42,9 @@ export default function EventListItem({ event }) {
               <Item.Content
                 className='ui  tag label'
                 content={event.career[0]}
-                style={{ margin: 5 }}
+                style={{ margin: 5,fontSize:15}}
               />
-              <Item.Content
+              {/* <Item.Content
                 className='ui  tag label'
                 content={event.career[1]}
                 style={{ margin: 5 }}
@@ -54,7 +53,7 @@ export default function EventListItem({ event }) {
                 className='ui  tag label'
                 content={event.career[2]}
                 style={{ margin: 5 }}
-              />
+              /> */}
               <Item.Description style={{ fontSize: 15, fontWeight: "bold" }}>
                 創業者：
                 <Link to={`/profile/${event.hostUid}`}> {event.hostedBy}</Link>

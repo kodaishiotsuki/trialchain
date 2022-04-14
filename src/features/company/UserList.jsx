@@ -13,8 +13,7 @@ import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 // import { getAuth } from "firebase/auth";
 import UserListItem from "./UserListItem";
-import { Card } from "semantic-ui-react";
-
+import { Card, Segment } from "semantic-ui-react";
 
 export default function UserList({ match, history, location }) {
   const { error } = useSelector((state) => state.async);
@@ -60,6 +59,16 @@ export default function UserList({ match, history, location }) {
 
   return (
     <>
+      <Segment
+        textAlign='center'
+        style={{ border: "none", margin: "auto", marginBottom: 20 }}
+        attached='top'
+        secondary
+        inverted
+        color='teal'
+      >
+        <h2>求職者リスト</h2>
+      </Segment>
       <Card.Group itemsPerRow={3}>
         {users.map((user) => (
           <UserListItem user={user} key={user.id} />

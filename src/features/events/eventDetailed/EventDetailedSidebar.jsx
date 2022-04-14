@@ -124,7 +124,7 @@ export default function EventDetailedSidebar({
       </Segment>
 
       <Segment attached='bottom' clearing>
-        {!isHost && userType.userType === "企業" && (
+        {!isHost && userType?.userType === "企業のメンバー" && (
           <>
             {isGoing ? (
               <Button onClick={handleUserLeaveEvent} loading={loading}>

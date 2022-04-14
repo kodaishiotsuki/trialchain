@@ -26,7 +26,7 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
   const [myCompany, setMyCompany] = useState([]);
 
   //申請があったユーザーID
-  console.log(profile.id);
+  // console.log(profile.id);
 
   const userType = user?.userType === "企業"
   const trialCompany = user?.uid === myCompany?.hostUid;
@@ -43,9 +43,9 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
           querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
         );
         //コンソールで表示
-        console.log(
-          querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
-        );
+        // console.log(
+        //   querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
+        // );
       }, []);
     } catch (error) {
       console.log(error.message);

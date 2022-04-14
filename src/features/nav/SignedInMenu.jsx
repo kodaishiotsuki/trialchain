@@ -45,6 +45,16 @@ export default function SignedInMenu({ userType }) {
                 icon='user'
               />
             )}
+
+            {userType?.userType === "企業のメンバー" && (
+              <Dropdown.Item
+                as={Link}
+                to={`/profile/${currentUserProfile?.id}`}
+                text='My Profile'
+                icon='user'
+              />
+            )}
+
             {userType?.userType === "求職者" && (
               <Dropdown.Item
                 as={Link}
