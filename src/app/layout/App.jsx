@@ -62,9 +62,11 @@ function App() {
               <PrivateRoute path='/userList' component={UserList} />
               <PrivateRoute path='/trialUserList' component={TrialUserList} />
               <PrivateRoute path='/decidedUser' component={DecidedUserList} />
+
               {/* 会社のメンバー */}
               <PrivateRoute path='/matchUserList' component={MatchUserList} />
-              <PrivateRoute path='/decidedUser' component={DecidedUserList} />
+              {/* <PrivateRoute path='/decidedUser' component={DecidedUserList} /> */}
+
               {/* チャット */}
               <PrivateRoute path='/chat/:id' component={ChatPage} />
               {/* 同じコンポーネントを開くためのroute */}

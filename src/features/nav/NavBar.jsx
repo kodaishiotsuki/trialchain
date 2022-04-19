@@ -66,10 +66,10 @@ export default function NavBar({ setFormOpen }) {
             {authenticated && (
               <>
                 <Menu.Item as={NavLink} to='/trial'>
-                  <Button inverted basic content='お気に入り企業リスト' />
+                  <Button inverted basic content='お気に入り企業' />
                 </Menu.Item>
                 <Menu.Item as={NavLink} to='/trialResult'>
-                  <Button basic inverted content='トライアル申請結果' />
+                  <Button basic inverted content='トライアル申請企業' />
                 </Menu.Item>
                 <Menu.Item as={NavLink} to='/decidedCompany'>
                   <Button basic inverted content='トライアル決定企業' />

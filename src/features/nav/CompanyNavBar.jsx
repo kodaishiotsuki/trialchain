@@ -43,7 +43,7 @@ export default function CompanyNavBar({ setFormOpen }) {
     } catch (error) {
       console.log(error.message);
     }
-  },[db,user?.email]);
+  }, [db, user?.email]);
 
   //loading表示
   // if (loading) return <LoadingComponent content='Loading trial...' />;
@@ -71,10 +71,10 @@ export default function CompanyNavBar({ setFormOpen }) {
                       <Button inverted basic content='求職者リスト' />
                     </Menu.Item>
                     <Menu.Item as={NavLink} to='/trialUserList'>
-                      <Button basic inverted content='トライアル申請者リスト' />
+                      <Button basic inverted content='トライアル申請者' />
                     </Menu.Item>
-                    <Menu.Item as={NavLink} to='/decidedUserList'>
-                      <Button basic inverted content='トライアル決定者リスト' />
+                    <Menu.Item as={NavLink} to='/decidedUser'>
+                      <Button basic inverted content='トライアル決定者' />
                     </Menu.Item>
                   </>
                 )}
@@ -84,15 +84,11 @@ export default function CompanyNavBar({ setFormOpen }) {
                       <Button inverted basic content='求職者リスト' />
                     </Menu.Item>
                     <Menu.Item as={NavLink} to='/matchUserList'>
-                      <Button
-                        basic
-                        inverted
-                        content='マッチした求職者リスト'
-                      />
+                      <Button basic inverted content='マッチした求職者' />
                     </Menu.Item>
-                    <Menu.Item as={NavLink} to='/decidedUserList'>
-                      <Button basic inverted content='トライアル決定者リスト' />
-                    </Menu.Item>
+                    {/* <Menu.Item as={NavLink} to='/decidedUser'>
+                      <Button basic inverted content='トライアル決定者' />
+                    </Menu.Item> */}
                   </>
                 )}
               </>
