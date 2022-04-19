@@ -5,20 +5,20 @@ export default function TrialResult({ profile }) {
   return (
     <>
       {profile?.trialCompany &&
-        profile?.trialMonth !==
-          null(
+        profile?.trialMonth &&
+          (
             <Card style={{ width: "30%", margin: 8 }}>
               <Card.Content>
                 {profile?.trialCompany.map((trialCom) => (
                   <Card.Header key={`my${trialCom?.id}`}>
-                    {trialCom || null}
+                    {trialCom}
                   </Card.Header>
                 ))}
                 {profile?.trialMonth.map((trialMon) => (
                   <Card.Content
                     key={`my${trialMon?.id}`}
                     className='ui teal tag label'
-                    content={`トライアル期間:${trialMon}ヶ月` || null}
+                    content={`トライアル期間:${trialMon}ヶ月`}
                     style={{ marginTop: 5 }}
                   />
                 ))}

@@ -1,7 +1,7 @@
 // import { getAuth } from "firebase/auth";
 // import { getFirestore } from "firebase/firestore";
 import React, { useState } from "react";
-import { Button, Card, Grid, Header, Image, Tab } from "semantic-ui-react";
+import { Button, Grid, Header, Tab } from "semantic-ui-react";
 // import { app } from "../../../app/config/firebase";
 // import { format } from "date-fns";
 import ProfileForm from "./ProfileForm";
@@ -37,8 +37,13 @@ export default function AboutTab({ profile, isCurrentUser }) {
   return (
     <Tab.Pane>
       <Grid>
-        <Grid.Column width={16}>
-          <Header floated='left' icon='user' content={profile.displayName} />
+        <Grid.Column width={16} style={{ height: 40 }}>
+          <Header
+            floated='left'
+            icon='address book outline'
+            content='キャッチコピー＆この先やってみたいこと'
+            style={{ padding: 5 }}
+          />
 
           {isCurrentUser && (
             <Button
@@ -54,13 +59,14 @@ export default function AboutTab({ profile, isCurrentUser }) {
             <ProfileForm profile={profile} />
           ) : (
             <>
-              <div>
-                {/* <strong>
+              <div style={{ marginLeft: 10, marginTop: 5 }}>
+                {profile.description || null}
+              </div>
+              {/* <strong>
                   Member since:{format(profile.createdAt, "yyyy/MM/dd")}
                 </strong> */}
-                <div>{profile.description || null}</div>
 
-                <Card centered style={{ width: "85%" }}>
+              {/* <Card centered style={{ width: "85%" }}>
                   <Card.Content style={{ display: "flex" }}>
                     <Image
                       src={profile.photoURL || "/assets/user.png"}
@@ -95,8 +101,7 @@ export default function AboutTab({ profile, isCurrentUser }) {
                     </h3>
                   </Card.Content>
                   <Card.Content></Card.Content>
-                </Card>
-              </div>
+                </Card> */}
             </>
           )}
         </Grid.Column>
