@@ -1,5 +1,4 @@
 import {
-  arrayUnion,
   collection,
   deleteDoc,
   doc,
@@ -7,7 +6,6 @@ import {
   getFirestore,
   query,
   setDoc,
-  updateDoc,
   where,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
@@ -44,9 +42,9 @@ export default function MacthUserListItemContent({ matchUser, currentUser }) {
     }
   }, [db, matchUser?.userId, currentUser?.uid]);
 
+
   //①matchCompany,matchUser削除
   //②decidedCompany,decidedUser追加
-  //③usersコレクションに会社情報追加
   async function handleCompanyTrialToUser() {
     setLoading(true);
     try {
@@ -76,11 +74,6 @@ export default function MacthUserListItemContent({ matchUser, currentUser }) {
           ...trial,
         }
       );
-      //③usersコレクションに会社情報追加
-      await updateDoc(doc(db, "users", matchUser?.userId), {
-        trialCompany: arrayUnion(trial?.title),
-        trialMonth: arrayUnion(trial?.trialMonth),
-      });
     } catch (error) {
       console.log("fserror", error);
       throw error;
