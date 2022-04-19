@@ -1,20 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Card, Header, Image } from "semantic-ui-react";
+import { Button, Card, Header, Image, Label } from "semantic-ui-react";
 
 export default function UserListItem({ user }) {
-  
-
-
   return (
     <Card>
       <Card.Content>
-        <Image
-          size='large'
-          src={user.photoURL || "/assets/user.png"}
-          // style={{ maxHeight: 300, width: 300 }}
-        />
+        <Image size='large' src={user.photoURL || "/assets/user.png"} />
         <Header size='huge'>{user.displayName}</Header>
+        {user?.trialCompany && user?.trialMonth !== "" && (
+          <Label
+            style={{ top: "2px", fontSize: 15 }}
+            ribbon
+            color='orange'
+            content='トライアル採用歴あり'
+          />
+        )}
         <Button
           floated='right'
           color='teal'
