@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Grid, Header, Tab } from "semantic-ui-react";
-import TrialResult from "../profiles/profilePage/TrialResult";
 import UserProfileForm from "../profiles/profilePage/UserProfileForm";
 
 export default function UserAboutTab({ profile, isCurrentUser }) {
@@ -11,8 +10,8 @@ export default function UserAboutTab({ profile, isCurrentUser }) {
         <Grid.Column width={16} style={{ height: 40 }}>
           <Header
             floated='left'
-            icon='id card outline'
-            content='トライアル採用履歴'
+            content='キャッチコピー＆この先やってみたいこと'
+            icon='address book outline'
             style={{ padding: 5 }}
           />
 
@@ -30,13 +29,9 @@ export default function UserAboutTab({ profile, isCurrentUser }) {
             <UserProfileForm profile={profile} />
           ) : (
             <>
-              <TrialResult profile={profile} />
-              <Header
-                content='キャッチコピー＆この先やってみたいこと'
-                icon='address book outline'
-                style={{ padding: 5 }}
-              />
-              <div style={{marginLeft:10}}>{profile.description || null}</div>
+              <h3 style={{ marginLeft: 10,marginTop:10 }}>
+                {profile.description || null}
+              </h3>
             </>
           )}
         </Grid.Column>
