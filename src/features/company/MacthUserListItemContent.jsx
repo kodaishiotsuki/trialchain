@@ -1,6 +1,7 @@
 import {
   arrayUnion,
   collection,
+  deleteDoc,
   doc,
   getDocs,
   getFirestore,
@@ -42,10 +43,18 @@ export default function MacthUserListItemContent({ matchUser, currentUser }) {
     }
   }, [db, matchUser?.userId, currentUser?.uid]);
 
-  //usersコレクションに会社情報追加
+
+  //①matchCompany,matchUser削除
+  //②usersコレクションに会社情報追加
   async function handleCompanyTrialToUser() {
     setLoading(true);
     try {
+      await deleteDoc(
+        doc(db, "matchCompany", currentUser?.uid, "users", matchUser?.userId)
+      );
+      await deleteDoc(
+        doc(db, "matchUser", matchUser?.userId, "companies", currentUser?.uid)
+      );
       await updateDoc(doc(db, "users", matchUser?.userId), {
         trialCompany: arrayUnion(trial?.title),
         trialMonth: arrayUnion(trial?.trialMonth),

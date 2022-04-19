@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { Button, Card, Header, Image } from "semantic-ui-react";
 
 export default function UserListItem({ user }) {
+  
+
+
   return (
     <Card>
       <Card.Content>

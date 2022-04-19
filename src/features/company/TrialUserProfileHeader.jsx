@@ -120,6 +120,7 @@ export default function TrialUserProfileHeader({ profile }) {
         userId: profile.id,
       });
       await deleteDoc(doc(db, "trialCompany", user.uid, "users", profile.id));
+      await deleteDoc(doc(db, "trialUser", profile.id, "companies", user.uid));
       //groupコレクション追加
       await addDoc(collection(db, "group"), {
         ...myCompany,

@@ -1,5 +1,11 @@
 import { getAuth } from "firebase/auth";
-import { doc, getFirestore, setDoc } from "firebase/firestore";
+import {
+  arrayRemove,
+  doc,
+  getFirestore,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -45,6 +51,10 @@ export default function TrialListItem({ company }) {
           userId: user.uid,
         }
       );
+      //お気に入り企業削除
+      await updateDoc(doc(db, "events", company.id), {
+        favoriteUserId: arrayRemove(user.uid),
+      });
     } catch (error) {
       console.log("fserror", error);
       throw error;
@@ -81,7 +91,7 @@ export default function TrialListItem({ company }) {
               <Icon name='tag' />
               <Item.Header
                 content='一緒に働きたい＆求めている人材'
-                style={{ fontSize: 20, marginRight:20  }}
+                style={{ fontSize: 20, marginRight: 20 }}
                 icon='tags'
               />
               {/* <br /> */}
