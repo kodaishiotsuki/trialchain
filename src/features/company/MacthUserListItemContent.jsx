@@ -6,6 +6,7 @@ import {
   getDocs,
   getFirestore,
   query,
+  setDoc,
   updateDoc,
   where,
 } from "firebase/firestore";
@@ -43,18 +44,39 @@ export default function MacthUserListItemContent({ matchUser, currentUser }) {
     }
   }, [db, matchUser?.userId, currentUser?.uid]);
 
-
   //①matchCompany,matchUser削除
-  //②usersコレクションに会社情報追加
+  //②decidedCompany,decidedUser追加
+  //③usersコレクションに会社情報追加
   async function handleCompanyTrialToUser() {
     setLoading(true);
     try {
+      //①matchCompany,matchUser削除
       await deleteDoc(
         doc(db, "matchCompany", currentUser?.uid, "users", matchUser?.userId)
       );
       await deleteDoc(
         doc(db, "matchUser", matchUser?.userId, "companies", currentUser?.uid)
       );
+      //②decidedCompany,decidedUser追加
+      await setDoc(
+        doc(db, "decidedCompany", currentUser?.uid, "users", matchUser?.userId),
+        {
+          ...trial,
+        }
+      );
+      await setDoc(
+        doc(
+          db,
+          "decidedUser",
+          matchUser?.userId,
+          "companies",
+          currentUser?.uid
+        ),
+        {
+          ...trial,
+        }
+      );
+      //③usersコレクションに会社情報追加
       await updateDoc(doc(db, "users", matchUser?.userId), {
         trialCompany: arrayUnion(trial?.title),
         trialMonth: arrayUnion(trial?.trialMonth),

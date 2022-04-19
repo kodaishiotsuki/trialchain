@@ -69,7 +69,10 @@ export default function NavBar({ setFormOpen }) {
                   <Button inverted basic content='お気に入り企業リスト' />
                 </Menu.Item>
                 <Menu.Item as={NavLink} to='/trialResult'>
-                  <Button positive inverted content='トライアル申請結果' />
+                  <Button basic inverted content='トライアル申請結果' />
+                </Menu.Item>
+                <Menu.Item as={NavLink} to='/decidedCompany'>
+                  <Button basic inverted content='トライアル決定企業' />
                 </Menu.Item>
               </>
             )}

@@ -68,12 +68,12 @@ export default function TrialListItem({ company }) {
     <Segment.Group style={{ width: 900, margin: "auto", marginTop: 20 }}>
       <Segment>
         <Item.Group>
-          <Item style={{ height: 120 }}>
+          <Item style={{ height: 130 }}>
             <Image
               size='tiny'
               rounded
               src={`/assets/categoryImages/${company.category}.jpg`}
-              style={{ maxHeight: 130, width: 330 }}
+              style={{ maxHeight: 160, width: 330 }}
             />
             <Item.Content>
               <Item.Header
