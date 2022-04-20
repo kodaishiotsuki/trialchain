@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Grid,
-  Header,
-  Icon,
-  Segment,
-} from "semantic-ui-react";
+import { Button, Grid, Header, Icon, Segment } from "semantic-ui-react";
 import EventDetailedMap from "./EventDetailedMap";
 import { useSelector } from "react-redux";
 import { addUserFavoriteCompany } from "../../../app/firestore/firestoreService";
@@ -106,7 +100,7 @@ export default function EventDetailedInfo({ event, isHost }) {
             <Header
               attached
               style={{ textAlign: "center" }}
-              content='全ての人に可能性がある'
+              content={event.mission}
             />
             <Header
               attached='top'
@@ -116,7 +110,7 @@ export default function EventDetailedInfo({ event, isHost }) {
             <Header
               attached
               style={{ textAlign: "center" }}
-              content='全ての人に可能性がある'
+              content={event.vision}
             />
             <Header
               attached='top'
@@ -126,7 +120,7 @@ export default function EventDetailedInfo({ event, isHost }) {
             <Header
               attached
               style={{ textAlign: "center" }}
-              content='全ての人に可能性がある'
+              content={event.value}
             />
             {/* <p>{event.description}</p> */}
           </Grid.Column>
@@ -182,7 +176,7 @@ export default function EventDetailedInfo({ event, isHost }) {
             <Button
               onClick={() => setMapOpen(!mapOpen)}
               color='teal'
-              content={mapOpen ? "地図を開く" : "地図を隠す"}
+              content={mapOpen ? "地図を隠す" : "地図を開く"}
               disabled={!authenticated}
             />
           </Grid.Column>

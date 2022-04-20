@@ -112,9 +112,9 @@ export default function EventListItem({ event }) {
           </Table.Header>
           <Table.Body>
             <Table.Row textAlign='center'>
-              <Table.Cell>全ての人に可能性がある</Table.Cell>
-              <Table.Cell>全ての人に可能性がある</Table.Cell>
-              <Table.Cell>全ての人に可能性がある</Table.Cell>
+              <Table.Cell>{event.mission}</Table.Cell>
+              <Table.Cell>{event.vision}</Table.Cell>
+              <Table.Cell>{event.value}</Table.Cell>
             </Table.Row>
           </Table.Body>
         </Table>

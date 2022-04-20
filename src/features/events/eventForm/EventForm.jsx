@@ -8,7 +8,6 @@ import { clearSelectedEvents, listenToSelectedEvents } from "../eventActions";
 
 import { Formik, Form } from "formik";
 import MyTextInput from "../../../app/common/form/MyTextInput";
-import MyTextArea from "../../../app/common/form/MyTextArea";
 import MySelectInput from "../../../app/common/form/MySelectInput";
 import MyPlaceInput from "../../../app/common/form/MyPlaceInput";
 import { categoryData } from "../../../app/api/categoryOptions";
@@ -60,7 +59,10 @@ export default function EventForm({ match, history, location }) {
       latLng: null,
     },
     date: "",
-    favoriteUserId: []
+    favoriteUserId: [],
+    mission: "",
+    vision: "",
+    value: "",
   };
 
   //入力画面バリデーション
@@ -131,23 +133,36 @@ export default function EventForm({ match, history, location }) {
             <Header
               sub
               color='teal'
-              content='企業の情報を入力してください'
+              content='企業名を入力してください'
               size='huge'
             />
             <MyTextInput name='title' placeholder='企業名' />
-            <MySelectInput
-              name='category'
-              placeholder='写真のタイプを選択してください'
-              options={categoryData}
+            <Header
+              sub
+              color='teal'
+              content='企業のミッション / ビジョン / バリューを入力してください'
+              size='huge'
+            />
+            <MyTextInput name='mission' placeholder='ミッション' />
+            <MyTextInput name='vision' placeholder='ビジョン' />
+            <MyTextInput name='value' placeholder='バリュー' />
+
+            <Header
+              sub
+              color='teal'
+              content='トライアル雇用期間を選択してください'
+              size='huge'
             />
             <MySelectInput
               name='trialMonth'
               placeholder='トライアル雇用期間を選択してください'
               options={trialMonth}
             />
-            <MyTextInput
-              name='pitchId'
-              placeholder='YouTubeのIDを入力してください'
+            <Header
+              sub
+              color='teal'
+              content='求めている人材を選択してください'
+              size='huge'
             />
             <MySelectInput
               name='career[0]'
@@ -164,12 +179,33 @@ export default function EventForm({ match, history, location }) {
               placeholder='求めている人材を選択してください'
               options={careerData}
             /> */}
-            <MyTextArea
+
+            {/* <MyTextArea
               name='description'
               placeholder='企業の詳細を記入してください'
               rows={5}
+            /> */}
+            <Header
+              sub
+              color='teal'
+              content='企業のピッチ動画（YouTube）のIDを入力してください'
+              size='huge'
             />
-
+            <MyTextInput
+              name='pitchId'
+              placeholder='YouTubeのIDを入力してください'
+            />
+            <Header
+              sub
+              color='teal'
+              content='写真のタイプを選択してください'
+              size='huge'
+            />
+            <MySelectInput
+              name='category'
+              placeholder='写真のタイプを選択してください'
+              options={categoryData}
+            />
             <Header
               sub
               color='teal'
