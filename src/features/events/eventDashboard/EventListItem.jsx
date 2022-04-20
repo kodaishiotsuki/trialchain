@@ -7,6 +7,7 @@ import {
   Label,
   List,
   Segment,
+  Table,
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import EventListAttend from "./EventListAttend";
@@ -24,25 +25,29 @@ export default function EventListItem({ event }) {
               rounded
               // src={event.hostPhotoURL}
               src={`/assets/categoryImages/${event.category}.jpg`}
-              style={{ maxHeight: 130, width: 330 }}
+              style={{ maxHeight: 150, width: 330 }}
             />
             <Item.Content>
-              <Item.Header content={event.title} style={{fontSize:20}} />
-              <br />
               <Label
-                style={{ top: "-47px" }}
+                style={{ top: "-10px", fontSize: 15 }}
                 ribbon='right'
                 color='orange'
                 content={`トライアル期間：${event.trialMonth}ヶ月`}
               />
               <Item.Header
+                content={event.title}
+                style={{ fontSize: 25, paddingTop: 10 }}
+              />
+              <br />
+              <br />
+              <Item.Header
                 content={`一緒に働きたい＆求めている人材`}
                 style={{ fontSize: 15 }}
               />
               <Item.Content
-                className='ui  tag label'
+                className='ui teal tag label'
                 content={event.career[0]}
-                style={{ margin: 5,fontSize:15}}
+                style={{ margin: 5, fontSize: 15 }}
               />
               {/* <Item.Content
                 className='ui  tag label'
@@ -54,10 +59,10 @@ export default function EventListItem({ event }) {
                 content={event.career[2]}
                 style={{ margin: 5 }}
               /> */}
-              <Item.Description style={{ fontSize: 15, fontWeight: "bold" }}>
+              {/* <Item.Description style={{ fontSize: 15, fontWeight: "bold" }}>
                 創業者：
                 <Link to={`/profile/${event.hostUid}`}> {event.hostedBy}</Link>
-              </Item.Description>
+              </Item.Description> */}
 
               {/* {event.isCancelled && (
                 <Label
@@ -88,13 +93,31 @@ export default function EventListItem({ event }) {
         </List>
       </Segment>
       <Segment clearing>
-        <div>{event.description}</div>
+        {/* <div>{event.description}</div> */}
+
         {/* <Button
           onClick={() => deleteEventInFirestore(event.id)}
           color='red'
           floated='right'
           content='Delete'
         /> */}
+
+        <Table celled>
+          <Table.Header>
+            <Table.Row textAlign='center'>
+              <Table.HeaderCell>MISSION</Table.HeaderCell>
+              <Table.HeaderCell>VISION</Table.HeaderCell>
+              <Table.HeaderCell>VALUE</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            <Table.Row textAlign='center'>
+              <Table.Cell>全ての人に可能性がある</Table.Cell>
+              <Table.Cell>全ての人に可能性がある</Table.Cell>
+              <Table.Cell>全ての人に可能性がある</Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table>
         <Button
           as={Link}
           to={`/events/${event.id}`} //イベント内容詳細ページへ遷移（idで判断）

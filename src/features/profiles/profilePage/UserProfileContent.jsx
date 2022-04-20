@@ -8,7 +8,7 @@ export default function UserProfileContent({ profile, isCurrentUser }) {
   const [activeTab, setActiveTab] = useState(0);
   const panes = [
     {
-      menuItem: "プロフィール",
+      menuItem: "MISSION / VISION / VALUE",
       render: () => (
         <UserAboutTab profile={profile} isCurrentUser={isCurrentUser} />
       ),

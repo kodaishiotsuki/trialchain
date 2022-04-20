@@ -54,7 +54,7 @@ export default function EventDetailedSidebar({
     } catch (error) {
       console.log(error.message);
     }
-  },[db,user?.email]);
+  }, [db, user?.email]);
 
   //イベントに参加（会社のメンバー）
   async function handleUserJoinEvent() {
@@ -81,6 +81,30 @@ export default function EventDetailedSidebar({
   return (
     <>
       {modalOpen && <UnauthModal setModalOpen={setModalOpen} />}
+      <Segment
+        textAlign='center'
+        style={{ border: "none" }}
+        attached='top'
+        secondary
+        inverted
+        color='teal'
+      >
+        <h2>求めている人材</h2>
+      </Segment>
+      <Segment attached textAlign='center'>
+        <Label
+          style={{ position: "absolute", top:-70, left:420}}
+          color='orange'
+          ribbon='right'
+          content={`トライアル期間${event.trialMonth}ヶ月`}
+        />
+        <Label
+          className='ui tag label'
+          content={event.career[0]}
+          style={{ marginRight: 25, fontSize: 15 }}
+        />
+      </Segment>
+
       <Segment
         textAlign='center'
         style={{ border: "none" }}

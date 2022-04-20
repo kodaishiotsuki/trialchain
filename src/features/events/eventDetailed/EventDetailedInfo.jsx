@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Button, Grid, Icon, Label, Segment } from "semantic-ui-react";
+import {
+  Button,
+  Grid,
+  Header,
+  Icon,
+  Segment,
+} from "semantic-ui-react";
 import EventDetailedMap from "./EventDetailedMap";
 import { useSelector } from "react-redux";
 import { addUserFavoriteCompany } from "../../../app/firestore/firestoreService";
@@ -88,11 +94,41 @@ export default function EventDetailedInfo({ event, isHost }) {
       </Segment>
       <Segment>
         <Grid>
-          <Grid.Column width={1}>
+          {/* <Grid.Column width={1}>
             <Icon size='large' color='teal' name='info' />
-          </Grid.Column>
-          <Grid.Column width={15}>
-            <p>{event.description}</p>
+          </Grid.Column> */}
+          <Grid.Column width={16}>
+            <Header
+              attached='top'
+              style={{ textAlign: "center" }}
+              content='MISSION'
+            />
+            <Header
+              attached
+              style={{ textAlign: "center" }}
+              content='全ての人に可能性がある'
+            />
+            <Header
+              attached='top'
+              style={{ textAlign: "center" }}
+              content='VISION'
+            />
+            <Header
+              attached
+              style={{ textAlign: "center" }}
+              content='全ての人に可能性がある'
+            />
+            <Header
+              attached='top'
+              style={{ textAlign: "center" }}
+              content='VALUE'
+            />
+            <Header
+              attached
+              style={{ textAlign: "center" }}
+              content='全ての人に可能性がある'
+            />
+            {/* <p>{event.description}</p> */}
           </Grid.Column>
         </Grid>
       </Segment>
@@ -108,7 +144,7 @@ export default function EventDetailedInfo({ event, isHost }) {
         </Grid>
       </Segment> */}
 
-      <Segment attached>
+      {/* <Segment attached>
         <Grid verticalAlign='middle'>
           <Grid.Column width={1}>
             <Icon name='users' size='large' color='teal' />
@@ -119,7 +155,7 @@ export default function EventDetailedInfo({ event, isHost }) {
               content={event.career[0]}
               style={{ marginRight: 25, fontSize: 15 }}
             />
-            {/* <Label
+            <Label
               className='ui teal tag label'
               content={event.career[1]}
               style={{ marginRight: 25 }}
@@ -128,10 +164,10 @@ export default function EventDetailedInfo({ event, isHost }) {
               className='ui teal tag label'
               content={event.career[2]}
               style={{ marginRight: 25 }}
-            /> */}
+            />
           </Grid.Column>
         </Grid>
-      </Segment>
+      </Segment> */}
 
       {/* 地図 */}
       <Segment attached>
