@@ -11,7 +11,7 @@ export default function UserTrialTab({ profile, isCurrentUser }) {
           <Header
             floated='left'
             icon='id card outline'
-            content='トライアル採用歴'
+            content='トライアル採用歴（採用した企業が記載したものです）'
             style={{ padding: 5 }}
           />
 

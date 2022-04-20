@@ -93,10 +93,10 @@ export default function EventDetailedSidebar({
       </Segment>
       <Segment attached textAlign='center'>
         <Label
-          style={{ position: "absolute", top:-70, left:420}}
-          color='orange'
-          ribbon='right'
-          content={`トライアル期間${event.trialMonth}ヶ月`}
+          style={{ position: "absolute", top:-70, left:-15}}
+          color='teal'
+          ribbon
+          content={`トライアル期間：${event.trialMonth}ヶ月`}
         />
         <Label
           className='ui tag label'

@@ -1,7 +1,6 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import MyTextInput from "../../../app/common/form/MyTextInput";
-import MyTextArea from "../../../app/common/form/MyTextArea";
 import { Button, Header } from "semantic-ui-react";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
@@ -17,6 +16,9 @@ export default function UserProfileForm({ profile }) {
         facebookURL: profile.facebookURL || "",
         gitHubURL: profile.gitHubURL || "",
         noteURL: profile.noteURL || "",
+        mission: profile.mission || "",
+        vision: profile.vision || "",
+        value: profile.value || "",
       }}
       validationSchema={Yup.object({
         displayName: Yup.string().required(),
@@ -33,9 +35,29 @@ export default function UserProfileForm({ profile }) {
     >
       {({ isSubmitting, isValid, dirty }) => (
         <Form className='ui form'>
-          <MyTextInput name='displayName' placeholder='Display Name' />
-          <MyTextArea name='description' placeholder='Description' />
-          <Header content='各SNSのURLを入力してください' />
+          <Header
+            sub
+            color='teal'
+            content='名前を入力してください'
+            size='huge'
+          />
+          <MyTextInput name='displayName' placeholder='ニックネーム' />
+          <Header
+            sub
+            color='teal'
+            content='自身のミッション / ビジョン / バリューを入力してください'
+            size='huge'
+          />
+          <MyTextInput name='mission' placeholder='ミッション' />
+          <MyTextInput name='vision' placeholder='ビジョン' />
+          <MyTextInput name='value' placeholder='バリュー' />
+          {/* <MyTextArea name='description' placeholder='Description' /> */}
+          <Header
+            sub
+            color='teal'
+            content='各SNSのURLを入力してください'
+            size='huge'
+          />
           <MyTextInput name='twitterURL' placeholder='twitterURL' />
           <MyTextInput name='facebookURL' placeholder='facebookURL' />
           <MyTextInput name='gitHubURL' placeholder='gitHubURL' />

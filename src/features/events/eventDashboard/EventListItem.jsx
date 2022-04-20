@@ -1,13 +1,13 @@
 import React from "react";
 import {
   Button,
+  Header,
   Icon,
   Image,
   Item,
   Label,
   List,
   Segment,
-  Table,
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import EventListAttend from "./EventListAttend";
@@ -102,22 +102,36 @@ export default function EventListItem({ event }) {
           content='Delete'
         /> */}
 
-        <Table celled>
-          <Table.Header>
-            <Table.Row textAlign='center'>
-              <Table.HeaderCell>MISSION</Table.HeaderCell>
-              <Table.HeaderCell>VISION</Table.HeaderCell>
-              <Table.HeaderCell>VALUE</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            <Table.Row textAlign='center'>
-              <Table.Cell>{event.mission}</Table.Cell>
-              <Table.Cell>{event.vision}</Table.Cell>
-              <Table.Cell>{event.value}</Table.Cell>
-            </Table.Row>
-          </Table.Body>
-        </Table>
+        <Header
+          attached='top'
+          style={{ textAlign: "center" }}
+          content='MISSION'
+        />
+        <Header
+          attached
+          style={{ textAlign: "center" }}
+          content={event.mission}
+        />
+        <Header
+          attached
+          style={{ textAlign: "center" }}
+          content='VISION'
+        />
+        <Header
+          attached
+          style={{ textAlign: "center" }}
+          content={event.vision}
+        />
+        <Header
+          attached
+          style={{ textAlign: "center" }}
+          content='VALUE'
+        />
+        <Header
+          attached
+          style={{ textAlign: "center" }}
+          content={event.value}
+        />
         <Button
           as={Link}
           to={`/events/${event.id}`} //イベント内容詳細ページへ遷移（idで判断）
@@ -125,6 +139,7 @@ export default function EventListItem({ event }) {
           floated='right'
           content='View'
           disabled={!authenticated}
+          style={{marginTop:10}}
         />
       </Segment>
     </Segment.Group>

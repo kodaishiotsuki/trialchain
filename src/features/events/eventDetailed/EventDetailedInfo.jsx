@@ -96,31 +96,37 @@ export default function EventDetailedInfo({ event, isHost }) {
               attached='top'
               style={{ textAlign: "center" }}
               content='MISSION'
+              as='h3'
             />
             <Header
               attached
               style={{ textAlign: "center" }}
               content={event.mission}
+              as='h3'
             />
             <Header
               attached='top'
               style={{ textAlign: "center" }}
               content='VISION'
+              as='h3'
             />
             <Header
               attached
               style={{ textAlign: "center" }}
               content={event.vision}
+              as='h3'
             />
             <Header
               attached='top'
               style={{ textAlign: "center" }}
               content='VALUE'
+              as='h3'
             />
             <Header
               attached
               style={{ textAlign: "center" }}
               content={event.value}
+              as='h3'
             />
             {/* <p>{event.description}</p> */}
           </Grid.Column>

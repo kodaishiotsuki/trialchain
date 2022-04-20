@@ -1,30 +1,54 @@
 import React from "react";
-import { Card } from "semantic-ui-react";
+import { Card, Label } from "semantic-ui-react";
 
 export default function TrialResult({ profile }) {
   return (
     <>
-      {profile?.trialCompany &&
-        profile?.trialMonth &&
-          (
-            <Card style={{ width: "30%", margin: 8 }}>
-              <Card.Content>
-                {profile?.trialCompany.map((trialCom) => (
-                  <Card.Header key={`my${trialCom?.id}`}>
-                    {trialCom}
-                  </Card.Header>
-                ))}
-                {profile?.trialMonth.map((trialMon) => (
-                  <Card.Content
-                    key={`my${trialMon?.id}`}
-                    className='ui teal tag label'
-                    content={`トライアル期間:${trialMon}ヶ月`}
-                    style={{ marginTop: 5 }}
-                  />
-                ))}
-              </Card.Content>
-            </Card>
-          )}
+      {profile?.trialCompany && profile?.trialMonth && (
+        <Card style={{ width: "30%", margin: 8 }}>
+          <Card.Content>
+            {profile?.trialCompany.map((trialCom) => (
+              <Card.Header
+                key={`my${trialCom?.id}`}
+                style={{ textAlign: "center" }}
+                content={trialCom}
+              />
+            ))}
+            {profile?.trialMonth.map((trialMon) => (
+              <Label
+                style={{ top: 5 }}
+                color='teal'
+                ribbon='right'
+                content={`トライアル期間:${trialMon}ヶ月`}
+              />
+            ))}
+            <hr />
+            {profile?.trialJobOccupation.map((trialOcc) => (
+              <Card.Content
+                key={`my${trialOcc?.id}`}
+                content={`【職種】${trialOcc}`}
+                style={{ fontWeight: "bold", marginTop: 5 }}
+              />
+            ))}
+            <hr />
+            {profile?.trialJobSkill.map((trialSkill) => (
+              <Card.Content
+                key={`my${trialSkill?.id}`}
+                content={`【スキル】${trialSkill}`}
+                style={{ fontWeight: "bold", marginTop: 5 }}
+              />
+            ))}
+            <hr />
+            {profile?.trialJobDescription.map((trialDesc) => (
+              <Card.Content
+                key={`my${trialDesc?.id}`}
+                content={`【経験したこと】${trialDesc}`}
+                style={{ fontWeight: "bold", marginTop: 5 }}
+              />
+            ))}
+          </Card.Content>
+        </Card>
+      )}
     </>
   );
 }

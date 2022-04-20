@@ -8,13 +8,6 @@ export default function UserAboutTab({ profile, isCurrentUser }) {
     <Tab.Pane>
       <Grid>
         <Grid.Column width={16} style={{ height: 40 }}>
-          <Header
-            floated='left'
-            content='キャッチコピー＆この先やってみたいこと'
-            icon='address book outline'
-            style={{ padding: 5 }}
-          />
-
           {isCurrentUser && (
             <Button
               onClick={() => setEditMode(!editMode)}
@@ -24,17 +17,60 @@ export default function UserAboutTab({ profile, isCurrentUser }) {
             />
           )}
         </Grid.Column>
-        <Grid.Column width={16}>
-          {editMode ? (
+
+        {editMode ? (
+          <Grid.Column width={16}>
             <UserProfileForm profile={profile} />
-          ) : (
-            <>
-              <h3 style={{ marginLeft: 10,marginTop:10 }}>
-                {profile.description || null}
-              </h3>
-            </>
-          )}
-        </Grid.Column>
+          </Grid.Column>
+        ) : (
+          <>
+            <Grid.Column width={16}>
+              <Header
+                floated='left'
+                content='ミッション（MISSION）'
+                icon='address book'
+                as='h2'
+              />
+            </Grid.Column>
+            <Grid.Column width={16}>
+              <Header
+                content={profile.mission || null}
+                as='h2'
+                style={{ marginLeft: 45 }}
+              />
+            </Grid.Column>
+            <Grid.Column width={16}>
+              <Header
+                floated='left'
+                content='ビジョン（VISION）'
+                icon='address book outline'
+                as='h2'
+              />
+            </Grid.Column>
+            <Grid.Column width={16}>
+              <Header
+                content={profile.vision || null}
+                as='h2'
+                style={{ marginLeft: 45 }}
+              />
+            </Grid.Column>
+            <Grid.Column width={16}>
+              <Header
+                floated='left'
+                content='バリュー（VALUE）'
+                icon='address book'
+                as='h2'
+              />
+            </Grid.Column>
+            <Grid.Column width={16}>
+              <Header
+                content={profile.value || null}
+                as='h2'
+                style={{ marginLeft: 45 }}
+              />
+            </Grid.Column>
+          </>
+        )}
       </Grid>
     </Tab.Pane>
   );
