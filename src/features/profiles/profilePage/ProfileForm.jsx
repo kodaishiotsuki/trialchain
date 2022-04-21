@@ -1,7 +1,6 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import MyTextInput from "../../../app/common/form/MyTextInput";
-import MyTextArea from "../../../app/common/form/MyTextArea";
 import { Button, Header } from "semantic-ui-react";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
@@ -14,13 +13,15 @@ export default function ProfileForm({ profile }) {
     <Formik
       initialValues={{
         displayName: profile.displayName,
-        occupation: profile.occupation,
+        occupation: profile.occupation || "",
         description: profile.description || "",
-        meetyURL: profile.meetyURL || "",
         twitterURL: profile.twitterURL || "",
         facebookURL: profile.facebookURL || "",
         gitHubURL: profile.gitHubURL || "",
         noteURL: profile.noteURL || "",
+        mission: profile.mission || "",
+        vision: profile.vision || "",
+        value: profile.value || "",
       }}
       validationSchema={Yup.object({
         displayName: Yup.string().required(),
@@ -37,15 +38,40 @@ export default function ProfileForm({ profile }) {
     >
       {({ isSubmitting, isValid, dirty }) => (
         <Form className='ui form'>
-          <MyTextInput name='displayName' placeholder='Display Name' />
+          <Header
+            sub
+            color='teal'
+            content='名前を入力してください'
+            size='huge'
+          />
+          <MyTextInput name='displayName' placeholder='ニックネーム' />
+          <Header
+            sub
+            color='teal'
+            content='現在の職種を選択してください'
+            size='huge'
+          />
           <MySelectInput
             name='occupation'
             placeholder='現在の職種を選択してください'
             options={careerData}
           />
-          <MyTextArea name='description' placeholder='Description' />
-          <MyTextInput name='meetyURL' placeholder='MeetyURL' />
-          <Header content='各SNSのURLを入力してください' />
+          <Header
+            sub
+            color='teal'
+            content='自身のミッション / ビジョン / バリューを入力してください'
+            size='huge'
+          />
+          <MyTextInput name='mission' placeholder='ミッション' />
+          <MyTextInput name='vision' placeholder='ビジョン' />
+          <MyTextInput name='value' placeholder='バリュー' />
+          {/* <MyTextArea name='description' placeholder='Description' /> */}
+          <Header
+            sub
+            color='teal'
+            content='各SNSのURLを入力してください'
+            size='huge'
+          />
           <MyTextInput name='twitterURL' placeholder='twitterURL' />
           <MyTextInput name='facebookURL' placeholder='facebookURL' />
           <MyTextInput name='gitHubURL' placeholder='gitHubURL' />
@@ -60,6 +86,30 @@ export default function ProfileForm({ profile }) {
             content='Update profile'
           />
         </Form>
+        // <Form className='ui form'>
+        //   <MyTextInput name='displayName' placeholder='Display Name' />
+        //   <MySelectInput
+        //     name='occupation'
+        //     placeholder='現在の職種を選択してください'
+        //     options={careerData}
+        //   />
+        //   <MyTextArea name='description' placeholder='Description' />
+        //   <MyTextInput name='meetyURL' placeholder='MeetyURL' />
+        //   <Header content='各SNSのURLを入力してください' />
+        //   <MyTextInput name='twitterURL' placeholder='twitterURL' />
+        //   <MyTextInput name='facebookURL' placeholder='facebookURL' />
+        //   <MyTextInput name='gitHubURL' placeholder='gitHubURL' />
+        //   <MyTextInput name='noteURL' placeholder='noteURL' />
+        //   <Button
+        //     loading={isSubmitting}
+        //     disabled={isSubmitting || !isValid || !dirty}
+        //     floated='right'
+        //     type='submit'
+        //     size='large'
+        //     positive
+        //     content='Update profile'
+        //   />
+        // </Form>
       )}
     </Formik>
   );

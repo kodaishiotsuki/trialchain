@@ -15,9 +15,13 @@ export default function UserProfileHeader({ profile }) {
               />
               <Item.Content verticalAlign='middle'>
                 <Header
-                  as='h1'
-                  style={{ display: "block", marginBottom: 10 }}
+                  style={{ display: "block", margin: 20, fontSize: 30 }}
                   content={profile.displayName}
+                />
+                <Item.Content
+                  className='ui  tag label'
+                  content={profile.occupation}
+                  style={{ fontSize: 15, marginLeft: 30 }}
                 />
               </Item.Content>
             </Item>

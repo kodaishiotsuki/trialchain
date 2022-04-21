@@ -9,7 +9,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Tab,Card } from "semantic-ui-react";
+import { Tab, Card } from "semantic-ui-react";
 import { app } from "../../app/config/firebase";
 import MatchUserListItem from "./MatchUserListItem";
 import TrialUserListItem from "./TrialUserListItem";
@@ -25,20 +25,21 @@ export default function TrialUserList() {
   const [activeTab, setActiveTab] = useState(0);
   //トライアル申請者リスト
   const [requestUsers, setRequestUsers] = useState([]);
+
   //Tab内容
   const panes = [
     {
       menuItem: "直近の申請者リスト",
       render: () => (
-          <Card.Group itemsPerRow={3}>
-            {requestUsers.map((requestUser) => (
-              <TrialUserListItem
-                requestUser={requestUser}
-                activeTab={activeTab}
-                key={requestUser.id}
-              />
-            ))}
-          </Card.Group>
+        <Card.Group itemsPerRow={3}>
+          {requestUsers.map((requestUser) => (
+            <TrialUserListItem
+              requestUser={requestUser}
+              activeTab={activeTab}
+              key={requestUser.id}
+            />
+          ))}
+        </Card.Group>
       ),
     },
     {

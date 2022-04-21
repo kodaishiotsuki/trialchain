@@ -5,12 +5,15 @@ import { Button, Header } from "semantic-ui-react";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { updateUserProfile } from "../../../app/firestore/firestoreService";
+import MySelectInput from "../../../app/common/form/MySelectInput";
+import { careerData } from "../../../app/api/careerOptions";
 
 export default function UserProfileForm({ profile }) {
   return (
     <Formik
       initialValues={{
         displayName: profile.displayName,
+        occupation: profile.occupation || "",
         description: profile.description || "",
         twitterURL: profile.twitterURL || "",
         facebookURL: profile.facebookURL || "",
@@ -42,6 +45,17 @@ export default function UserProfileForm({ profile }) {
             size='huge'
           />
           <MyTextInput name='displayName' placeholder='ニックネーム' />
+          <Header
+            sub
+            color='teal'
+            content='現在の職種を選択してください'
+            size='huge'
+          />
+          <MySelectInput
+            name='occupation'
+            placeholder='現在の職種を選択してください'
+            options={careerData}
+          />
           <Header
             sub
             color='teal'

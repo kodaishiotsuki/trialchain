@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Tab } from "semantic-ui-react";
 import UserAboutTab from "../../company/UserAboutTab";
 import PhotosTab from "./PhotosTab";
 import UserTrialTab from "./UserTrialTab";
 
 export default function UserProfileContent({ profile, isCurrentUser }) {
-  const [activeTab, setActiveTab] = useState(0);
+  // const [activeTab, setActiveTab] = useState(0);
   const panes = [
     {
       menuItem: "ミッション / ビジョン / バリュー",
@@ -64,7 +64,7 @@ export default function UserProfileContent({ profile, isCurrentUser }) {
       menu={{ fluid: true, vertical: true }}
       menuPosition='right'
       panes={panes}
-      onTabChange={(e, data) => setActiveTab(data.activeIndex)}
+      // onTabChange={(e, data) => setActiveTab(data.activeIndex)}
     />
   );
 }

@@ -39,6 +39,7 @@ export default function UserAboutTab({ profile, isCurrentUser }) {
                 style={{ marginLeft: 45 }}
               />
             </Grid.Column>
+            <hr style={{ width: 750 }} />
             <Grid.Column width={16}>
               <Header
                 floated='left'
@@ -54,6 +55,7 @@ export default function UserAboutTab({ profile, isCurrentUser }) {
                 style={{ marginLeft: 45 }}
               />
             </Grid.Column>
+            <hr style={{ width: 750 }} />
             <Grid.Column width={16}>
               <Header
                 floated='left'

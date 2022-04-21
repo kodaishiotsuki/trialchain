@@ -149,9 +149,13 @@ export default function TrialUserProfileHeader({ profile }) {
               />
               <Item.Content verticalAlign='middle'>
                 <Header
-                  as='h1'
-                  style={{ display: "block", marginBottom: 10 }}
+                  style={{ display: "block", margin: 20, fontSize: 30 }}
                   content={profile.displayName}
+                />
+                <Item.Content
+                  className='ui  tag label'
+                  content={profile.occupation}
+                  style={{ fontSize: 15, marginLeft: 30 }}
                 />
               </Item.Content>
             </Item>
@@ -182,7 +186,7 @@ export default function TrialUserProfileHeader({ profile }) {
             }}
           >
             <Button
-              color="teal"
+              color='teal'
               floated='right'
               onClick={matchUserToCompany}
               loading={loading}

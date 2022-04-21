@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Label } from "semantic-ui-react";
 
 export default function TrialResult({ profile }) {
+  // console.log(profile)
   return (
     <>
       {profile?.trialCompany && profile?.trialMonth && (
@@ -20,6 +21,7 @@ export default function TrialResult({ profile }) {
                 color='teal'
                 ribbon='right'
                 content={`トライアル期間:${trialMon}ヶ月`}
+                key={`my${trialMon?.id}`}
               />
             ))}
             <hr />
