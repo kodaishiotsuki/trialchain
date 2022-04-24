@@ -9,7 +9,7 @@ export default function EventListAttend({ attendee }) {
         <Image
           circular
           src={attendee.photoURL || "/assets/user.png"}
-          style={{ width: 50 }}
+          style={{ width: 70 }}
         />
       </List.Item>
     </>

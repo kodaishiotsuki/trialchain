@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Button,
-  Header,
   Icon,
   Image,
   Item,
@@ -25,7 +24,7 @@ export default function EventListItem({ event }) {
               rounded
               // src={event.hostPhotoURL}
               src={`/assets/categoryImages/${event.category}.jpg`}
-              style={{ maxHeight: 150, width: 330 }}
+              style={{ maxHeight: 250, width: 350 }}
             />
             <Item.Content>
               <Label
@@ -36,18 +35,18 @@ export default function EventListItem({ event }) {
               />
               <Item.Header
                 content={event.title}
-                style={{ fontSize: 25, paddingTop: 10 }}
+                style={{ fontSize: 30, paddingTop: 45 }}
               />
               <br />
               <br />
               <Item.Header
-                content={`一緒に働きたい＆求めている人材`}
-                style={{ fontSize: 15 }}
+                content="一緒に働きたい人材"
+                style={{ fontSize: 20,marginTop:10}}
               />
               <Item.Content
                 className='ui teal tag label'
                 content={event.career[0]}
-                style={{ margin: 5, fontSize: 15 }}
+                style={{ margin: 5, fontSize: 18 }}
               />
               {/* <Item.Content
                 className='ui  tag label'
@@ -102,9 +101,9 @@ export default function EventListItem({ event }) {
           content='Delete'
         /> */}
 
-        <Header
+        {/* <Header
           attached='top'
-          style={{ textAlign: "center" }}
+          style={{ textAlign: "center" ,fontSize:15 }}
           content='MISSION'
         />
         <Header
@@ -131,7 +130,7 @@ export default function EventListItem({ event }) {
           attached
           style={{ textAlign: "center" }}
           content={event.value}
-        />
+        /> */}
         <Button
           as={Link}
           to={`/events/${event.id}`} //イベント内容詳細ページへ遷移（idで判断）

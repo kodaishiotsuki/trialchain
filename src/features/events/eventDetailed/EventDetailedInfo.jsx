@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Grid, Header, Icon, Segment } from "semantic-ui-react";
-import EventDetailedMap from "./EventDetailedMap";
-import { useSelector } from "react-redux";
+import { Button, Grid, Header, Segment } from "semantic-ui-react";
 import { addUserFavoriteCompany } from "../../../app/firestore/firestoreService";
 import {
   arrayRemove,
@@ -17,8 +15,8 @@ import { app } from "../../../app/config/firebase";
 import { getAuth } from "firebase/auth";
 
 export default function EventDetailedInfo({ event, isHost }) {
-  const { authenticated } = useSelector((state) => state.auth);
-  const [mapOpen, setMapOpen] = useState(false);
+  // const { authenticated } = useSelector((state) => state.auth);
+  // const [mapOpen, setMapOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [userType, setUserType] = useState([]);
@@ -170,7 +168,7 @@ export default function EventDetailedInfo({ event, isHost }) {
       </Segment> */}
 
       {/* 地図 */}
-      <Segment attached>
+      {/* <Segment attached>
         <Grid verticalAlign='middle'>
           <Grid.Column width={1}>
             <Icon name='marker' size='large' color='teal' />
@@ -188,7 +186,7 @@ export default function EventDetailedInfo({ event, isHost }) {
           </Grid.Column>
         </Grid>
       </Segment>
-      {mapOpen && <EventDetailedMap latLng={event.venue.latLng} />}
+      {mapOpen && <EventDetailedMap latLng={event.venue.latLng} />} */}
 
       <Segment attached='bottom' clearing>
         {/* 求職者のみ表示 */}
@@ -198,7 +196,8 @@ export default function EventDetailedInfo({ event, isHost }) {
               color='orange'
               floated='left'
               style={{
-                fontSize: 20,
+                fontSize: 25,
+                marginRight: 50,
               }}
               onClick={handleUserFavoriteCompany}
               loading={loading}
@@ -209,7 +208,7 @@ export default function EventDetailedInfo({ event, isHost }) {
               floated='right'
               content='お気に入り解除'
               style={{
-                fontSize: 20,
+                fontSize: 25,
               }}
               loading={deleteLoading}
               onClick={deleteFavoriteCompany}
