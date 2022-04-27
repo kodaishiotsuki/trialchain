@@ -46,19 +46,19 @@ export default function GroupDetailedChat({ groupId }) {
         attached='top'
         inverted
         color='teal'
-        style={{ border: "none" }}
+        style={{ border: "none", width: 730 }}
       >
         <Header>チャットページ</Header>
       </Segment>
 
       {authenticated && (
-        <Segment attached>
+        <Segment attached style={{ width: 730 }}>
           <GroupDetailedChatForm
             groupId={groupId}
             parentId={0}
             // closeForm={setShowReplyForm}
           />
-          <Comment.Group style={{ margin: "auto" }}>
+          <Comment.Group style={{ margin: "auto", width: 730 }}>
             {createDataTree(comments).map((comment) => (
               <div key={`my${comment.id}`}>
                 {comment.uid === currentUser.uid ? (

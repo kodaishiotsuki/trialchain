@@ -139,7 +139,7 @@ export default function TrialUserProfileHeader({ profile }) {
   return (
     <Segment>
       <Grid>
-        <Grid.Column width={7}>
+        <Grid.Column width={8}>
           <Item.Group>
             <Item>
               <Item.Image
@@ -161,19 +161,19 @@ export default function TrialUserProfileHeader({ profile }) {
             </Item>
           </Item.Group>
         </Grid.Column>
-        <Grid.Column width={5} verticalAlign='middle'>
+        <Grid.Column width={4} verticalAlign='middle'>
           <div>
             <a href={profile.twitterURL}>
-              <Icon size='huge' color='teal' name='twitter' />
+              <Icon size='big' color='teal' name='twitter' />
             </a>
             <a href={profile.facebookURL}>
-              <Icon size='huge' color='teal' name='facebook square' />
+              <Icon size='big' color='teal' name='facebook square' />
             </a>
             <a href={profile.gitHubURL}>
-              <Icon size='huge' color='teal' name='github' />
+              <Icon size='big' color='teal' name='github' />
             </a>
             <a href={profile.noteURL}>
-              <Icon size='huge' color='teal' name='sticky note outline' />
+              <Icon size='big' color='teal' name='sticky note outline' />
             </a>
           </div>
         </Grid.Column>
@@ -190,7 +190,7 @@ export default function TrialUserProfileHeader({ profile }) {
               floated='right'
               onClick={matchUserToCompany}
               loading={loading}
-              content={buttonClick ? "承認済み" : "トライアル承認"}
+              content={buttonClick ? "承認済み" : "承認する"}
               style={{ fontSize: 20, marginBottom: 20, marginTop: 20 }}
               disabled={buttonClick}
             />

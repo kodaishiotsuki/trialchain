@@ -6,7 +6,7 @@ export default function TrialResult({ profile }) {
   return (
     <>
       {profile?.trialCompany && profile?.trialMonth && (
-        <Card style={{ width: "30%", margin: 8 }}>
+        <Card style={{ width: "100%",marginTop:30}}>
           <Card.Content>
             {profile?.trialCompany.map((trialCom) => (
               <Card.Header

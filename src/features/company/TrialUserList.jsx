@@ -31,7 +31,7 @@ export default function TrialUserList() {
     {
       menuItem: "直近の申請者リスト",
       render: () => (
-        <Card.Group itemsPerRow={3}>
+        <Card.Group itemsPerRow={3} >
           {requestUsers.map((requestUser) => (
             <TrialUserListItem
               requestUser={requestUser}
@@ -61,7 +61,7 @@ export default function TrialUserList() {
             doc.data({ ...doc.data(), id: doc.id })
           )
         );
-        // console.log(querySnapshot.docs.map((doc) => doc.data()));
+        console.log(querySnapshot.docs.map((doc) => doc.data()));
       });
     } catch (error) {
       console.log(error.message);

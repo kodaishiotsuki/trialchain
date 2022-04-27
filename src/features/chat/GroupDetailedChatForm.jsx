@@ -12,7 +12,6 @@ export default function GroupDetailedChatForm({
 }) {
   return (
     <Formik
-      
       initialValues={{ comment: "" }}
       validationSchema={Yup.object({
         comment: Yup.string().required(),
@@ -30,7 +29,7 @@ export default function GroupDetailedChatForm({
       }}
     >
       {({ isSubmitting, handleSubmit, isValid }) => (
-        <Form className='ui form' style={{ marginBottom: 20 }}>
+        <Form className='ui form' style={{ marginBottom: 20, width: 700 }}>
           <Field name='comment'>
             {({ field }) => (
               <div style={{ position: "relative" }}>

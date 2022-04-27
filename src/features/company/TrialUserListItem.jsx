@@ -6,7 +6,7 @@ export default function TrialUserListItem({ requestUser }) {
   return (
     <Card>
       <Card.Content>
-        <Image src={requestUser.userPhotoURL || "/assets/user.png"} />
+        <Image src={requestUser.userPhotoURL || "/assets/user.png"} size="large"/>
         <Header size='huge'>{requestUser.userName}</Header>
         <Button
           floated='right'

@@ -61,21 +61,22 @@ const EventDashboard = () => {
   }
 
   return (
-    <Grid>
-      <Grid.Column width={10}>
-        {loadingInitial && (
-          <>
-            <EventListItemPlaceholder />
-          </>
-        )}
-        <EventList
-          events={events}
-          getNextEvents={handleFetchNextEvents}
-          loading={loading}
-          moreEvents={moreEvents}
-          // isHost={isHost}
-        />
-        {/* <Button
+    <>
+      <Grid>
+        <Grid.Column width={10}>
+          {loadingInitial && (
+            <>
+              <EventListItemPlaceholder />
+            </>
+          )}
+          <EventList
+            events={events}
+            getNextEvents={handleFetchNextEvents}
+            loading={loading}
+            moreEvents={moreEvents}
+            // isHost={isHost}
+          />
+          {/* <Button
           loading={loading}
           disabled={!moreEvents} //最後まで行くとdisabled
           onClick={handleFetchNextEvents}
@@ -83,15 +84,16 @@ const EventDashboard = () => {
           content='More...'
           floated='right'
         /> */}
-      </Grid.Column>
-      <Grid.Column width={6}>
-        {/* {authenticated && <EventsFeed />} */}
-        <EventFilter loading={loading} />
-      </Grid.Column>
-      <Grid.Column width={10}>
-        {/* <Loader active={loading} /> */}
-      </Grid.Column>
-    </Grid>
+        </Grid.Column>
+        <Grid.Column width={6}>
+          {/* {authenticated && <EventsFeed />} */}
+          <EventFilter loading={loading} />
+        </Grid.Column>
+        <Grid.Column width={10}>
+          {/* <Loader active={loading} /> */}
+        </Grid.Column>
+      </Grid>
+    </>
   );
 };
 export default EventDashboard;

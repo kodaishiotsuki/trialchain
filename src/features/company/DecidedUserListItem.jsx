@@ -40,7 +40,7 @@ export default function DecidedUserListItem({ decidedUser, currentUser }) {
   return (
     <>
       {formMode ? (
-        <TrialForm trial={trial} />
+        <TrialForm trial={trial}  />
       ) : (
         <>
           <Card>

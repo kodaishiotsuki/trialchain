@@ -1,4 +1,7 @@
 export const careerData = [
+  { key: "CEO", text: "CEO", value: "CEO" },
+  { key: "COO", text: "COO", value: "COO" },
+  { key: "CIO", text: "CIO", value: "CIO" },
   { key: "エンジニア", text: "エンジニア", value: "エンジニア" },
   { key: "デザイナー", text: "デザイナー", value: "デザイナー" },
   { key: "セールス", text: "セールス", value: "セールス" },

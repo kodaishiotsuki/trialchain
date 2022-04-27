@@ -8,7 +8,7 @@ export default function TrialUserProfileContent({ profile, isCurrentUser }) {
   // const [activeTab, setActiveTab] = useState(0);
   const panes = [
     {
-      menuItem: "ミッション / ビジョン / バリュー",
+      menuItem: "プロフィール",
       render: () => (
         <UserAboutTab profile={profile} isCurrentUser={isCurrentUser} />
       ),

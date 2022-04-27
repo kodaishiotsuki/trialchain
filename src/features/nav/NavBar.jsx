@@ -56,23 +56,23 @@ export default function NavBar({ setFormOpen }) {
       {userType?.userType === "求職者" && (
         <Menu inverted fixed='top'>
           <Container>
-            <Menu.Item as={NavLink} exact to='/' header>
+            <Menu.Item as={NavLink} exact to='/events' header>
               <Icon name='chain' size='large' />
               Trial Chain
             </Menu.Item>
-            <Menu.Item as={NavLink} to='/events' name='企業リスト' />
+            {/* <Menu.Item as={NavLink} to='/events' name='企業リスト' /> */}
             {/* <Menu.Item as={NavLink} to='/sandbox' name='Sandbox' /> */}
 
             {authenticated && (
               <>
                 <Menu.Item as={NavLink} to='/trial'>
-                  <Button inverted basic content='お気に入り企業' />
+                  <Button inverted basic content='お気に入り' />
                 </Menu.Item>
                 <Menu.Item as={NavLink} to='/trialResult'>
-                  <Button basic inverted content='トライアル申請企業' />
+                  <Button basic inverted content='承認待ち' />
                 </Menu.Item>
                 <Menu.Item as={NavLink} to='/decidedCompany'>
-                  <Button basic inverted content='トライアル決定企業' />
+                  <Button basic inverted content='トライアル決定' />
                 </Menu.Item>
               </>
             )}

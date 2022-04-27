@@ -21,7 +21,7 @@ export default function SignedInMenu({ userType }) {
 
   return (
     <>
-      <Menu.Item position='right'>
+      <Menu.Item position='left'>
         <Image
           avatar
           spaced='right'

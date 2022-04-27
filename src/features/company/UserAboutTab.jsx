@@ -29,13 +29,13 @@ export default function UserAboutTab({ profile, isCurrentUser }) {
                 floated='left'
                 content='ミッション（MISSION）'
                 icon='address book'
-                as='h2'
+                as='h3'
               />
             </Grid.Column>
             <Grid.Column width={16}>
               <Header
                 content={profile.mission || null}
-                as='h2'
+                as='h3'
                 style={{ marginLeft: 45 }}
               />
             </Grid.Column>
@@ -45,13 +45,13 @@ export default function UserAboutTab({ profile, isCurrentUser }) {
                 floated='left'
                 content='ビジョン（VISION）'
                 icon='address book outline'
-                as='h2'
+                as='h3'
               />
             </Grid.Column>
             <Grid.Column width={16}>
               <Header
                 content={profile.vision || null}
-                as='h2'
+                as='h3'
                 style={{ marginLeft: 45 }}
               />
             </Grid.Column>
@@ -61,13 +61,13 @@ export default function UserAboutTab({ profile, isCurrentUser }) {
                 floated='left'
                 content='バリュー（VALUE）'
                 icon='address book'
-                as='h2'
+                as='h3'
               />
             </Grid.Column>
             <Grid.Column width={16}>
               <Header
                 content={profile.value || null}
-                as='h2'
+                as='h3'
                 style={{ marginLeft: 45 }}
               />
             </Grid.Column>

@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Button,
-  Icon,
   Image,
   Item,
   Label,
@@ -35,18 +34,18 @@ export default function EventListItem({ event }) {
               />
               <Item.Header
                 content={event.title}
-                style={{ fontSize: 30, paddingTop: 45 }}
+                style={{ fontSize: 25, paddingTop: 45 }}
               />
               <br />
               <br />
               <Item.Header
-                content="一緒に働きたい人材"
-                style={{ fontSize: 20,marginTop:10}}
+                content='一緒に働きたい人材'
+                style={{ fontSize: 20, marginTop: 10 }}
               />
               <Item.Content
                 className='ui teal tag label'
                 content={event.career[0]}
-                style={{ margin: 5, fontSize: 18 }}
+                style={{ margin: 8, fontSize: 15 }}
               />
               {/* <Item.Content
                 className='ui  tag label'
@@ -75,15 +74,15 @@ export default function EventListItem({ event }) {
           </Item>
         </Item.Group>
       </Segment>
-      <Segment>
+      {/* <Segment>
         <span>
-          {/* <Icon name='building' />
+          <Icon name='building' />
           {format(event.date, "YYYY/MM/DD ")}
-          <br /> */}
+          <br />
           <Icon name='marker' />
           {event.venue.address}
         </span>
-      </Segment>
+      </Segment> */}
       <Segment secondary>
         <List horizontal>
           {event.attendees.map((attendee) => (
@@ -91,7 +90,7 @@ export default function EventListItem({ event }) {
           ))}
         </List>
       </Segment>
-      <Segment clearing>
+      <Segment clearing style={{ maxHeight: 65 }}>
         {/* <div>{event.description}</div> */}
 
         {/* <Button
@@ -134,11 +133,19 @@ export default function EventListItem({ event }) {
         <Button
           as={Link}
           to={`/events/${event.id}`} //イベント内容詳細ページへ遷移（idで判断）
-          color='teal'
+          // color='teal'
           floated='right'
-          content='View'
+          content='詳細を見る'
           disabled={!authenticated}
-          style={{marginTop:10}}
+          style={{
+            fontSize: 20,
+            paddingTop: 10,
+            paddingBottom: 10,
+            paddingLeft: 20,
+            paddingRight: 20,
+            marginRight: 10,
+            marginBottom: 10,
+          }}
         />
       </Segment>
     </Segment.Group>

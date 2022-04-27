@@ -43,7 +43,7 @@ export default function TrialForm({ trial }) {
       <ModalWrapper>
         <Segment
           textAlign='center'
-          style={{ border: "none", margin: "auto", marginBottom: 20 }}
+          style={{ border: "none", width: 730, marginBottom: 20 }}
           attached='top'
           secondary
           inverted
@@ -51,7 +51,11 @@ export default function TrialForm({ trial }) {
         >
           <h2>トライアル採用者のユーザーヒアリング</h2>
         </Segment>
-        <Form className='ui form' onSubmit={handleSubmit}>
+        <Form
+          className='ui form'
+          onSubmit={handleSubmit}
+          style={{ width: 730 }}
+        >
           <Header content='トライアル採用者の職種を選択してください' />
           <Form.Field
             control='select'

@@ -52,7 +52,8 @@ export default function TrialList({ match, history, location }) {
     <>
       <Segment
         textAlign='center'
-        style={{ border: "none",width:900,margin:"auto" }}
+        // style={{ border: "none",width:900,margin:"auto" }}
+        style={{ border: "none",width:700}}
         attached='top'
         secondary
         inverted

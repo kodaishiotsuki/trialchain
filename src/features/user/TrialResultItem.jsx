@@ -48,7 +48,8 @@ export default function TrialResultItem({ company, user }) {
     }
   }, [db, company?.hostUid, user?.uid]);
   return (
-    <Segment.Group style={{ width: 900, margin: "auto", marginTop: 20 }}>
+    // <Segment.Group style={{ width: 900, margin: "auto", marginTop: 20 }}>
+    <Segment.Group style={{ width: 700,marginTop: 20 }}>
       <Segment>
         <Item.Group>
           <Item>
@@ -56,24 +57,23 @@ export default function TrialResultItem({ company, user }) {
               size='tiny'
               rounded
               src={`/assets/categoryImages/${company.category}.jpg`}
-              style={{ maxHeight: 130, width: 330 }}
+              style={{ maxHeight: 200, width: 330 }}
             />
             <Item.Content>
               <Item.Header
                 content={company.title}
-                style={{ fontSize: 35, marginTop: 20 }}
+                style={{ fontSize: 25, marginTop: 50 }}
               />
               <br />
               <Label
-                style={{ top: "-55px", fontSize: 15 }}
+                style={{ top: "-80px", fontSize: 15 }}
                 ribbon='right'
                 color='orange'
                 content={`トライアル期間：${company.trialMonth}ヶ月`}
               />
               <br />
-              <Icon name='tag' />
               <Item.Header
-                content='一緒に働きたい＆求めている人材'
+                content='一緒に働きたい人材'
                 style={{ fontSize: 20, marginRight: 20 }}
                 icon='tags'
               />

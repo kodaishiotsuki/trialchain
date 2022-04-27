@@ -93,9 +93,9 @@ export default function EventDetailedSidebar({
       </Segment>
       <Segment attached textAlign='center'>
         <Label
-          style={{ position: "absolute", top:-70, left:-15}}
-          color='teal'
-          ribbon
+          style={{ position: "absolute", top:-80, left:-15,fontSize:15}}
+          color='orange'
+          ribbon="right"
           content={`トライアル期間：${event.trialMonth}ヶ月`}
         />
         <Label

@@ -44,7 +44,8 @@ export default function UserList({ match, history, location }) {
     <>
       <Segment
         textAlign='center'
-        style={{ border: "none", margin: "auto", marginBottom: 20 }}
+        style={{ border: "none", width: 700, marginBottom: 20 }}
+        // style={{ border: "none", margin: "auto", marginBottom: 20 }}
         attached='top'
         secondary
         inverted
@@ -52,7 +53,7 @@ export default function UserList({ match, history, location }) {
       >
         <h2>求職者リスト</h2>
       </Segment>
-      <Card.Group itemsPerRow={3}>
+      <Card.Group itemsPerRow={3} style={{ width: 730 }}>
         {users.map((user) => (
           <UserListItem user={user} key={user.id} />
         ))}

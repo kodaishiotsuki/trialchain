@@ -36,7 +36,7 @@ export default function UserProfilePage({ match }) {
     return <LoadingComponent content='Loading profile...' />;
 
   return (
-    <Grid>
+    <Grid style={{ width: 770 }}>
       <Grid.Column width={16}>
         <UserProfileHeader
           profile={profile}
