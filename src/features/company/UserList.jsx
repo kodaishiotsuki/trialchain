@@ -15,6 +15,7 @@ import UserListItem from "./UserListItem";
 import { Card, Tab } from "semantic-ui-react";
 import OfferUserListItem from "./OfferUserListItem";
 import { getAuth } from "firebase/auth";
+import MatchOfferUserList from "./MatchOfferUserList";
 
 export default function UserList({ match, history, location }) {
   const { error } = useSelector((state) => state.async);
@@ -75,7 +76,7 @@ export default function UserList({ match, history, location }) {
     },
     {
       menuItem: "マッチした求職者リスト",
-      // render: () => <MatchUserListItem activeTab={activeTab} />,
+      render: () => <MatchOfferUserList activeTab={activeTab} />,
     },
   ];
 
