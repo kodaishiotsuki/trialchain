@@ -29,6 +29,8 @@ export default function TrialListItem({ company }) {
   //トライアル申請ボタン
   const [buttonClick, setButtonClick] = useState(false);
 
+  console.log(user)
+
   //トライアル申請
   async function UserTrialRequestCompany() {
     setLoading(true);
@@ -69,7 +71,7 @@ export default function TrialListItem({ company }) {
     <Segment.Group style={{ width: 700, marginTop: 20 }}>
       <Segment>
         <Item.Group>
-          <Item >
+          <Item>
             <Image
               size='tiny'
               rounded
@@ -163,6 +165,17 @@ export default function TrialListItem({ company }) {
             marginTop: 15,
           }}
         />
+        {/* <Button
+          as={Link}
+          to={`/trialApplication`}
+          floated='right'
+          content='トライアル申請'
+          color='teal'
+          style={{
+            fontSize: 15,
+            marginTop: 15,
+          }}
+        /> */}
       </Segment>
     </Segment.Group>
   );

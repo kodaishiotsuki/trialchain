@@ -8,14 +8,6 @@ export default function UserListItem({ user }) {
       <Card.Content>
         <Image size='large' src={user.photoURL || "/assets/user.png"} />
         <Header size='huge'>{user.displayName}</Header>
-        {user?.trialCompany && user?.trialMonth !== "" && (
-          <Label
-            style={{ top: "2px", fontSize: 15 }}
-            ribbon
-            color='orange'
-            content='トライアル採用歴あり'
-          />
-        )}
         <Button
           floated='right'
           color='teal'
@@ -23,6 +15,14 @@ export default function UserListItem({ user }) {
           as={Link}
           to={`/userProfile/${user.userUid}`}
         />
+        {user?.trialCompany && user?.trialMonth !== "" && (
+          <Label
+            style={{ top: "5px", fontSize: 15 }}
+            ribbon
+            color='orange'
+            content='トライアル採用歴あり'
+          />
+        )}
       </Card.Content>
     </Card>
   );

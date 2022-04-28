@@ -29,6 +29,7 @@ import CompanyNavBar from "../../features/nav/CompanyNavBar";
 import DecidedCompanyList from "../../features/user/DecidedCompanyList";
 import DecidedUserList from "../../features/company/DecidedUserList";
 import TrialForm from "../../features/company/TrialForm";
+import TrialApplication from "../../features/user/TrialApplication";
 
 function App() {
   const { key } = useLocation();
@@ -54,6 +55,10 @@ function App() {
               <Route path='/events/:id' component={EventDetailedPage} />
               {/* 求職者側 */}
               <PrivateRoute path='/trial' component={TrialList} />
+              <PrivateRoute
+                path='/trialApplication'
+                component={TrialApplication}
+              />
               <PrivateRoute path='/trialResult' component={TrialResult} />
               <PrivateRoute
                 path='/decidedCompany'
