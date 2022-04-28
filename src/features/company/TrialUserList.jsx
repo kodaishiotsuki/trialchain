@@ -31,7 +31,7 @@ export default function TrialUserList() {
     {
       menuItem: "オファーがあった求職者リスト",
       render: () => (
-        <Card.Group itemsPerRow={3} >
+        <Card.Group itemsPerRow={3} style={{ width: 730 }}>
           {requestUsers.map((requestUser) => (
             <TrialUserListItem
               requestUser={requestUser}

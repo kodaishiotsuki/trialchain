@@ -18,7 +18,6 @@ import ProfilePage from "../../features/profiles/profilePage/ProfilePage";
 import PrivateRoute from "./PrivateRoute";
 import TrialList from "../../features/user/TrialList";
 import UserTypePage from "../../features/auth/UserTypePage";
-import TrialResult from "../../features/user/TrialResult";
 import UserList from "../../features/company/UserList";
 import TrialUserList from "../../features/company/TrialUserList";
 import TrialUserProfilePage from "../../features/company/TrialUserProfilePage";
@@ -29,7 +28,7 @@ import CompanyNavBar from "../../features/nav/CompanyNavBar";
 import DecidedCompanyList from "../../features/user/DecidedCompanyList";
 import DecidedUserList from "../../features/company/DecidedUserList";
 import TrialForm from "../../features/company/TrialForm";
-import TrialApplication from "../../features/user/TrialApplication";
+import OfferCompanyList from "../../features/user/OfferCompanyList";
 
 function App() {
   const { key } = useLocation();
@@ -55,11 +54,11 @@ function App() {
               <Route path='/events/:id' component={EventDetailedPage} />
               {/* 求職者側 */}
               <PrivateRoute path='/trial' component={TrialList} />
-              <PrivateRoute
+              {/* <PrivateRoute
                 path='/trialApplication'
                 component={TrialApplication}
-              />
-              <PrivateRoute path='/trialResult' component={TrialResult} />
+              /> */}
+              <PrivateRoute path='/offerCompany' component={OfferCompanyList} />
               <PrivateRoute
                 path='/decidedCompany'
                 component={DecidedCompanyList}

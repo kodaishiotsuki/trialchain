@@ -68,10 +68,10 @@ export default function CompanyNavBar({ setFormOpen }) {
                 {userType?.userType === "企業" && (
                   <>
                     <Menu.Item as={NavLink} to='/userList'>
-                      <Button inverted basic content='求職者' />
+                      <Button inverted basic content='オファー' />
                     </Menu.Item>
                     <Menu.Item as={NavLink} to='/trialUserList'>
-                      <Button basic inverted content='トライアル申請' />
+                      <Button basic inverted content='逆オファー' />
                     </Menu.Item>
                     <Menu.Item as={NavLink} to='/decidedUser'>
                       <Button basic inverted content='トライアル決定' />
