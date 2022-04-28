@@ -29,7 +29,7 @@ export default function TrialUserList() {
   //Tab内容
   const panes = [
     {
-      menuItem: "直近の申請者リスト",
+      menuItem: "オファーがあった求職者リスト",
       render: () => (
         <Card.Group itemsPerRow={3} >
           {requestUsers.map((requestUser) => (
@@ -43,7 +43,7 @@ export default function TrialUserList() {
       ),
     },
     {
-      menuItem: "マッチした申請者リスト",
+      menuItem: "マッチした求職者リスト",
       render: () => <MatchUserListItem activeTab={activeTab} />,
     },
   ];

@@ -48,8 +48,7 @@ export default function TrialResultItem({ company, user }) {
     }
   }, [db, company?.hostUid, user?.uid]);
   return (
-    // <Segment.Group style={{ width: 900, margin: "auto", marginTop: 20 }}>
-    <Segment.Group style={{ width: 700,marginTop: 20 }}>
+    <Segment.Group style={{ width: 700, margin: 0 }}>
       <Segment>
         <Item.Group>
           <Item>

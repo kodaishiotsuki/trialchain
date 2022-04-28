@@ -12,12 +12,72 @@ import {
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import UserListItem from "./UserListItem";
-import { Card, Segment } from "semantic-ui-react";
+import { Card, Tab } from "semantic-ui-react";
+import OfferUserListItem from "./OfferUserListItem";
+import { getAuth } from "firebase/auth";
 
 export default function UserList({ match, history, location }) {
   const { error } = useSelector((state) => state.async);
   const [users, setUsers] = useState([]);
   const db = getFirestore(app);
+  const auth = getAuth(app);
+  const currentUser = auth.currentUser;
+  //タブメニュー
+  const [activeTab, setActiveTab] = useState(0);
+  //オファー求職者リスト
+  const [offerUsers, setOfferUsers] = useState([]);
+
+  //オファー求職者リスト取得
+  useEffect(() => {
+    try {
+      const q = query(
+        collection(db, "offerCompany", currentUser.uid, "users"),
+        where("hostUid", "==", currentUser.uid)
+      );
+      getDocs(q).then((querySnapshot) => {
+        setOfferUsers(
+          querySnapshot.docs.map((doc) =>
+            doc.data({ ...doc.data(), id: doc.id })
+          )
+        );
+        console.log(querySnapshot.docs.map((doc) => doc.data()));
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, [db, currentUser.uid]);
+
+  //Tab内容
+  const panes = [
+    {
+      menuItem: "求職者リスト",
+      render: () => (
+        <Card.Group itemsPerRow={3} style={{ width: 730 }}>
+          {users.map((user) => (
+            <UserListItem user={user} key={user.id} activeTab={activeTab} />
+          ))}
+        </Card.Group>
+      ),
+    },
+    {
+      menuItem: "オファーした求職者リスト",
+      render: () => (
+        <Card.Group itemsPerRow={3} style={{ width: 730 }}>
+          {offerUsers.map((user) => (
+            <OfferUserListItem
+              user={user}
+              key={user.id}
+              activeTab={activeTab}
+            />
+          ))}
+        </Card.Group>
+      ),
+    },
+    {
+      menuItem: "マッチした求職者リスト",
+      // render: () => <MatchUserListItem activeTab={activeTab} />,
+    },
+  ];
 
   //コレクションuser,サブコレクションcompanies取得
   useEffect(() => {
@@ -42,7 +102,7 @@ export default function UserList({ match, history, location }) {
 
   return (
     <>
-      <Segment
+      {/* <Segment
         textAlign='center'
         style={{ border: "none", width: 700, marginBottom: 20 }}
         // style={{ border: "none", margin: "auto", marginBottom: 20 }}
@@ -52,12 +112,11 @@ export default function UserList({ match, history, location }) {
         color='teal'
       >
         <h2>求職者リスト</h2>
-      </Segment>
-      <Card.Group itemsPerRow={3} style={{ width: 730 }}>
-        {users.map((user) => (
-          <UserListItem user={user} key={user.id} />
-        ))}
-      </Card.Group>
+      </Segment> */}
+      <Tab
+        panes={panes}
+        onTabChange={(e, data) => setActiveTab(data.activeIndex)}
+      />
     </>
   );
 }

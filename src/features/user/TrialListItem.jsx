@@ -68,7 +68,7 @@ export default function TrialListItem({ company }) {
 
   return (
     // <Segment.Group style={{ width: 900, margin: "auto", marginTop: 20 }}>
-    <Segment.Group style={{ width: 700, marginTop: 20 }}>
+    <Segment.Group style={{ width: 700, marginTop: 0 }}>
       <Segment>
         <Item.Group>
           <Item>
@@ -107,14 +107,6 @@ export default function TrialListItem({ company }) {
                   paddingLeft: 35,
                 }}
               ></Item.Content>
-              {/* <Item.Content
-                className='ui teal tag label'
-                content={company.career[1]}
-              ></Item.Content>
-              <Item.Content
-                className='ui teal tag label'
-                content={company.career[2]}
-              ></Item.Content> */}
             </Item.Content>
           </Item>
         </Item.Group>
@@ -165,17 +157,6 @@ export default function TrialListItem({ company }) {
             marginTop: 15,
           }}
         />
-        {/* <Button
-          as={Link}
-          to={`/trialApplication`}
-          floated='right'
-          content='トライアル申請'
-          color='teal'
-          style={{
-            fontSize: 15,
-            marginTop: 15,
-          }}
-        /> */}
       </Segment>
     </Segment.Group>
   );

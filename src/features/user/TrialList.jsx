@@ -15,16 +15,20 @@ import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import TrialListItem from "./TrialListItem";
 import { getAuth } from "firebase/auth";
-import { Segment } from "semantic-ui-react";
+import { Tab } from "semantic-ui-react";
+import TrialResult from "./TrialResult";
 
-export default function TrialList({ match, history, location }) {
+export default function TrialList() {
   const { error } = useSelector((state) => state.async);
+  //オファーする企業
   const [companies, setCompanies] = useState([]);
   //firebase
   const db = getFirestore(app);
   const auth = getAuth(app);
   //ログインユーザー
   const user = auth.currentUser;
+  //タブメニュー
+  const [activeTab, setActiveTab] = useState(0);
 
   //お気に入り企業リストを取得
   useEffect(() => {
@@ -38,7 +42,9 @@ export default function TrialList({ match, history, location }) {
           querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
         );
         //コンソールで表示
-        console.log(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        console.log(
+          querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+        );
       });
     } catch (error) {
       console.log(error.message);
@@ -48,9 +54,31 @@ export default function TrialList({ match, history, location }) {
   //エラーが発生した場合はリダイレクト
   if (error) return <Redirect to='/error' />;
 
+  //Tab内容
+  const panes = [
+    {
+      menuItem: "オファーしたい企業リスト",
+      render: () => (
+        <>
+          {companies.map((company) => (
+            <TrialListItem
+              company={company}
+              key={company.id}
+              activeTab={activeTab}
+            />
+          ))}
+        </>
+      ),
+    },
+    {
+      menuItem: "マッチした企業リスト",
+      render: () => <TrialResult />,
+    },
+  ];
+
   return (
     <>
-      <Segment
+      {/* <Segment
         textAlign='center'
         // style={{ border: "none",width:900,margin:"auto" }}
         style={{ border: "none",width:700}}
@@ -60,10 +88,11 @@ export default function TrialList({ match, history, location }) {
         color='teal'
       >
         <h2>お気に入り企業リスト</h2>
-      </Segment>
-      {companies.map((company) => (
-        <TrialListItem company={company} key={company.id} />
-      ))}
+      </Segment> */}
+      <Tab
+        panes={panes}
+        onTabChange={(e, data) => setActiveTab(data.activeIndex)}
+      />
     </>
   );
 }
