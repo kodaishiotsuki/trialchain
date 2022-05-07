@@ -38,12 +38,38 @@ export default function SignedInMenu({ userType }) {
               />
             )}
             {userType?.userType === "企業" && (
-              <Dropdown.Item
-                as={Link}
-                to={`/profile/${currentUserProfile?.id}`}
-                text='プロフィールを編集'
-                icon='user'
-              />
+              <>
+                <Dropdown.Item
+                  as={Link}
+                  to={`/profile/${currentUserProfile?.id}`}
+                  text='プロフィールを編集'
+                  icon='user outline'
+                />
+                <Dropdown.Item
+                  as={Link}
+                  to={`/userProfile/${currentUserProfile?.id}`}
+                  text='メッセージ一覧'
+                  icon='envelope outline'
+                />
+                <Dropdown.Item
+                  as={Link}
+                  to={`/userProfile/${currentUserProfile?.id}`}
+                  text='申請を送った企業'
+                  icon='paper plane outline'
+                />
+                <Dropdown.Item
+                  as={Link}
+                  to={`/userProfile/${currentUserProfile?.id}`}
+                  text='オファーがあった企業'
+                  icon='paper plane'
+                />
+                <Dropdown.Item
+                  as={Link}
+                  to={`/userProfile/${currentUserProfile?.id}`}
+                  text='トライアル雇用決定企業'
+                  icon='building outline'
+                />
+              </>
             )}
 
             {userType?.userType === "企業のメンバー" && (
@@ -56,12 +82,44 @@ export default function SignedInMenu({ userType }) {
             )}
 
             {userType?.userType === "求職者" && (
-              <Dropdown.Item
-                as={Link}
-                to={`/userProfile/${currentUserProfile?.id}`}
-                text='プロフィールを編集'
-                icon='user'
-              />
+              <>
+                <Dropdown.Item
+                  as={Link}
+                  to={`/userProfile/${currentUserProfile?.id}`}
+                  text='プロフィールを編集'
+                  icon='user outline'
+                />
+                <Dropdown.Item
+                  as={Link}
+                  to={`/userProfile/${currentUserProfile?.id}`}
+                  text='メッセージ一覧'
+                  icon='envelope outline'
+                />
+                <Dropdown.Item
+                  as={Link}
+                  to={`/userProfile/${currentUserProfile?.id}`}
+                  text='ブックマークした企業'
+                  icon='bookmark outline'
+                />
+                <Dropdown.Item
+                  as={Link}
+                  to={`/userProfile/${currentUserProfile?.id}`}
+                  text='申請を送った企業'
+                  icon='paper plane outline'
+                />
+                <Dropdown.Item
+                  as={Link}
+                  to={`/userProfile/${currentUserProfile?.id}`}
+                  text='オファーがあった企業'
+                  icon='paper plane'
+                />
+                <Dropdown.Item
+                  as={Link}
+                  to={`/userProfile/${currentUserProfile?.id}`}
+                  text='トライアル雇用決定企業'
+                  icon='building outline'
+                />
+              </>
             )}
 
             <Dropdown.Item

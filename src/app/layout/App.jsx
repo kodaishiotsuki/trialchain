@@ -29,6 +29,7 @@ import DecidedCompanyList from "../../features/user/DecidedCompanyList";
 import DecidedUserList from "../../features/company/DecidedUserList";
 import TrialForm from "../../features/company/TrialForm";
 import OfferCompanyList from "../../features/user/OfferCompanyList";
+import CompanyHomePage from "../../features/company/CompanyHomePage";
 
 function App() {
   const { key } = useLocation();
@@ -64,6 +65,7 @@ function App() {
                 component={DecidedCompanyList}
               />
               {/* 会社側 */}
+              <PrivateRoute path='/companyHome' component={CompanyHomePage} />
               <PrivateRoute path='/userList' component={UserList} />
               <PrivateRoute path='/trialUserList' component={TrialUserList} />
               <PrivateRoute path='/decidedUser' component={DecidedUserList} />
