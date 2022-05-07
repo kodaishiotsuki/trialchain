@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Header, Menu } from "semantic-ui-react";
-// import Calender from "react-calendar"
 import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "../eventActions";
 import {
@@ -12,7 +11,6 @@ import {
 } from "firebase/firestore";
 import { app } from "../../../app/config/firebase";
 import { getAuth } from "firebase/auth";
-// import { Link } from "react-router-dom";
 
 export default function EventFilter({ loading }) {
   const dispatch = useDispatch();
@@ -53,13 +51,13 @@ export default function EventFilter({ loading }) {
             <Menu vertical size='large' style={{ width: "100%" }}>
               <Header icon='filter' attached color='teal' content='Filters' />
               <Menu.Item
-                content='All Companies'
+                content='全ての企業'
                 active={filter === "all"}
                 onClick={() => dispatch(setFilter("all"))}
                 disabled={loading}
               />
               <Menu.Item
-                content='My company'
+                content='自分の企業'
                 active={filter === "isHosting"}
                 onClick={() => dispatch(setFilter("isHosting"))}
                 disabled={loading}
@@ -71,10 +69,10 @@ export default function EventFilter({ loading }) {
                 icon='search'
                 attached
                 color='teal'
-                content='Select career'
+                content='職種を検索'
               />
               <Menu.Item
-                content='All Companies'
+                content='全ての職種・企業'
                 active={filter === "all"}
                 onClick={() => dispatch(setFilter("all"))}
                 disabled={loading}
@@ -121,12 +119,12 @@ export default function EventFilter({ loading }) {
                 onClick={() => dispatch(setFilter("マーケティング・PR"))}
                 disabled={loading}
               />
-              {/* <Menu.Item
+              <Menu.Item
                 content='経理'
                 active={filter === "経理"}
                 onClick={() => dispatch(setFilter("経理"))}
                 disabled={loading}
-              /> */}
+              />
               <Menu.Item
                 content='コンサルティング'
                 active={filter === "コンサルティング"}
@@ -137,16 +135,6 @@ export default function EventFilter({ loading }) {
           )}
         </>
       )}
-
-      {/* <Button
-        style={{ width: "100%", minHeight: "100px" }}
-        color='orange'
-        content='トライアル申請する'
-        as={Link}
-        to={"/events/trial"}
-      >
-        <h1 style={{ margin: 0 }}>トライアル申請する</h1>
-      </Button> */}
     </>
   );
 }

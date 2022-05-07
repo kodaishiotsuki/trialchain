@@ -46,24 +46,24 @@ export default function GroupDetailedChat({ groupId }) {
         attached='top'
         inverted
         color='teal'
-        style={{ border: "none", width: 730 }}
+        style={{ border: "none", width: 900, margin: "auto" }}
       >
         <Header>チャットページ</Header>
       </Segment>
 
       {authenticated && (
-        <Segment attached style={{ width: 730 }}>
+        <Segment attached style={{ width: 900, margin: "auto" }}>
           <GroupDetailedChatForm
             groupId={groupId}
             parentId={0}
             // closeForm={setShowReplyForm}
           />
-          <Comment.Group style={{ margin: "auto", width: 730 }}>
+          <Comment.Group>
             {createDataTree(comments).map((comment) => (
               <div key={`my${comment.id}`}>
                 {comment.uid === currentUser.uid ? (
                   <Comment
-                    style={{ marginLeft: "auto", width: 200 }}
+                    style={{ marginLeft: "450px"}}
                     key={`my${comment.id}`}
                   >
                     <Comment.Avatar
@@ -104,7 +104,7 @@ export default function GroupDetailedChat({ groupId }) {
                 ) : (
                   <Comment
                     key={`other${comment.id}`}
-                    style={{ marginRight: "auto", width: 200 }}
+                    
                   >
                     <Comment.Avatar
                       src={comment.photoURL || "/assets/user.png"}

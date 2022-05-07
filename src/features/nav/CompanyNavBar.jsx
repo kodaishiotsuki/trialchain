@@ -60,7 +60,7 @@ export default function CompanyNavBar({ setFormOpen }) {
               <Icon name='chain' size='large' />
               Trial Chain
             </Menu.Item>
-            {/* <Menu.Item as={NavLink} to='/events' name='企業リスト' /> */}
+            <Menu.Item as={NavLink} to='/events' name='求人企業リスト' />
             {/* <Menu.Item as={NavLink} to='/sandbox' name='Sandbox' /> */}
 
             {authenticated && (

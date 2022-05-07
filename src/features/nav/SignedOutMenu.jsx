@@ -12,13 +12,13 @@ export default function SignedOutMenu({ setAuthenticated }) {
           onClick={() => dispatch(openModal({ modalType: "LoginForm" }))}
           basic
           inverted
-          content='Login'
+          content='ログイン'
         />
         <Button
           onClick={() => dispatch(openModal({ modalType: "RegisterForm" }))}
           basic
           inverted
-          content='Register'
+          content='新規登録'
           style={{ marginLeft: "0.5em" }}
         />
       </Menu.Item>

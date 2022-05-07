@@ -139,7 +139,7 @@ export default function TrialUserProfileHeader({ profile }) {
   return (
     <Segment>
       <Grid>
-        <Grid.Column width={8}>
+        <Grid.Column width={7}>
           <Item.Group>
             <Item>
               <Item.Image
@@ -161,19 +161,19 @@ export default function TrialUserProfileHeader({ profile }) {
             </Item>
           </Item.Group>
         </Grid.Column>
-        <Grid.Column width={4} verticalAlign='middle'>
+        <Grid.Column width={5} verticalAlign='middle'>
           <div>
             <a href={profile.twitterURL}>
-              <Icon size='big' color='teal' name='twitter' />
+              <Icon size='huge' color='teal' name='twitter' />
             </a>
             <a href={profile.facebookURL}>
-              <Icon size='big' color='teal' name='facebook square' />
+              <Icon size='huge' color='teal' name='facebook square' />
             </a>
             <a href={profile.gitHubURL}>
-              <Icon size='big' color='teal' name='github' />
+              <Icon size='huge' color='teal' name='github' />
             </a>
             <a href={profile.noteURL}>
-              <Icon size='big' color='teal' name='sticky note outline' />
+              <Icon size='huge' color='teal' name='sticky note outline' />
             </a>
           </div>
         </Grid.Column>

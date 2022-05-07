@@ -36,7 +36,7 @@ export default function TrialUserProfilePage({ match }) {
     return <LoadingComponent content='Loading profile...' />;
 
   return (
-    <Grid style={{width:770}}>
+    <Grid>
       <Grid.Column width={16}>
         <TrialUserProfileHeader
           profile={profile}

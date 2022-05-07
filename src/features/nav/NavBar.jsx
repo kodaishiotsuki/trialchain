@@ -56,11 +56,11 @@ export default function NavBar({ setFormOpen }) {
       {userType?.userType === "求職者" && (
         <Menu inverted fixed='top'>
           <Container>
-            <Menu.Item as={NavLink} exact to='/events' header>
+            <Menu.Item as={NavLink} exact to='/' header>
               <Icon name='chain' size='large' />
               Trial Chain
             </Menu.Item>
-            {/* <Menu.Item as={NavLink} to='/events' name='企業リスト' /> */}
+            <Menu.Item as={NavLink} to='/events' name='求人企業リスト' />
             {/* <Menu.Item as={NavLink} to='/sandbox' name='Sandbox' /> */}
 
             {authenticated && (

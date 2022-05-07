@@ -52,7 +52,7 @@ export default function DecidedCompanyList() {
     <>
       <Segment
         textAlign='center'
-        style={{ border: "none", width: 700}}
+        style={{ border: "none"}}
         // style={{ border: "none", width: 900, margin: "auto" }}
         attached='top'
         secondary

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Header, Segment } from "semantic-ui-react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ModalWrapper from "../../app/common/modals/ModalWrapper";
 import {
   arrayUnion,
@@ -91,6 +91,15 @@ export default function TrialForm({ trial }) {
             content='Submit'
             style={{ marginBottom: 10 }}
             loading={loading}
+          />
+          <Button
+            floated='right'
+            type='submit'
+            size='large'
+            content='Return'
+            style={{ marginBottom: 10 }}
+            as={Link}
+            to="/events"
           />
         </Form>
       </ModalWrapper>

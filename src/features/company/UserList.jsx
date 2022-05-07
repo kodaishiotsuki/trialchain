@@ -53,7 +53,7 @@ export default function UserList({ match, history, location }) {
     {
       menuItem: "求職者リスト",
       render: () => (
-        <Card.Group itemsPerRow={3} style={{ width: 730 }}>
+        <Card.Group itemsPerRow={4}>
           {users.map((user) => (
             <UserListItem user={user} key={user.id} activeTab={activeTab} />
           ))}
@@ -63,7 +63,7 @@ export default function UserList({ match, history, location }) {
     {
       menuItem: "オファーした求職者リスト",
       render: () => (
-        <Card.Group itemsPerRow={3} style={{ width: 730 }}>
+        <Card.Group itemsPerRow={4} >
           {offerUsers.map((user) => (
             <OfferUserListItem
               user={user}
@@ -80,7 +80,7 @@ export default function UserList({ match, history, location }) {
     },
   ];
 
-  //コレクションuser,サブコレクションcompanies取得
+  //コレクションusers取得
   useEffect(() => {
     try {
       const q = query(

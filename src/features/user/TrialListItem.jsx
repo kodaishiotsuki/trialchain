@@ -67,8 +67,7 @@ export default function TrialListItem({ company }) {
   }
 
   return (
-    // <Segment.Group style={{ width: 900, margin: "auto", marginTop: 20 }}>
-    <Segment.Group style={{ width: 700, marginTop: 0 }}>
+    <Segment.Group style={{ marginTop: 0 }}>
       <Segment>
         <Item.Group>
           <Item>

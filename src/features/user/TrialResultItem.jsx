@@ -19,8 +19,6 @@ import {
 import { app } from "../../app/config/firebase";
 
 export default function TrialResultItem({ company, user }) {
-  // console.log(company?.hostUid);
-  // console.log(user.uid);
   const db = getFirestore(app);
   const [groupId, setGroupId] = useState("");
 
@@ -48,7 +46,7 @@ export default function TrialResultItem({ company, user }) {
     }
   }, [db, company?.hostUid, user?.uid]);
   return (
-    <Segment.Group style={{ width: 700, margin: 0 }}>
+    <Segment.Group style={{marginTop: 0 }}>
       <Segment>
         <Item.Group>
           <Item>

@@ -46,7 +46,7 @@ export default function MatchOfferCompanyListItem({ company, user }) {
     }
   }, [db, company?.hostUid, user?.uid]);
   return (
-    <Segment.Group style={{ width: 700, margin: 0 }}>
+    <Segment.Group style={{ margin: 0 }}>
       <Segment>
         <Item.Group>
           <Item>

@@ -41,7 +41,7 @@ export default function DecidedUserList() {
     <>
       <Segment
         textAlign='center'
-        style={{ border: "none", marginBottom: 20,width:730 }}
+        style={{ border: "none", marginBottom: 20 }}
         attached='top'
         secondary
         inverted
@@ -49,7 +49,7 @@ export default function DecidedUserList() {
       >
         <h2>トライアル決定者リスト</h2>
       </Segment>
-      <Card.Group itemsPerRow={3} >
+      <Card.Group itemsPerRow={4} >
         {decidedUsers.map((decidedUser) => (
           <DecidedUserListItem
             key={decidedUser.id}

@@ -6,7 +6,6 @@ import {
   where,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { Button, Card, Header, Image } from "semantic-ui-react";
 import { app } from "../../app/config/firebase";
 import TrialForm from "./TrialForm";
@@ -50,14 +49,14 @@ export default function DecidedUserListItem({ decidedUser, currentUser }) {
                 src={decidedUser.userPhotoURL || "/assets/user.png"}
               />
               <Header size='huge'>{decidedUser.userName}</Header>
-              <Button
+              {/* <Button
                 floated='left'
                 color='teal'
                 content='チャット画面へ'
                 style={{ fontSize: 15 }}
                 as={Link}
                 to={`/chat/${trial?.id}`}
-              />
+              /> */}
               <Button
                 floated='right'
                 color='orange'

@@ -29,7 +29,7 @@ export default function GroupDetailedChatForm({
       }}
     >
       {({ isSubmitting, handleSubmit, isValid }) => (
-        <Form className='ui form' style={{ marginBottom: 20, width: 700 }}>
+        <Form className='ui form' style={{ width: 900 }}>
           <Field name='comment'>
             {({ field }) => (
               <div style={{ position: "relative" }}>

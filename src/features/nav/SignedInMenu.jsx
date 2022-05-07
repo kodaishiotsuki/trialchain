@@ -21,19 +21,19 @@ export default function SignedInMenu({ userType }) {
 
   return (
     <>
-      <Menu.Item position='left'>
+      <Menu.Item position='right'>
         <Image
           avatar
           spaced='right'
           src={currentUserProfile?.photoURL || "/assets/user.png"}
         />
-        <Dropdown pointing='top left' text={currentUserProfile?.displayName}>
+        <Dropdown pointing='top right' text={currentUserProfile?.displayName}>
           <Dropdown.Menu>
             {userType?.userType === "企業" && (
               <Dropdown.Item
                 as={Link}
-                to="/createEvent"
-                text='Post Company'
+                to='/createEvent'
+                text='求人を掲載する'
                 icon='edit'
               />
             )}
@@ -41,7 +41,7 @@ export default function SignedInMenu({ userType }) {
               <Dropdown.Item
                 as={Link}
                 to={`/profile/${currentUserProfile?.id}`}
-                text='My Profile'
+                text='プロフィールを編集'
                 icon='user'
               />
             )}
@@ -50,7 +50,7 @@ export default function SignedInMenu({ userType }) {
               <Dropdown.Item
                 as={Link}
                 to={`/profile/${currentUserProfile?.id}`}
-                text='My Profile'
+                text='プロフィールを編集'
                 icon='user'
               />
             )}
@@ -59,7 +59,7 @@ export default function SignedInMenu({ userType }) {
               <Dropdown.Item
                 as={Link}
                 to={`/userProfile/${currentUserProfile?.id}`}
-                text='My Profile'
+                text='プロフィールを編集'
                 icon='user'
               />
             )}
@@ -67,12 +67,12 @@ export default function SignedInMenu({ userType }) {
             <Dropdown.Item
               as={Link}
               to='/account'
-              text='My account'
+              text='アカウント設定'
               icon='settings'
             />
             <Dropdown.Item
               onClick={handleSignOut}
-              text='Sign Out'
+              text='ログアウト'
               icon='power'
             />
           </Dropdown.Menu>
