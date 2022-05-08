@@ -56,20 +56,20 @@ export default function CompanyNavBar({ setFormOpen }) {
       {userType?.userType !== "求職者" && (
         <Menu inverted fixed='top' className='company'>
           <Container>
-            <Menu.Item as={NavLink} exact to='/events' header>
+            <Menu.Item as={NavLink} exact to='/' header>
               <Icon name='chain' size='large' />
               Trial Chain
             </Menu.Item>
-            <Menu.Item as={NavLink} to='/events' name='求人企業リスト' />
+            {/* <Menu.Item as={NavLink} to='/events' name='求人企業リスト' /> */}
             <Menu.Item as={NavLink} to='/companyHome' name='ホーム画面' />
-            <Menu.Item as={NavLink} to='/userList' name='求職者リスト' />
+            {/* <Menu.Item as={NavLink} to='/userList' name='求職者リスト' /> */}
             {/* <Menu.Item as={NavLink} to='/sandbox' name='Sandbox' /> */}
 
             {authenticated && (
               <>
                 {userType?.userType === "企業" && (
                   <>
-                    <Menu.Item as={NavLink} to='/userList'>
+                    {/* <Menu.Item as={NavLink} to='/userList'>
                       <Button inverted basic content='オファー' />
                     </Menu.Item>
                     <Menu.Item as={NavLink} to='/trialUserList'>
@@ -77,7 +77,7 @@ export default function CompanyNavBar({ setFormOpen }) {
                     </Menu.Item>
                     <Menu.Item as={NavLink} to='/decidedUser'>
                       <Button basic inverted content='トライアル決定' />
-                    </Menu.Item>
+                    </Menu.Item> */}
                   </>
                 )}
                 {userType?.userType === "企業のメンバー" && (

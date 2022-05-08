@@ -1,14 +1,44 @@
-import React from "react";
+import { getAuth } from "firebase/auth";
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Card, Icon } from "semantic-ui-react";
+import { app } from "../../app/config/firebase";
 
 export default function CompanyHomeContent() {
+  const { currentUserProfile } = useSelector((state) => state.profile);
+  //登録した求人情報を取得
+  const [hostId, setHostId] = useState("");
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+  //ログインユーザー
+  const user = auth.currentUser;
+
+  //登録した求人情報を取得(eventsコレクション)
+  useEffect(() => {
+    try {
+      const q = query(
+        collection(db, "events"),
+        where("hostUid", "==", user?.uid)
+      );
+      getDocs(q).then((querySnapshot) => {
+        setHostId(querySnapshot.docs.map((doc) => doc.data())[0]);
+
+        //コンソールで表示
+        console.log(querySnapshot.docs.map((doc) => doc.data())[0]);
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, [db, user?.uid]);
+
   return (
     <Card.Group>
       <Card
         style={{ padding: 30, width: 240, height: 220 }}
         as={Link}
-        to='/createEvent'
+        to='/events'
       >
         <Card.Content>
           <Icon
@@ -21,6 +51,7 @@ export default function CompanyHomeContent() {
           </Card.Header>
         </Card.Content>
       </Card>
+
       <Card
         style={{ padding: 30, width: 240, height: 220 }}
         as={Link}
@@ -37,10 +68,11 @@ export default function CompanyHomeContent() {
           </Card.Header>
         </Card.Content>
       </Card>
+
       <Card
         style={{ padding: 30, width: 240, height: 220 }}
         as={Link}
-        to='/createEvent'
+        to={`/manage/${hostId.id}`}
       >
         <Card.Content>
           <Icon
@@ -57,7 +89,7 @@ export default function CompanyHomeContent() {
       <Card
         style={{ padding: 30, width: 240, height: 220 }}
         as={Link}
-        to='/createEvent'
+        to='/userList'
       >
         <Card.Content>
           <Icon
@@ -73,7 +105,7 @@ export default function CompanyHomeContent() {
       <Card
         style={{ padding: 30, width: 240, height: 220 }}
         as={Link}
-        to='/createEvent'
+        to='/trialUserList'
       >
         <Card.Content>
           <Icon
@@ -89,7 +121,7 @@ export default function CompanyHomeContent() {
       <Card
         style={{ padding: 30, width: 240, height: 220 }}
         as={Link}
-        to='/createEvent'
+        to='/offerUserList'
       >
         <Card.Content>
           <Icon
@@ -105,7 +137,7 @@ export default function CompanyHomeContent() {
       <Card
         style={{ padding: 30, width: 240, height: 220 }}
         as={Link}
-        to='/createEvent'
+        to='/matchUser'
       >
         <Card.Content>
           <Icon
@@ -121,7 +153,7 @@ export default function CompanyHomeContent() {
       <Card
         style={{ padding: 30, width: 240, height: 220 }}
         as={Link}
-        to='/createEvent'
+        to='/decidedUser'
       >
         <Card.Content>
           <Icon
@@ -137,7 +169,7 @@ export default function CompanyHomeContent() {
       <Card
         style={{ padding: 30, width: 240, height: 220 }}
         as={Link}
-        to='/createEvent'
+        to={`/profile/${currentUserProfile?.id}`}
       >
         <Card.Content>
           <Icon

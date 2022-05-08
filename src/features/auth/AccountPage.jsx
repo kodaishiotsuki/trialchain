@@ -11,7 +11,7 @@ export default function AccountPage() {
   const { currentUser } = useSelector((state) => state.auth);
   return (
     <Segment>
-      <Header dividing size='large' content='Account' />
+      <Header dividing size='large' content='アカウント管理' icon="teal setting"/>
       {currentUser.providerId === "password" && (
         <>
           <Header color='teal' sub content='Change Password' />

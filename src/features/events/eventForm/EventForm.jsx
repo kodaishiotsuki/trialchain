@@ -25,6 +25,8 @@ import { Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import { careerData } from "../../../app/api/careerOptions";
 import { useEffect } from "react";
+import { Icon } from "semantic-ui-react";
+
 
 export default function EventForm({ match, history, location }) {
   const dispatch = useDispatch();
@@ -109,67 +111,72 @@ export default function EventForm({ match, history, location }) {
   if (error) return <Redirect to='/error' />;
 
   return (
-    <Segment clearing>
-      {/* 入力はFORMIK使用 */}
-      <Formik
-        enableReinitialize
-        // validationSchema={validationSchema}
-        initialValues={initialValues}
-        onSubmit={async (values, { setSubmitting }) => {
-          try {
-            //イベント更新 or 新規イベント
-            selectedEvent
-              ? await updateEventInFirestore(values)
-              : await addEventToFirestore(values);
-            history.push("/events"); //入力送信後にeventページへ遷移
-          } catch (error) {
-            toast.error(error.message);
-            setSubmitting(false);
-          }
-        }}
-      >
-        {({ isSubmitting, dirty, isValid, values }) => (
-          <Form className='ui form'>
-            <Header
-              sub
-              color='teal'
-              content='企業名を入力してください'
-              size='huge'
-            />
-            <MyTextInput name='title' placeholder='企業名' />
-            <Header
-              sub
-              color='teal'
-              content='企業のミッション / ビジョン / バリューを入力してください'
-              size='huge'
-            />
-            <MyTextInput name='mission' placeholder='ミッション' />
-            <MyTextInput name='vision' placeholder='ビジョン' />
-            <MyTextInput name='value' placeholder='バリュー' />
+    <>
+      <div style={{ textAlign: "center", marginBottom: 20, display: "flex" }}>
+        <Icon name='teal edit' size='huge' />
+        <h1>求人情報の入力・更新</h1>
+      </div>
+      <Segment clearing>
+        {/* 入力はFORMIK使用 */}
+        <Formik
+          enableReinitialize
+          // validationSchema={validationSchema}
+          initialValues={initialValues}
+          onSubmit={async (values, { setSubmitting }) => {
+            try {
+              //イベント更新 or 新規イベント
+              selectedEvent
+                ? await updateEventInFirestore(values)
+                : await addEventToFirestore(values);
+              history.push("/events"); //入力送信後にeventページへ遷移
+            } catch (error) {
+              toast.error(error.message);
+              setSubmitting(false);
+            }
+          }}
+        >
+          {({ isSubmitting, dirty, isValid, values }) => (
+            <Form className='ui form'>
+              <Header
+                sub
+                color='teal'
+                content='企業名を入力してください'
+                size='huge'
+              />
+              <MyTextInput name='title' placeholder='企業名' />
+              <Header
+                sub
+                color='teal'
+                content='企業のミッション / ビジョン / バリューを入力してください'
+                size='huge'
+              />
+              <MyTextInput name='mission' placeholder='ミッション' />
+              <MyTextInput name='vision' placeholder='ビジョン' />
+              <MyTextInput name='value' placeholder='バリュー' />
 
-            <Header
-              sub
-              color='teal'
-              content='トライアル雇用期間を選択してください'
-              size='huge'
-            />
-            <MySelectInput
-              name='trialMonth'
-              placeholder='トライアル雇用期間を選択してください'
-              options={trialMonth}
-            />
-            <Header
-              sub
-              color='teal'
-              content='求めている人材を選択してください'
-              size='huge'
-            />
-            <MySelectInput
-              name='career[0]'
-              placeholder='求めている人材を選択してください'
-              options={careerData}
-            />
-            {/* <MySelectInput
+              <Header
+                sub
+                color='teal'
+                content='トライアル雇用期間を選択してください'
+                size='huge'
+              />
+              <MySelectInput
+                name='trialMonth'
+                placeholder='トライアル雇用期間を選択してください'
+                options={trialMonth}
+              />
+              <Header
+                sub
+                color='teal'
+                content='求めている人材を選択してください'
+                size='huge'
+              />
+              <MySelectInput
+                name='career[0]'
+                placeholder='求めている人材を選択してください'
+                options={careerData}
+              />
+              {/* <MySelectInput
               name='career[1]'
               placeholder='求めている人材を選択してください'
               options={careerData}
@@ -180,104 +187,107 @@ export default function EventForm({ match, history, location }) {
               options={careerData}
             /> */}
 
-            {/* <MyTextArea
+              {/* <MyTextArea
               name='description'
               placeholder='企業の詳細を記入してください'
               rows={5}
             /> */}
-            <Header
-              sub
-              color='teal'
-              content='企業のピッチ動画（YouTube）のIDを入力してください'
-              size='huge'
-            />
-            <MyTextInput
-              name='pitchId'
-              placeholder='YouTubeのIDを入力してください'
-            />
-            <Header
-              sub
-              color='teal'
-              content='写真のタイプを選択してください'
-              size='huge'
-            />
-            <MySelectInput
-              name='category'
-              placeholder='写真のタイプを選択してください'
-              options={categoryData}
-            />
-            <Header
-              sub
-              color='teal'
-              content='企業の住所を入力してください'
-              size='huge'
-            />
-            {/* <MyPlaceInput name='city' placeholder='都道府県' /> */}
-            <MyPlaceInput
-              name='venue'
-              // disabled={!values.city.latLng}
-              placeholder='住所または企業名'
-              options={{
-                location: new google.maps.LatLng(values.city.latLng),
-                radius: 1000, //半径1000km以内
-                types: ["establishment"],
-              }}
-            />
-            <Header
-              sub
-              color='teal'
-              content='創業年月日を入力してください'
-              size='huge'
-            />
-            <MyDateInput
-              name='date'
-              placeholder='Date of founded'
-              dateFormat='yyyy/MM/dd'
-              autoComplete='off'
-            />
-
-            {selectedEvent && (
-              <Button
-                loading={loadingCancel}
-                type='button'
-                floated='left'
-                color={selectedEvent.isCancelled ? "green" : "red"}
-                content={
-                  selectedEvent.isCancelled ? "Reactive Event" : "Cancel Event"
-                }
-                onClick={() => setConfirmOpen(true)}
+              <Header
+                sub
+                color='teal'
+                content='企業のピッチ動画（YouTube）のIDを入力してください'
+                size='huge'
               />
-            )}
+              <MyTextInput
+                name='pitchId'
+                placeholder='YouTubeのIDを入力してください'
+              />
+              <Header
+                sub
+                color='teal'
+                content='写真のタイプを選択してください'
+                size='huge'
+              />
+              <MySelectInput
+                name='category'
+                placeholder='写真のタイプを選択してください'
+                options={categoryData}
+              />
+              <Header
+                sub
+                color='teal'
+                content='企業の住所を入力してください'
+                size='huge'
+              />
+              {/* <MyPlaceInput name='city' placeholder='都道府県' /> */}
+              <MyPlaceInput
+                name='venue'
+                // disabled={!values.city.latLng}
+                placeholder='住所または企業名'
+                options={{
+                  location: new google.maps.LatLng(values.city.latLng),
+                  radius: 1000, //半径1000km以内
+                  types: ["establishment"],
+                }}
+              />
+              <Header
+                sub
+                color='teal'
+                content='創業年月日を入力してください'
+                size='huge'
+              />
+              <MyDateInput
+                name='date'
+                placeholder='Date of founded'
+                dateFormat='yyyy/MM/dd'
+                autoComplete='off'
+              />
 
-            <Button
-              loading={isSubmitting}
-              // disabled={!isValid || !dirty || isSubmitting}
-              type='submit'
-              floated='right'
-              positive
-              content='Submit'
-            />
-            <Button
-              disabled={isSubmitting}
-              as={Link}
-              to='/events'
-              type='submit'
-              floated='right'
-              content='Cancel'
-            />
-          </Form>
-        )}
-      </Formik>
-      <Confirm
-        content={
-          selectedEvent?.isCancelled
-            ? "This will reactive the event - are you sure?"
-            : "This will cancel the event - are you sure?"
-        }
-        open={confirmOpen}
-        onCancel={() => setConfirmOpen(false)}
-        onConfirm={() => handleCancelToggle(selectedEvent)}
-      />
-    </Segment>
+              {selectedEvent && (
+                <Button
+                  loading={loadingCancel}
+                  type='button'
+                  floated='left'
+                  color={selectedEvent.isCancelled ? "green" : "red"}
+                  content={
+                    selectedEvent.isCancelled
+                      ? "Reactive Event"
+                      : "Cancel Event"
+                  }
+                  onClick={() => setConfirmOpen(true)}
+                />
+              )}
+
+              <Button
+                loading={isSubmitting}
+                // disabled={!isValid || !dirty || isSubmitting}
+                type='submit'
+                floated='right'
+                positive
+                content='Submit'
+              />
+              <Button
+                disabled={isSubmitting}
+                as={Link}
+                to='/events'
+                type='submit'
+                floated='right'
+                content='Cancel'
+              />
+            </Form>
+          )}
+        </Formik>
+        <Confirm
+          content={
+            selectedEvent?.isCancelled
+              ? "This will reactive the event - are you sure?"
+              : "This will cancel the event - are you sure?"
+          }
+          open={confirmOpen}
+          onCancel={() => setConfirmOpen(false)}
+          onConfirm={() => handleCancelToggle(selectedEvent)}
+        />
+      </Segment>
+    </>
   );
 }

@@ -48,7 +48,11 @@ export default function EventFilter({ loading }) {
       {authenticated && (
         <>
           {userType?.userType === "企業" ? (
-            <Menu vertical size='large' style={{ width: "100%" }}>
+            <Menu
+              vertical
+              size='large'
+              style={{ width: "100%", position: "sticky", top: 90 }}
+            >
               <Header icon='filter' attached color='teal' content='Filters' />
               <Menu.Item
                 content='全ての企業'
@@ -64,7 +68,11 @@ export default function EventFilter({ loading }) {
               />
             </Menu>
           ) : (
-            <Menu vertical size='large' style={{ width: "100%" }}>
+            <Menu
+              vertical
+              size='large'
+              style={{ width: "100%", position: "sticky", top: 90 }}
+            >
               <Header
                 icon='search'
                 attached

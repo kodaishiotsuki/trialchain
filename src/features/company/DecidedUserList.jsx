@@ -7,7 +7,7 @@ import {
   where,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { Card, Segment } from "semantic-ui-react";
+import { Card, Icon} from "semantic-ui-react";
 import { app } from "../../app/config/firebase";
 import DecidedUserListItem from "./DecidedUserListItem";
 
@@ -39,16 +39,11 @@ export default function DecidedUserList() {
 
   return (
     <>
-      <Segment
-        textAlign='center'
-        style={{ border: "none", marginBottom: 20 }}
-        attached='top'
-        secondary
-        inverted
-        color='teal'
-      >
-        <h2>トライアル決定者リスト</h2>
-      </Segment>
+      <div style={{ textAlign: "center", marginBottom: 20, display: "flex" }}>
+        <Icon name='teal users' size='huge' />
+        <h1>トライアル雇用決定者リスト</h1>
+      </div>
+
       <Card.Group itemsPerRow={4} >
         {decidedUsers.map((decidedUser) => (
           <DecidedUserListItem

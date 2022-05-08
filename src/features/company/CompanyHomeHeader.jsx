@@ -40,7 +40,7 @@ export default function CompanyHomeHeader() {
   }, [db, user?.uid]);
 
   return (
-    <Menu vertical style={{ width: "100%" }}>
+    <Menu vertical style={{ width: "100%", position: "sticky", top: 90 }}>
       <Menu.Item>
         <Header
           icon='user outline'
@@ -99,25 +99,25 @@ export default function CompanyHomeHeader() {
             name='メッセージ一覧'
             style={{ fontSize: 20 }}
             as={Link}
-            to={`/profile/${currentUserProfile?.id}`}
+            to='/matchUser'
           />
           <Menu.Item
-            name='申請があった求職者'
+            name='応募があった求職者'
             style={{ fontSize: 20 }}
             as={Link}
-            to='/account'
+            to='/trialUserList'
           />
           <Menu.Item
             name='オファーした求職者'
             style={{ fontSize: 20 }}
             as={Link}
-            to='/account'
+            to='/offerUserList'
           />
           <Menu.Item
             name='トライアル雇用決定求職者'
             style={{ fontSize: 20 }}
             as={Link}
-            to='/account'
+            to='/decidedUser'
           />
         </Menu.Menu>
       </Menu.Item>

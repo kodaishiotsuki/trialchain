@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "semantic-ui-react";
+import { Grid, Icon } from "semantic-ui-react";
 import EventList from "./EventList";
 import { useSelector } from "react-redux";
-import EventListItemPlaceholder from "./EventListItemPlaceholder";
 import EventFilter from "./EventFilter";
 import { fetchEvents } from "../eventActions";
 import { useDispatch } from "react-redux";
 import { RETAIN_STATE } from "../eventConstants";
+import EventListItemPlaceholder from "./EventListItemPlaceholder";
 
 const EventDashboard = () => {
   const limit = 3;
@@ -62,6 +62,10 @@ const EventDashboard = () => {
 
   return (
     <>
+      <div style={{ textAlign: "center", marginBottom: 20, display: "flex" }}>
+        <Icon name='teal building' size='huge' />
+        <h1>求人企業リスト</h1>
+      </div>
       <Grid>
         <Grid.Column width={10}>
           {loadingInitial && (
