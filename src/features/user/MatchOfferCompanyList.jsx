@@ -3,6 +3,7 @@ import { collection, getDocs, getFirestore, query, where } from 'firebase/firest
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { Card } from 'semantic-ui-react';
 import { app } from '../../app/config/firebase';
 import MatchOfferCompanyListItem from './MatchOfferCompanyListItem';
 
@@ -43,9 +44,15 @@ export default function MatchOfferCompanyList() {
 
   return (
     <>
-      {companies.map((company) => (
-        <MatchOfferCompanyListItem company={company} key={company.id} user={user} />
-      ))}
+      <Card.Group itemsPerRow={3}>
+        {companies.map((company) => (
+          <MatchOfferCompanyListItem
+            company={company}
+            key={company.id}
+            user={user}
+          />
+        ))}
+      </Card.Group>
     </>
   );
 }

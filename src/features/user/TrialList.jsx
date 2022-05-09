@@ -15,8 +15,7 @@ import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import TrialListItem from "./TrialListItem";
 import { getAuth } from "firebase/auth";
-import { Tab } from "semantic-ui-react";
-import TrialResult from "./TrialResult";
+import { Card, Icon } from "semantic-ui-react";
 
 export default function TrialList() {
   const { error } = useSelector((state) => state.async);
@@ -27,8 +26,6 @@ export default function TrialList() {
   const auth = getAuth(app);
   //ログインユーザー
   const user = auth.currentUser;
-  //タブメニュー
-  const [activeTab, setActiveTab] = useState(0);
 
   //お気に入り企業リストを取得
   useEffect(() => {
@@ -54,45 +51,17 @@ export default function TrialList() {
   //エラーが発生した場合はリダイレクト
   if (error) return <Redirect to='/error' />;
 
-  //Tab内容
-  const panes = [
-    {
-      menuItem: "オファーしたい企業リスト",
-      render: () => (
-        <>
-          {companies.map((company) => (
-            <TrialListItem
-              company={company}
-              key={company.id}
-              activeTab={activeTab}
-            />
-          ))}
-        </>
-      ),
-    },
-    {
-      menuItem: "マッチした企業リスト",
-      render: () => <TrialResult />,
-    },
-  ];
-
   return (
     <>
-      {/* <Segment
-        textAlign='center'
-        // style={{ border: "none",width:900,margin:"auto" }}
-        style={{ border: "none",width:700}}
-        attached='top'
-        secondary
-        inverted
-        color='teal'
-      >
-        <h2>お気に入り企業リスト</h2>
-      </Segment> */}
-      <Tab
-        panes={panes}
-        onTabChange={(e, data) => setActiveTab(data.activeIndex)}
-      />
+      <div style={{ textAlign: "center", marginBottom: 20, display: "flex" }}>
+        <Icon name='teal bookmark' size='huge' />
+        <h1>ブックマークした企業リスト</h1>
+      </div>
+      <Card.Group itemsPerRow={3}>
+        {companies.map((company) => (
+          <TrialListItem company={company} key={company.id} />
+        ))}
+      </Card.Group>
     </>
   );
 }

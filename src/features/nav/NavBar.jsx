@@ -9,7 +9,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
-import { Button, Container, Icon, Menu } from "semantic-ui-react";
+import { Container, Icon, Menu } from "semantic-ui-react";
 import { app } from "../../app/config/firebase";
 import SignedInMenu from "./SignedInMenu";
 import SignedOutMenu from "./SignedOutMenu";
@@ -43,7 +43,7 @@ export default function NavBar({ setFormOpen }) {
     } catch (error) {
       console.log(error.message);
     }
-  },[db,user?.email]);
+  }, [db, user?.email]);
 
   //loading表示
   // if (loading) return <LoadingComponent content='Loading trial...' />;
@@ -56,14 +56,25 @@ export default function NavBar({ setFormOpen }) {
       {userType?.userType === "求職者" && (
         <Menu inverted fixed='top'>
           <Container>
-            <Menu.Item as={NavLink} exact to='/' header>
-              <Icon name='chain' size='large' />
+            <Menu.Item
+              as={NavLink}
+              exact
+              to='/'
+              header
+              style={{ fontSize: 15 }}
+            >
+              <Icon name='chain' size='big' />
               Trial Chain
             </Menu.Item>
-            <Menu.Item as={NavLink} to='/events' name='求人企業リスト' />
+            <Menu.Item
+              as={NavLink}
+              to='/events'
+              name='求人企業リスト'
+              style={{ fontSize: 15 }}
+            />
             {/* <Menu.Item as={NavLink} to='/sandbox' name='Sandbox' /> */}
 
-            {authenticated && (
+            {/* {authenticated && (
               <>
                 <Menu.Item as={NavLink} to='/trial'>
                   <Button inverted basic content='オファー' />
@@ -75,7 +86,19 @@ export default function NavBar({ setFormOpen }) {
                   <Button basic inverted content='トライアル決定' />
                 </Menu.Item>
               </>
-            )}
+            )} */}
+            {/* <Menu.Item
+              as={NavLink}
+              to='/events'
+              icon='big bell outline'
+              position='right'
+            />
+            <Menu.Item
+              as={NavLink}
+              to='/events'
+              icon='big comments outline'
+              position='right'
+            /> */}
             {authenticated ? (
               <SignedInMenu userType={userType} />
             ) : (

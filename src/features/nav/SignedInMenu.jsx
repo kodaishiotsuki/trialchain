@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Dropdown, Image, Menu } from "semantic-ui-react";
+import { Dropdown, Icon, Image, Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { signOutFirebase } from "../../app/firestore/firebaseService";
-import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
 import { app } from "../../app/config/firebase";
 import { getAuth } from "firebase/auth";
 
@@ -50,13 +56,20 @@ export default function SignedInMenu({ userType }) {
   return (
     <>
       <Menu.Item position='right'>
+        <Icon name='comments' size='big' style={{ marginRight: 10 }} />
+        <Icon name='bell outline' size='big' />
         <Image
+          size='mini'
           avatar
           spaced='right'
           src={currentUserProfile?.photoURL || "/assets/user.png"}
         />
-        <Dropdown pointing='top right' text={currentUserProfile?.displayName}>
-          <Dropdown.Menu>
+        <Dropdown
+          pointing='top right'
+          text={currentUserProfile?.displayName}
+          style={{ fontSize: 15 }}
+        >
+          <Dropdown.Menu style={{ fontSize: 18 }}>
             {userType?.userType === "企業" && (
               <>
                 <Dropdown.Item
@@ -121,37 +134,37 @@ export default function SignedInMenu({ userType }) {
               <>
                 <Dropdown.Item
                   as={Link}
-                  to={`/userProfile/${currentUserProfile?.id}`}
+                  to={`/profile/${currentUserProfile?.id}`}
                   text='プロフィールを編集'
                   icon='user outline'
                 />
                 <Dropdown.Item
                   as={Link}
-                  to={`/userProfile/${currentUserProfile?.id}`}
+                  to='/matchCompany'
                   text='メッセージ一覧'
                   icon='envelope outline'
                 />
                 <Dropdown.Item
                   as={Link}
-                  to={`/userProfile/${currentUserProfile?.id}`}
+                  to='/trial'
                   text='ブックマークした企業'
                   icon='bookmark outline'
                 />
-                <Dropdown.Item
+                {/* <Dropdown.Item
                   as={Link}
                   to={`/userProfile/${currentUserProfile?.id}`}
                   text='申請を送った企業'
                   icon='paper plane outline'
-                />
+                /> */}
                 <Dropdown.Item
                   as={Link}
-                  to={`/userProfile/${currentUserProfile?.id}`}
+                  to='/offerCompany'
                   text='オファーがあった企業'
-                  icon='paper plane'
+                  icon='paper plane outline'
                 />
                 <Dropdown.Item
                   as={Link}
-                  to={`/userProfile/${currentUserProfile?.id}`}
+                  to='/decidedCompany'
                   text='トライアル雇用決定企業'
                   icon='building outline'
                 />

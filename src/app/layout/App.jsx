@@ -32,6 +32,7 @@ import OfferCompanyList from "../../features/user/OfferCompanyList";
 import CompanyHomePage from "../../features/company/CompanyHomePage";
 import OfferUserList from "../../features/company/OfferUserList";
 import MatchUser from "../../features/company/MatchUser";
+import MatchCompany from "../../features/user/MatchCompany";
 
 function App() {
   const { key } = useLocation();
@@ -62,6 +63,7 @@ function App() {
                 component={TrialApplication}
               /> */}
               <PrivateRoute path='/offerCompany' component={OfferCompanyList} />
+              <PrivateRoute path='/matchCompany' component={MatchCompany} />
               <PrivateRoute
                 path='/decidedCompany'
                 component={DecidedCompanyList}
@@ -70,14 +72,8 @@ function App() {
               <PrivateRoute path='/companyHome' component={CompanyHomePage} />
               <PrivateRoute path='/userList' component={UserList} />
               <PrivateRoute path='/trialUserList' component={TrialUserList} />
-              <PrivateRoute
-                path='/offerUserList'
-                component={OfferUserList}
-              />
-              <PrivateRoute
-                path='/matchUser'
-                component={MatchUser}
-              />
+              <PrivateRoute path='/offerUserList' component={OfferUserList} />
+              <PrivateRoute path='/matchUser' component={MatchUser} />
               <PrivateRoute path='/decidedUser' component={DecidedUserList} />
               <PrivateRoute path='/trialForm/:id' component={TrialForm} />
 

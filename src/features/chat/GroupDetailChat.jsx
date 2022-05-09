@@ -3,7 +3,7 @@ import { off, onValue } from "firebase/database";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { Comment, Header, Segment } from "semantic-ui-react";
+import { Comment, Icon, Segment } from "semantic-ui-react";
 import { createDataTree } from "../../app/common/util/util";
 import {
   firebaseObjectToArray,
@@ -41,15 +41,10 @@ export default function GroupDetailedChat({ groupId }) {
 
   return (
     <>
-      <Segment
-        textAlign='center'
-        attached='top'
-        inverted
-        color='teal'
-        style={{ border: "none", width: 900, margin: "auto" }}
-      >
-        <Header>チャットページ</Header>
-      </Segment>
+      <div style={{ textAlign: "center", marginBottom: 20, display: "flex",justifyContent:"center" }}>
+        <Icon name='teal envelope' size='huge' />
+        <h1>メッセージ画面</h1>
+      </div>
 
       {authenticated && (
         <Segment attached style={{ width: 900, margin: "auto" }}>
@@ -63,7 +58,7 @@ export default function GroupDetailedChat({ groupId }) {
               <div key={`my${comment.id}`}>
                 {comment.uid === currentUser.uid ? (
                   <Comment
-                    style={{ marginLeft: "450px"}}
+                    style={{ marginLeft: "450px" }}
                     key={`my${comment.id}`}
                   >
                     <Comment.Avatar
@@ -102,10 +97,7 @@ export default function GroupDetailedChat({ groupId }) {
                     </Comment.Content>
                   </Comment>
                 ) : (
-                  <Comment
-                    key={`other${comment.id}`}
-                    
-                  >
+                  <Comment key={`other${comment.id}`}>
                     <Comment.Avatar
                       src={comment.photoURL || "/assets/user.png"}
                     />

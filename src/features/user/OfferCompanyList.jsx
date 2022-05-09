@@ -3,9 +3,8 @@ import { collection, getDocs, getFirestore, query, where } from 'firebase/firest
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { Tab } from 'semantic-ui-react';
+import { Card, Icon } from 'semantic-ui-react';
 import { app } from '../../app/config/firebase';
-import MatchOfferCompanyList from './MatchOfferCompanyList';
 import OfferCompanyListItem from './OfferCompanyListItem';
 
 export default function OfferCompanyList() {
@@ -17,10 +16,7 @@ export default function OfferCompanyList() {
   const auth = getAuth(app);
   //ログインユーザー
   const user = auth.currentUser;
-  //タブメニュー
-  const [activeTab, setActiveTab] = useState(0);
 
-  console.log(user.uid)
   //オファーされた企業リストを取得
   useEffect(() => {
     try {
@@ -45,45 +41,18 @@ export default function OfferCompanyList() {
   //エラーが発生した場合はリダイレクト
   if (error) return <Redirect to='/error' />;
 
-  //Tab内容
-  const panes = [
-    {
-      menuItem: "オファーされた企業リスト",
-      render: () => (
-        <>
-          {companies.map((company) => (
-            <OfferCompanyListItem
-              company={company}
-              key={company.id}
-              activeTab={activeTab}
-            />
-          ))}
-        </>
-      ),
-    },
-    {
-      menuItem: "マッチした企業リスト",
-      render: () => <MatchOfferCompanyList />,
-    },
-  ];
 
   return (
     <>
-      {/* <Segment
-        textAlign='center'
-        // style={{ border: "none",width:900,margin:"auto" }}
-        style={{ border: "none",width:700}}
-        attached='top'
-        secondary
-        inverted
-        color='teal'
-      >
-        <h2>お気に入り企業リスト</h2>
-      </Segment> */}
-      <Tab
-        panes={panes}
-        onTabChange={(e, data) => setActiveTab(data.activeIndex)}
-      />
+      <div style={{ textAlign: "center", marginBottom: 20, display: "flex" }}>
+        <Icon name='teal paper plane' size='huge' />
+        <h1>オファーがあった企業リスト</h1>
+      </div>
+      <Card.Group itemsPerRow={3}>
+        {companies.map((company) => (
+          <OfferCompanyListItem company={company} key={company.id} />
+        ))}
+      </Card.Group>
     </>
   );
 }

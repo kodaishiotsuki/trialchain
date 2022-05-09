@@ -9,7 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Segment } from "semantic-ui-react";
+import { Card, Icon } from "semantic-ui-react";
 import { app } from "../../app/config/firebase";
 import DecidedCompanyListItem from "./DecidedCompanyListItem";
 
@@ -50,24 +50,19 @@ export default function DecidedCompanyList() {
 
   return (
     <>
-      <Segment
-        textAlign='center'
-        style={{ border: "none"}}
-        // style={{ border: "none", width: 900, margin: "auto" }}
-        attached='top'
-        secondary
-        inverted
-        color='teal'
-      >
-        <h2>トライアル決定企業リスト</h2>
-      </Segment>
-      {decidedCompanies.map((company) => (
-        <DecidedCompanyListItem
-          company={company}
-          key={company.id}
-          user={user}
-        />
-      ))}
+      <div style={{ textAlign: "center", marginBottom: 20, display: "flex" }}>
+        <Icon name='teal paper plane' size='huge' />
+        <h1>トライアル雇用決定企業リスト</h1>
+      </div>
+      <Card.Group itemsPerRow={3}>
+        {decidedCompanies.map((company) => (
+          <DecidedCompanyListItem
+            company={company}
+            key={company.id}
+            user={user}
+          />
+        ))}
+      </Card.Group>
     </>
   );
 }

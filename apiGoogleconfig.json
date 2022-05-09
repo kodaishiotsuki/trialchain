@@ -1,0 +1,5 @@
+{
+  "apiKey": "AIzaSyCy-G7Josw8mQamhsaZdSJYm4pdjI0s8OI",
+  "scope": "https://www.googleapis.com/auth/calendar.events",
+  "discoveryDocs": ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
+}

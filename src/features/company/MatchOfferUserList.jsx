@@ -32,7 +32,7 @@ export default function MatchOfferUserList() {
   }, [db, currentUser?.uid]);
 
   return (
-    <Card.Group itemsPerRow={3}>
+    <Card.Group itemsPerRow={4}>
       {matchUsers.map((matchUser) => (
         <MatchOfferUserListItem
           key={matchUser.id}

@@ -61,7 +61,12 @@ export default function CompanyNavBar({ setFormOpen }) {
               Trial Chain
             </Menu.Item>
             {/* <Menu.Item as={NavLink} to='/events' name='求人企業リスト' /> */}
-            <Menu.Item as={NavLink} to='/companyHome' name='ホーム画面' />
+            <Menu.Item
+              as={NavLink}
+              to='/companyHome'
+              name='ホーム画面'
+              style={{ fontSize: 15 }}
+            />
             {/* <Menu.Item as={NavLink} to='/userList' name='求職者リスト' /> */}
             {/* <Menu.Item as={NavLink} to='/sandbox' name='Sandbox' /> */}
 

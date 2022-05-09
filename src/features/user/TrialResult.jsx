@@ -9,10 +9,11 @@ import {
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { Card } from "semantic-ui-react";
 import { app } from "../../app/config/firebase";
 import TrialResultItem from "./TrialResultItem";
 
-export default function TrialResult({ match, history, location }) {
+export default function TrialResult() {
   const { error } = useSelector((state) => state.async);
   const [companies, setCompanies] = useState([]);
   //firebase
@@ -49,9 +50,11 @@ export default function TrialResult({ match, history, location }) {
 
   return (
     <>
-      {companies.map((company) => (
-        <TrialResultItem company={company} key={company.id} user={user} />
-      ))}
+      <Card.Group itemsPerRow={3}>
+        {companies.map((company) => (
+          <TrialResultItem company={company} key={company.id} user={user} />
+        ))}
+      </Card.Group>
     </>
   );
 }
