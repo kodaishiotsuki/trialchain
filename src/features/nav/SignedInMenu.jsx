@@ -134,7 +134,7 @@ export default function SignedInMenu({ userType }) {
               <>
                 <Dropdown.Item
                   as={Link}
-                  to={`/profile/${currentUserProfile?.id}`}
+                  to={`/userProfile/${currentUserProfile?.id}`}
                   text='プロフィールを編集'
                   icon='user outline'
                 />

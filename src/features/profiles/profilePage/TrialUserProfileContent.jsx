@@ -1,8 +1,8 @@
 import React from "react";
 import { Tab } from "semantic-ui-react";
-import PhotosTab from "../profiles/profilePage/PhotosTab";
-import UserTrialTab from "../profiles/profilePage/UserTrialTab";
-import UserAboutTab from "./UserAboutTab";
+import UserAboutTab from "../../company/UserAboutTab";
+import PhotosTab from "./PhotosTab";
+import UserTrialTab from "./UserTrialTab";
 
 export default function TrialUserProfileContent({ profile, isCurrentUser }) {
   // const [activeTab, setActiveTab] = useState(0);

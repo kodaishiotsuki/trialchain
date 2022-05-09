@@ -20,7 +20,6 @@ import TrialList from "../../features/user/TrialList";
 import UserTypePage from "../../features/auth/UserTypePage";
 import UserList from "../../features/company/UserList";
 import TrialUserList from "../../features/company/TrialUserList";
-import TrialUserProfilePage from "../../features/company/TrialUserProfilePage";
 import UserProfilePage from "../../features/profiles/profilePage/UserProfilePage";
 import ChatPage from "../../features/chat/ChatPage";
 import MatchUserList from "../../features/companyMember/MatchUserList";
@@ -33,6 +32,7 @@ import CompanyHomePage from "../../features/company/CompanyHomePage";
 import OfferUserList from "../../features/company/OfferUserList";
 import MatchUser from "../../features/company/MatchUser";
 import MatchCompany from "../../features/user/MatchCompany";
+import TrialUserProfilePage from "../../features/profiles/profilePage/TrialUserProfilePage";
 
 function App() {
   const { key } = useLocation();

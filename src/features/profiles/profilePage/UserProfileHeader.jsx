@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Grid, Header, Icon, Item, Segment } from "semantic-ui-react";
 
-
 export default function UserProfileHeader({ profile }) {
+  console.log(profile);
   return (
     <Segment>
       <Grid>
@@ -45,15 +45,27 @@ export default function UserProfileHeader({ profile }) {
             </a>
           </div>
         </Grid.Column>
+
         <Grid.Column width={4}>
-          <Button
-            as={Link}
-            to='/userList'
-            basic
-            floated='right'
-            content='戻る'
-            style={{ fontSize: 15 }}
-          />
+          {profile.userType !== "求職者" ? (
+            <Button
+              as={Link}
+              to='/userList'
+              basic
+              floated='right'
+              content='戻る'
+              style={{ fontSize: 15 }}
+            />
+          ) : (
+            <Button
+              as={Link}
+              to='/events'
+              basic
+              floated='right'
+              content='戻る'
+              style={{ fontSize: 15 }}
+            />
+          )}
         </Grid.Column>
       </Grid>
     </Segment>

@@ -2,12 +2,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Grid } from "semantic-ui-react";
-import { getUserProfile } from "../../app/firestore/firestoreService";
-import useFirestoreDoc from "../../app/hooks/useFirestoreDoc";
-import LoadingComponent from "../../app/layout/LoadingComponent";
-import { listenToSelectedUserProfile } from "../profiles/profileActions";
-import TrialUserProfileContent from "./TrialUserProfileContent";
+import { getUserProfile } from "../../../app/firestore/firestoreService";
+import useFirestoreDoc from "../../../app/hooks/useFirestoreDoc";
+import LoadingComponent from "../../../app/layout/LoadingComponent";
+import { listenToSelectedUserProfile } from "../profileActions";
 import TrialUserProfileHeader from "./TrialUserProfileHeader";
+import UserProfileContent from "./UserProfileContent";
 
 export default function TrialUserProfilePage({ match }) {
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ export default function TrialUserProfilePage({ match }) {
           profile={profile}
           isCurrentUser={currentUser.uid === profile.id}
         />
-        <TrialUserProfileContent
+        <UserProfileContent
           profile={profile}
           isCurrentUser={currentUser.uid === profile.id}
         />
