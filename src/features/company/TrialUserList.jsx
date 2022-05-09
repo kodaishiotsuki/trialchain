@@ -52,7 +52,7 @@ export default function TrialUserList() {
         <Icon name='teal users' size='huge' />
         <h1>応募者リスト</h1>
       </div>
-      <Card.Group itemsPerRow={4}>
+      <Card.Group itemsPerRow={3}>
         {requestUsers.map((requestUser) => (
           <TrialUserListItem requestUser={requestUser} key={requestUser.id} />
         ))}

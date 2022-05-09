@@ -1,12 +1,16 @@
 import { getAuth } from "firebase/auth";
 import {
   arrayRemove,
+  collection,
   doc,
+  getDocs,
   getFirestore,
+  query,
   setDoc,
   updateDoc,
+  where,
 } from "firebase/firestore";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card, Image, Label } from "semantic-ui-react";
 import { app } from "../../app/config/firebase";
@@ -20,34 +24,56 @@ export default function TrialListItem({ company }) {
   const [loading, setLoading] = useState(false);
   //トライアル申請ボタン
   const [buttonClick, setButtonClick] = useState(false);
+  const [users, setUsers] = useState("");
 
-  console.log(user);
+  console.log(users);
+
+  //自分を取得
+  useEffect(() => {
+    try {
+      const q = query(
+        collection(db, "users"),
+        where("email", "==", user?.email)
+      );
+      getDocs(q).then((querySnapshot) => {
+        setUsers(
+          querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
+        );
+        //コンソールで表示
+        // console.log(
+        //   querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
+        // );
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, [db, user?.email]);
 
   //トライアル申請
   async function UserTrialRequestCompany() {
     setLoading(true);
     try {
       await setDoc(
-        doc(db, "trialCompany", company.hostUid, "users", user.uid),
+        doc(db, "trialCompany", company.hostUid, "users", users.id),
         {
           ...company,
-          userName: user.displayName,
-          userPhotoURL: user.photoURL || "/assets/user.png",
-          userId: user.uid,
+          userName: users.displayName,
+          userPhotoURL: users.photoURL || "/assets/user.png",
+          userId: users.id,
         }
       );
       await setDoc(
-        doc(db, "trialUser", user.uid, "companies", company.hostUid),
+        doc(db, "trialUser", users.id, "companies", company.hostUid),
         {
           ...company,
-          userName: user.displayName,
-          userPhotoURL: user.photoURL || "/assets/user.png",
-          userId: user.uid,
+          userName: users.displayName,
+          userPhotoURL: users.photoURL || "/assets/user.png",
+          userId: users.id,
         }
       );
       //お気に入り企業削除
       await updateDoc(doc(db, "events", company.id), {
-        favoriteUserId: arrayRemove(user.uid),
+        favoriteUserId: arrayRemove(users.id),
       });
     } catch (error) {
       console.log("fserror", error);
@@ -91,7 +117,7 @@ export default function TrialListItem({ company }) {
           <Button
             color='teal'
             floated='right'
-            content={buttonClick ? "申請済み" : "トライアル申請"}
+            content={buttonClick ? "応募済み" : "応募する"}
             loading={loading}
             onClick={UserTrialRequestCompany}
             disabled={buttonClick}

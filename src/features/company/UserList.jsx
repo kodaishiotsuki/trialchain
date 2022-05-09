@@ -46,7 +46,7 @@ export default function UserList({ match, history, location }) {
         <Icon name='teal users' size='huge' />
         <h1>求職者リスト</h1>
       </div>
-      <Card.Group itemsPerRow={4}>
+      <Card.Group itemsPerRow={3}>
         {users.map((user) => (
           <UserListItem user={user} key={user.id} />
         ))}
