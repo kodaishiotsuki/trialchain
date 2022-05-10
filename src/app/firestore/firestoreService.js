@@ -168,6 +168,15 @@ export async function updateUserProfile(profile) {
     throw error;
   }
 }
+//ユーザー情報更新
+export async function updateUserCareer(profile) {
+  const user = auth.currentUser;
+  try {
+    return await updateDoc(doc(db, "users", user.uid), profile);
+  } catch (error) {
+    throw error;
+  }
+}
 //ユーザータイプ選択
 export async function UserType(profile) {
   const user = auth.currentUser;

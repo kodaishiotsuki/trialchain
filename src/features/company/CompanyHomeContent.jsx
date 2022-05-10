@@ -1,5 +1,11 @@
 import { getAuth } from "firebase/auth";
-import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -59,7 +65,7 @@ export default function CompanyHomeContent() {
       >
         <Card.Content>
           <Icon
-            name='edit outline'
+            name='edit'
             size='huge'
             style={{ marginLeft: "33%", marginBottom: 40 }}
           />
@@ -76,7 +82,7 @@ export default function CompanyHomeContent() {
       >
         <Card.Content>
           <Icon
-            name='edit '
+            name='edit'
             size='huge'
             style={{ marginLeft: "33%", marginBottom: 40 }}
           />

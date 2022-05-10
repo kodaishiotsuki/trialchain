@@ -1,19 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Dropdown, Icon, Image, Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { signOutFirebase } from "../../app/firestore/firebaseService";
-import {
-  collection,
-  getDocs,
-  getFirestore,
-  query,
-  where,
-} from "firebase/firestore";
-import { app } from "../../app/config/firebase";
-import { getAuth } from "firebase/auth";
 
 export default function SignedInMenu({ userType }) {
   const { currentUserProfile } = useSelector((state) => state.profile);
@@ -29,29 +20,28 @@ export default function SignedInMenu({ userType }) {
   }
 
   //登録した求人情報を取得
-  const [hostId, setHostId] = useState("");
-  const db = getFirestore(app);
-  const auth = getAuth(app);
-  //ログインユーザー
-  const user = auth.currentUser;
+  // const [hostId, setHostId] = useState("");
+  // const db = getFirestore(app);
+  // const auth = getAuth(app);
+  // //ログインユーザー
+  // const user = auth.currentUser;
 
   //登録した求人情報を取得(eventsコレクション)
-  useEffect(() => {
-    try {
-      const q = query(
-        collection(db, "events"),
-        where("hostUid", "==", user?.uid)
-      );
-      getDocs(q).then((querySnapshot) => {
-        setHostId(querySnapshot.docs.map((doc) => doc.data())[0]);
-
-        //コンソールで表示
-        console.log(querySnapshot.docs.map((doc) => doc.data())[0]);
-      });
-    } catch (error) {
-      console.log(error.message);
-    }
-  }, [db, user?.uid]);
+  // useEffect(() => {
+  //   try {
+  //     const q = query(
+  //       collection(db, "events"),
+  //       where("hostUid", "==", user?.uid)
+  //     );
+  //     getDocs(q).then((querySnapshot) => {
+  //       setHostId(querySnapshot.docs.map((doc) => doc.data())[0]);
+  //       //コンソールで表示
+  //       // console.log(querySnapshot.docs.map((doc) => doc.data())[0]);
+  //     });
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // });
 
   return (
     <>
@@ -78,12 +68,12 @@ export default function SignedInMenu({ userType }) {
                   text='求人を掲載する'
                   icon='edit'
                 />
-                <Dropdown.Item
+                {/* <Dropdown.Item
                   as={Link}
-                  to={`/manage/${hostId.id}`}
+                  to={`/manage/${hostId?.id}`}
                   text='掲載内容の更新'
                   icon='edit outline'
-                />
+                /> */}
               </>
             )}
             {userType?.userType === "企業" && (

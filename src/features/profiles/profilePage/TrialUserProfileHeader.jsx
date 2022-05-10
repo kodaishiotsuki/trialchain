@@ -138,11 +138,6 @@ export default function TrialUserProfileHeader({ profile }) {
                   style={{ display: "block", margin: 20, fontSize: 30 }}
                   content={profile.displayName}
                 />
-                <Item.Content
-                  className='ui  tag label'
-                  content={profile.occupation}
-                  style={{ fontSize: 15, marginLeft: 30 }}
-                />
               </Item.Content>
             </Item>
           </Item.Group>

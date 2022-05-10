@@ -1,6 +1,7 @@
 import React from "react";
 import { Tab } from "semantic-ui-react";
-import UserAboutTab from "../../company/UserAboutTab";
+import AboutTab from "./AboutTab";
+import CarerTab from "./CareerTab";
 import PhotosTab from "./PhotosTab";
 import UserTrialTab from "./UserTrialTab";
 
@@ -10,7 +11,7 @@ export default function UserProfileContent({ profile, isCurrentUser }) {
     {
       menuItem: "プロフィール",
       render: () => (
-        <UserAboutTab profile={profile} isCurrentUser={isCurrentUser} />
+        <AboutTab profile={profile} isCurrentUser={isCurrentUser} />
       ),
     },
     {
@@ -20,15 +21,27 @@ export default function UserProfileContent({ profile, isCurrentUser }) {
       ),
     },
     {
-      menuItem: "職歴 / 学歴",
+      menuItem: "これまでやってきたこと",
       render: () => (
-        <UserAboutTab profile={profile} isCurrentUser={isCurrentUser} />
+        <CarerTab profile={profile} isCurrentUser={isCurrentUser} />
       ),
     },
     {
-      menuItem: "スキル / 特徴",
+      menuItem: "これまで学んできたこと",
       render: () => (
-        <UserAboutTab profile={profile} isCurrentUser={isCurrentUser} />
+        <AboutTab profile={profile} isCurrentUser={isCurrentUser} />
+      ),
+    },
+    {
+      menuItem: "仕事選びの希望",
+      render: () => (
+        <AboutTab profile={profile} isCurrentUser={isCurrentUser} />
+      ),
+    },
+    {
+      menuItem: "基本情報",
+      render: () => (
+        <AboutTab profile={profile} isCurrentUser={isCurrentUser} />
       ),
     },
     {

@@ -6,8 +6,8 @@ import CompanyHomeHeader from "./CompanyHomeHeader";
 export default function CompanyHomePage() {
   return (
     <>
-      <div style={{ textAlign: "center", marginBottom: 20,display:"flex" }}>
-        <Icon name='blue home' size='huge' />
+      <div style={{ textAlign: "center", marginBottom: 20, display: "flex" }}>
+        <Icon name='home' size='huge' color='blue' />
         <h1>HOME画面</h1>
       </div>
 
