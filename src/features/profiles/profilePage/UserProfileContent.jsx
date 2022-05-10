@@ -1,8 +1,11 @@
 import React from "react";
 import { Tab } from "semantic-ui-react";
 import AboutTab from "./AboutTab";
+import BasicInformationTab from "./BasicInformationTab";
 import CarerTab from "./CareerTab";
+import HopeCareerTab from "./HopeCareerTab";
 import PhotosTab from "./PhotosTab";
+import QualificationTab from "./QualificationTab";
 import UserTrialTab from "./UserTrialTab";
 
 export default function UserProfileContent({ profile, isCurrentUser }) {
@@ -29,19 +32,19 @@ export default function UserProfileContent({ profile, isCurrentUser }) {
     {
       menuItem: "これまで学んできたこと",
       render: () => (
-        <AboutTab profile={profile} isCurrentUser={isCurrentUser} />
+        <QualificationTab profile={profile} isCurrentUser={isCurrentUser} />
       ),
     },
     {
       menuItem: "仕事選びの希望",
       render: () => (
-        <AboutTab profile={profile} isCurrentUser={isCurrentUser} />
+        <HopeCareerTab profile={profile} isCurrentUser={isCurrentUser} />
       ),
     },
     {
       menuItem: "基本情報",
       render: () => (
-        <AboutTab profile={profile} isCurrentUser={isCurrentUser} />
+        <BasicInformationTab profile={profile} isCurrentUser={isCurrentUser} />
       ),
     },
     {

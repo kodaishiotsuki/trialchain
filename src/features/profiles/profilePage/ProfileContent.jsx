@@ -1,7 +1,10 @@
 import React from "react";
 import { Tab } from "semantic-ui-react";
 import AboutTab from "./AboutTab";
+import BasicInformationTab from "./BasicInformationTab";
+import CarerTab from "./CareerTab";
 import PhotosTab from "./PhotosTab";
+import QualificationTab from "./QualificationTab";
 
 export default function ProfileContent({ profile, isCurrentUser }) {
   // const [activeTab, setActiveTab] = useState(0);
@@ -13,15 +16,21 @@ export default function ProfileContent({ profile, isCurrentUser }) {
       ),
     },
     {
-      menuItem: "職歴 / 学歴",
+      menuItem: "これまでやってきたこと",
       render: () => (
-        <AboutTab profile={profile} isCurrentUser={isCurrentUser} />
+        <CarerTab profile={profile} isCurrentUser={isCurrentUser} />
       ),
     },
     {
-      menuItem: "スキル / 特徴",
+      menuItem: "これまで学んできたこと",
       render: () => (
-        <AboutTab profile={profile} isCurrentUser={isCurrentUser} />
+        <QualificationTab profile={profile} isCurrentUser={isCurrentUser} />
+      ),
+    },
+    {
+      menuItem: "基本情報",
+      render: () => (
+        <BasicInformationTab profile={profile} isCurrentUser={isCurrentUser} />
       ),
     },
     {
