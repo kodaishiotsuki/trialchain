@@ -42,7 +42,7 @@ export default function GroupDetailedChat({ groupId }) {
   return (
     <>
       <div style={{ textAlign: "center", marginBottom: 20, display: "flex",justifyContent:"center" }}>
-        <Icon name='teal envelope' size='huge' />
+        <Icon name='envelope' color="teal" size='huge' />
         <h1>メッセージ画面</h1>
       </div>
 

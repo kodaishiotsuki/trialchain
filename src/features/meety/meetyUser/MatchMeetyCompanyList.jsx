@@ -1,23 +1,23 @@
 import { getAuth } from 'firebase/auth';
 import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
-import {  Icon } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 import { app } from '../../../app/config/firebase';
-import MeetyCompanyListItem from './MeetyCompanyListItem';
+import MatchMeetyCompanyListItem from './MatchMeetyCompanyListItem';
 
-export default function MeetyCompanyList() {
+export default function MatchMeetyCompanyList() {
   //FB
   const db = getFirestore(app);
   const auth = getAuth(app);
   const currentUser = auth.currentUser;
-  //応募者したリスト
+  //マッチしたリスト
   const [meetyUsers, setMeetyUsers] = useState([]);
 
-  //応募したリスト取得
+  //マッチしたリスト取得
   useEffect(() => {
     try {
       const q = query(
-        collection(db, "meetySeeker", currentUser.uid, "companies"),
+        collection(db, "meetyGroup"),
         where("seekerId", "==", currentUser.uid)
       );
       getDocs(q).then((querySnapshot) => {
@@ -36,10 +36,10 @@ export default function MeetyCompanyList() {
     <>
       <div style={{ textAlign: "center", marginBottom: 20, display: "flex" }}>
         <Icon name='meetup' size='huge' color='teal' />
-        <h1>応募したカジュアル面談リスト</h1>
+        <h1>マッチしたカジュアル面談リスト</h1>
       </div>
       {meetyUsers.map((meety) => (
-        <MeetyCompanyListItem key={meety.id} meety={meety}  />
+        <MatchMeetyCompanyListItem key={meety.id} meety={meety} />
       ))}
     </>
   );

@@ -131,7 +131,7 @@ export default function SignedInMenu({ userType }) {
                 <Dropdown.Item
                   as={Link}
                   to='/matchCompany'
-                  text='メッセージ一覧'
+                  text='トライアル雇用メッセージ'
                   icon='envelope outline'
                 />
                 <Dropdown.Item
@@ -163,6 +163,12 @@ export default function SignedInMenu({ userType }) {
                   to='/meetyCompany'
                   text='カジュアル面談応募リスト'
                   icon='meetup'
+                />
+                <Dropdown.Item
+                  as={Link}
+                  to='/matchMeetyCompany'
+                  text='カジュアル面談メッセージ'
+                  icon='envelope outline'
                 />
               </>
             )}

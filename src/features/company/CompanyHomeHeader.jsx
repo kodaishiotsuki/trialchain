@@ -68,7 +68,7 @@ export default function CompanyHomeHeader() {
         <Header
           icon='building outline'
           color='grey'
-          content='企業'
+          content='トライアル採用'
           style={{ fontSize: 20 }}
         />
         <Menu.Menu>
@@ -84,17 +84,6 @@ export default function CompanyHomeHeader() {
             as={Link}
             to={`/manage/${hostId.id}`}
           />
-        </Menu.Menu>
-      </Menu.Item>
-
-      <Menu.Item>
-        <Header
-          icon='paper plane outline'
-          color='grey'
-          content='人材'
-          style={{ fontSize: 20 }}
-        />
-        <Menu.Menu>
           <Menu.Item
             name='メッセージ一覧'
             style={{ fontSize: 20 }}
@@ -118,6 +107,35 @@ export default function CompanyHomeHeader() {
             style={{ fontSize: 20 }}
             as={Link}
             to='/decidedUser'
+          />
+        </Menu.Menu>
+      </Menu.Item>
+
+      <Menu.Item>
+        <Header
+          icon='meetup'
+          color='grey'
+          content='カジュアル面談'
+          style={{ fontSize: 20 }}
+        />
+        <Menu.Menu>
+          <Menu.Item
+            name='カジュアル面談を掲載する'
+            style={{ fontSize: 20 }}
+            as={Link}
+            to='/createMeety'
+          />
+          <Menu.Item
+            name='応募があった求職者'
+            style={{ fontSize: 20 }}
+            as={Link}
+            to='/meetyUser'
+          />
+          <Menu.Item
+            name='メッセージ一覧'
+            style={{ fontSize: 20 }}
+            as={Link}
+            to='/matchMeetyUser'
           />
         </Menu.Menu>
       </Menu.Item>

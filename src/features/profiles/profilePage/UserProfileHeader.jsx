@@ -54,7 +54,7 @@ export default function UserProfileHeader({ profile }) {
           ) : (
             <Button
               as={Link}
-              to='/events'
+              to='/companyHome'
               basic
               floated='right'
               content='戻る'

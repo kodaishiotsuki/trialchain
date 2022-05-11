@@ -37,6 +37,8 @@ import MeetyDashbord from "../../features/meety/meetyDashbord/MeetyDashbord";
 import MeetyForm from "../../features/meety/meetyForm/MeetyForm";
 import MeetyCompanyList from "../../features/meety/meetyUser/MeetyCompanyList";
 import MeetyUserList from "../../features/meety/meetyCompany/MeetyUserList";
+import MatchMettyUserList from "../../features/meety/meetyCompany/MatchMettyUserList";
+import MatchMeetyCompanyList from "../../features/meety/meetyUser/MatchMeetyCompanyList";
 
 function App() {
   const { key,meetykey } = useLocation();
@@ -70,6 +72,10 @@ function App() {
                 path='/decidedCompany'
                 component={DecidedCompanyList}
               />
+              <PrivateRoute
+                path='/matchMeetyCompany'
+                component={MatchMeetyCompanyList}
+              />
               {/* 会社側 */}
               <PrivateRoute path='/companyHome' component={CompanyHomePage} />
               <PrivateRoute path='/userList' component={UserList} />
@@ -79,6 +85,7 @@ function App() {
               <PrivateRoute path='/decidedUser' component={DecidedUserList} />
               <PrivateRoute path='/trialForm/:id' component={TrialForm} />
               <PrivateRoute path='/meetyUser' component={MeetyUserList} />
+              <PrivateRoute path='/matchMeetyUser' component={MatchMettyUserList} />
 
               {/* 会社のメンバー */}
               <PrivateRoute path='/matchUserList' component={MatchUserList} />
