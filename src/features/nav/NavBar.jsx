@@ -72,6 +72,12 @@ export default function NavBar({ setFormOpen }) {
               name='求人企業リスト'
               style={{ fontSize: 15 }}
             />
+            <Menu.Item
+              as={NavLink}
+              to='/meety'
+              name='Meetyリスト'
+              style={{ fontSize: 15 }}
+            />
             {/* <Menu.Item as={NavLink} to='/sandbox' name='Sandbox' /> */}
 
             {/* {authenticated && (

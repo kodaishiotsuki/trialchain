@@ -7,7 +7,7 @@ import asyncReducer from "../async/asyncReducer";
 import modalReducer from "../common/modals/modalReducer";
 import { connectRouter } from "connected-react-router";
 import groupReducer from "../../features/chat/chatReducer";
-
+import meetyReducer from "../../features/meety/meetyReducer";
 const rootReducer = (history) =>
   combineReducers({
     router: connectRouter(history),
@@ -17,7 +17,8 @@ const rootReducer = (history) =>
     auth: authReducer,
     async: asyncReducer,
     profile: profileReducer,
-    group:groupReducer
+    group: groupReducer,
+    meety: meetyReducer,
   });
 
 export default rootReducer;

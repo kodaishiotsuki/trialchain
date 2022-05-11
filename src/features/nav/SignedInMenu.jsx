@@ -158,6 +158,12 @@ export default function SignedInMenu({ userType }) {
                   text='トライアル雇用決定企業'
                   icon='building outline'
                 />
+                <Dropdown.Item
+                  as={Link}
+                  to='/meetyCompany'
+                  text='カジュアル面談応募リスト'
+                  icon='meetup'
+                />
               </>
             )}
 

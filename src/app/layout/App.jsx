@@ -33,9 +33,13 @@ import OfferUserList from "../../features/company/OfferUserList";
 import MatchUser from "../../features/company/MatchUser";
 import MatchCompany from "../../features/user/MatchCompany";
 import TrialUserProfilePage from "../../features/profiles/profilePage/TrialUserProfilePage";
+import MeetyDashbord from "../../features/meety/meetyDashbord/MeetyDashbord";
+import MeetyForm from "../../features/meety/meetyForm/MeetyForm";
+import MeetyCompanyList from "../../features/meety/meetyUser/MeetyCompanyList";
+import MeetyUserList from "../../features/meety/meetyCompany/MeetyUserList";
 
 function App() {
-  const { key } = useLocation();
+  const { key,meetykey } = useLocation();
   //初期化
   const { initialized } = useSelector((state) => state.async);
   if (!initialized) return <LoadingComponent content='Loading app...' />;
@@ -54,14 +58,12 @@ function App() {
             <CompanyNavBar />
             <Container className='main'>
               <Route exact path='/events' component={EventDashboard} />
+              <Route exact path='/meety' component={MeetyDashbord} />
               <Route exact path='/sandbox' component={Sandbox} />
               <Route path='/events/:id' component={EventDetailedPage} />
               {/* 求職者側 */}
               <PrivateRoute path='/trial' component={TrialList} />
-              {/* <PrivateRoute
-                path='/trialApplication'
-                component={TrialApplication}
-              /> */}
+              <PrivateRoute path='/meetyCompany' component={MeetyCompanyList} />
               <PrivateRoute path='/offerCompany' component={OfferCompanyList} />
               <PrivateRoute path='/matchCompany' component={MatchCompany} />
               <PrivateRoute
@@ -76,6 +78,7 @@ function App() {
               <PrivateRoute path='/matchUser' component={MatchUser} />
               <PrivateRoute path='/decidedUser' component={DecidedUserList} />
               <PrivateRoute path='/trialForm/:id' component={TrialForm} />
+              <PrivateRoute path='/meetyUser' component={MeetyUserList} />
 
               {/* 会社のメンバー */}
               <PrivateRoute path='/matchUserList' component={MatchUserList} />
@@ -89,6 +92,11 @@ function App() {
                 key={key}
                 path={["/createEvent", "/manage/:id"]}
                 component={EventForm}
+              />
+              <PrivateRoute
+                key={meetykey}
+                path={["/createMeety", "/manageMeety/:id"]}
+                component={MeetyForm}
               />
               <PrivateRoute path='/account' component={AccountPage} />
               <PrivateRoute path='/profile/:id' component={ProfilePage} />

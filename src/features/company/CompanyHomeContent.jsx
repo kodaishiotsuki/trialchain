@@ -188,6 +188,22 @@ export default function CompanyHomeContent() {
           </Card.Header>
         </Card.Content>
       </Card>
+      <Card
+        style={{ padding: 30, width: 240, height: 220 }}
+        as={Link}
+        to='/createMeety'
+      >
+        <Card.Content>
+          <Icon
+            name='meetup'
+            size='huge'
+            style={{ marginLeft: "33%", marginBottom: 40 }}
+          />
+          <Card.Header style={{ textAlign: "center", fontSize: 25 }}>
+            Meety登録
+          </Card.Header>
+        </Card.Content>
+      </Card>
     </Card.Group>
   );
 }
