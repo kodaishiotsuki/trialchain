@@ -78,6 +78,18 @@ export default function NavBar({ setFormOpen }) {
               name='Meetyリスト'
               style={{ fontSize: 15 }}
             />
+            <Menu.Item
+              as={NavLink}
+              to='/calender'
+              name='カレンダー'
+              style={{ fontSize: 15 }}
+            />
+            <Menu.Item
+              as={NavLink}
+              to='/googleCalendar'
+              name='googleカレンダー'
+              style={{ fontSize: 15 }}
+            />
             {/* <Menu.Item as={NavLink} to='/sandbox' name='Sandbox' /> */}
 
             {/* {authenticated && (

@@ -39,6 +39,8 @@ import MeetyCompanyList from "../../features/meety/meetyUser/MeetyCompanyList";
 import MeetyUserList from "../../features/meety/meetyCompany/MeetyUserList";
 import MatchMettyUserList from "../../features/meety/meetyCompany/MatchMettyUserList";
 import MatchMeetyCompanyList from "../../features/meety/meetyUser/MatchMeetyCompanyList";
+import CalenderDashbord from "../../features/calender/CalenderDashbord";
+import GoogleCalendar from "../../features/calender/GoogleCalendar";
 
 function App() {
   const { key,meetykey } = useLocation();
@@ -62,6 +64,8 @@ function App() {
               <Route exact path='/events' component={EventDashboard} />
               <Route exact path='/meety' component={MeetyDashbord} />
               <Route exact path='/sandbox' component={Sandbox} />
+              <Route exact path='/calender' component={CalenderDashbord} />
+              <Route exact path='/googleCalendar' component={GoogleCalendar} />
               <Route path='/events/:id' component={EventDetailedPage} />
               {/* 求職者側 */}
               <PrivateRoute path='/trial' component={TrialList} />

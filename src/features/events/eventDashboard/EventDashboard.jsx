@@ -63,7 +63,7 @@ const EventDashboard = () => {
   return (
     <>
       <div style={{ textAlign: "center", marginBottom: 20, display: "flex" }}>
-        <Icon name='teal building' size='huge' />
+        <Icon name='building' color="teal" size='huge' />
         <h1>求人企業リスト</h1>
       </div>
       <Grid>
